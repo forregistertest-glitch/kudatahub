@@ -1,624 +1,952 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KU Data Hub Presentation</title>
     <!-- Google Fonts: Sarabun for Thai text -->
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        /* CSS Variables for Theming */
-        :root {
-            /* Light Theme (Earthtone/Pastel - Default) */
-            --bg-color: #FAF9F6;
-            --text-color: #4A4A4A;
-            --sidebar-bg: #E8E4D9;
-            --sidebar-border: #D6CFC0;
-            --nav-hover: #DBCCB8;
-            --nav-active: #D4C5A9;
-            --nav-active-text: #2F2F2F;
-            --nav-sub-active: #5D4E42;
-            --heading-primary: #8C7B70;
-            --heading-secondary: #A68069;
-            --heading-tertiary: #6F5E53;
-            --code-bg: #484349;
-            --code-text: #F7F0F5;
-            --inline-code-bg: #E6DDC4;
-            --inline-code-text: #5D5C61;
-            --table-head-bg: #D4C5A9;
-            --table-head-text: #4A4A4A;
-            --table-bg: #ffffff;
-            --table-row-hover: #f9f9f9;
-            --table-border: #eee;
-            --blockquote-bg: #F2EBE5;
-            --blockquote-border: #A68069;
-            --link-color: #A68069;
-            --link-hover: #8C7B70;
-            --footer-bg: #E2dec4;
-            --footer-text: #6F5E53;
-            --fab-bg: #8C7B70;
-            --fab-color: #fff;
-            --fab-hover: #6F5E53;
-        }
+      /* CSS Variables for Theming */
+      :root {
+        /* Light Theme (Earthtone/Pastel - Default) */
+        --bg-color: #faf9f6;
+        --text-color: #4a4a4a;
+        --sidebar-bg: #e8e4d9;
+        --sidebar-border: #d6cfc0;
+        --nav-hover: #dbccb8;
+        --nav-active: #d4c5a9;
+        --nav-active-text: #2f2f2f;
+        --nav-sub-active: #5d4e42;
+        --heading-primary: #8c7b70;
+        --heading-secondary: #a68069;
+        --heading-tertiary: #6f5e53;
+        --code-bg: #484349;
+        --code-text: #f7f0f5;
+        --inline-code-bg: #e6ddc4;
+        --inline-code-text: #5d5c61;
+        --table-head-bg: #d4c5a9;
+        --table-head-text: #4a4a4a;
+        --table-bg: #ffffff;
+        --table-row-hover: #f9f9f9;
+        --table-border: #eee;
+        --blockquote-bg: #f2ebe5;
+        --blockquote-border: #a68069;
+        --link-color: #a68069;
+        --link-hover: #8c7b70;
+        --footer-bg: #e2dec4;
+        --footer-text: #6f5e53;
+        --fab-bg: #8c7b70;
+        --fab-color: #fff;
+        --fab-hover: #6f5e53;
+      }
 
-        /* Dark Theme (Olive Green Tone) */
-        body.dark-theme {
-            --bg-color: #2F332A; /* Deep Olive Background */
-            --text-color: #E6E8E3; /* Light Cream Text */
-            --sidebar-bg: #262922; /* Darker Olive Sidebar */
-            --sidebar-border: #3E4238;
-            --nav-hover: #3E4238;
-            --nav-active: #4F5546; /* Active Olive */
-            --nav-active-text: #FFFFFF;
-            --nav-sub-active: #D1D6CC;
-            --heading-primary: #B5C1A6; /* Sage Green */
-            --heading-secondary: #9DA890; /* Muted Sage */
-            --heading-tertiary: #A4AC9D;
-            --code-bg: #1A1D18; /* Very Dark Olive/Black */
-            --code-text: #D1D6CC;
-            --inline-code-bg: #3E4238;
-            --inline-code-text: #E6E8E3;
-            --table-head-bg: #4F5546;
-            --table-head-text: #FFFFFF;
-            --table-bg: #262922;
-            --table-row-hover: #353A30;
-            --table-border: #3E4238;
-            --blockquote-bg: #353A30;
-            --blockquote-border: #7F8C72;
-            --link-color: #B5C1A6;
-            --link-hover: #D1D6CC;
-            --footer-bg: #1A1D18;
-            --footer-text: #9DA890;
-            --fab-bg: #7F8C72; /* Olive Green Button */
-            --fab-color: #fff;
-            --fab-hover: #9DA890;
-        }
+      /* Dark Theme (Olive Green Tone) */
+      body.dark-theme {
+        --bg-color: #2f332a; /* Deep Olive Background */
+        --text-color: #e6e8e3; /* Light Cream Text */
+        --sidebar-bg: #262922; /* Darker Olive Sidebar */
+        --sidebar-border: #3e4238;
+        --nav-hover: #3e4238;
+        --nav-active: #4f5546; /* Active Olive */
+        --nav-active-text: #ffffff;
+        --nav-sub-active: #d1d6cc;
+        --heading-primary: #b5c1a6; /* Sage Green */
+        --heading-secondary: #9da890; /* Muted Sage */
+        --heading-tertiary: #a4ac9d;
+        --code-bg: #1a1d18; /* Very Dark Olive/Black */
+        --code-text: #d1d6cc;
+        --inline-code-bg: #3e4238;
+        --inline-code-text: #e6e8e3;
+        --table-head-bg: #4f5546;
+        --table-head-text: #ffffff;
+        --table-bg: #262922;
+        --table-row-hover: #353a30;
+        --table-border: #3e4238;
+        --blockquote-bg: #353a30;
+        --blockquote-border: #7f8c72;
+        --link-color: #b5c1a6;
+        --link-hover: #d1d6cc;
+        --footer-bg: #1a1d18;
+        --footer-text: #9da890;
+        --fab-bg: #7f8c72; /* Olive Green Button */
+        --fab-color: #fff;
+        --fab-hover: #9da890;
+      }
 
-        /* Reset & Base Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+      /* Reset & Base Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            font-family: 'Sarabun', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            font-size: 18px;
-            transition: background-color 0.3s, color 0.3s;
-        }
+      body {
+        font-family: "Sarabun", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+        font-size: 18px;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+      }
 
-        /* Sidebar Navigation */
-        aside {
-            width: 340px;
-            background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--sidebar-border);
-            display: flex;
-            flex-direction: column;
-            padding-top: 20px;
-            flex-shrink: 0;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
-            justify-content: space-between;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
+      /* Sidebar Navigation */
+      aside {
+        width: 340px;
+        background-color: var(--sidebar-bg);
+        border-right: 1px solid var(--sidebar-border);
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        flex-shrink: 0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        justify-content: space-between;
+        transition:
+          background-color 0.3s,
+          border-color 0.3s;
+      }
 
-        .sidebar-header {
-            padding: 0 25px 20px;
-            border-bottom: 2px solid var(--sidebar-border);
-            margin-bottom: 10px;
-        }
+      .sidebar-header {
+        padding: 0 25px 20px;
+        border-bottom: 2px solid var(--sidebar-border);
+        margin-bottom: 10px;
+      }
 
-        aside h2 {
-            font-size: 1.4rem;
-            color: var(--heading-tertiary);
-            font-weight: 700;
-        }
+      aside h2 {
+        font-size: 1.4rem;
+        color: var(--heading-tertiary);
+        font-weight: 700;
+      }
 
-        .nav-container {
-            flex-grow: 1;
-            overflow-y: auto;
-        }
+      .nav-container {
+        flex-grow: 1;
+        overflow-y: auto;
+      }
 
-        .nav-item {
-            padding: 12px 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 5px solid transparent;
-            display: flex;
-            flex-direction: column;
-        }
+      .nav-item {
+        padding: 12px 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-left: 5px solid transparent;
+        display: flex;
+        flex-direction: column;
+      }
 
-        .nav-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-bottom: 2px;
-        }
+      .nav-title {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text-color);
+        opacity: 0.8;
+        margin-bottom: 2px;
+      }
 
-        .nav-sub {
-            font-size: 0.8rem;
-            color: var(--heading-secondary);
-            font-weight: 400;
-        }
+      .nav-sub {
+        font-size: 0.8rem;
+        color: var(--heading-secondary);
+        font-weight: 400;
+      }
 
-        .nav-item:hover {
-            background-color: var(--nav-hover);
-        }
+      .nav-item:hover {
+        background-color: var(--nav-hover);
+      }
 
-        .nav-item:hover .nav-title {
-            opacity: 1;
-        }
+      .nav-item:hover .nav-title {
+        opacity: 1;
+      }
 
-        .nav-item.active {
-            background-color: var(--nav-active);
-            border-left: 5px solid var(--heading-secondary);
-        }
+      .nav-item.active {
+        background-color: var(--nav-active);
+        border-left: 5px solid var(--heading-secondary);
+      }
 
-        .nav-item.active .nav-title {
-            color: var(--nav-active-text);
-            opacity: 1;
-        }
-        
-        .nav-item.active .nav-sub {
-            color: var(--nav-sub-active);
-        }
+      .nav-item.active .nav-title {
+        color: var(--nav-active-text);
+        opacity: 1;
+      }
 
-        /* Sidebar Footer */
-        .sidebar-footer {
-            padding: 20px 25px;
-            border-top: 1px solid var(--sidebar-border);
-            background-color: var(--footer-bg);
-            font-size: 0.85rem;
-            color: var(--footer-text);
-            text-align: center;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
+      .nav-item.active .nav-sub {
+        color: var(--nav-sub-active);
+      }
 
-        /* Main Content Area */
-        main {
-            flex: 1;
-            overflow-y: auto;
-            padding: 40px 60px;
-            scroll-behavior: smooth;
-        }
+      /* Sidebar Footer */
+      .sidebar-footer {
+        padding: 20px 25px;
+        border-top: 1px solid var(--sidebar-border);
+        background-color: var(--footer-bg);
+        font-size: 0.85rem;
+        color: var(--footer-text);
+        text-align: center;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
 
-        .content-section {
-            display: none;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-bottom: 100px;
-            animation: fadeIn 0.5s ease;
-        }
+      /* Main Content Area */
+      main {
+        flex: 1;
+        overflow-y: auto;
+        padding: 40px 60px;
+        scroll-behavior: smooth;
+      }
 
-        .content-section.active {
-            display: block;
-        }
+      .content-section {
+        display: none;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 100px;
+        animation: fadeIn 0.5s ease;
+      }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+      .content-section.active {
+        display: block;
+      }
 
-        /* Typography & Elements */
-        h1 {
-            font-size: 2.2rem;
-            color: var(--heading-primary);
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid var(--sidebar-bg);
-            padding-bottom: 10px;
-            line-height: 1.3;
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
         }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-        h2 {
-            font-size: 1.6rem;
-            color: var(--heading-secondary);
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            border-left: 5px solid var(--sidebar-bg);
-            padding-left: 15px;
-        }
+      /* Typography & Elements */
+      h1 {
+        font-size: 2.2rem;
+        color: var(--heading-primary);
+        margin-bottom: 1.5rem;
+        border-bottom: 3px solid var(--sidebar-bg);
+        padding-bottom: 10px;
+        line-height: 1.3;
+      }
 
-        h3 {
-            font-size: 1.3rem;
-            color: var(--heading-tertiary);
-            margin-top: 1.8rem;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-        }
+      h2 {
+        font-size: 1.6rem;
+        color: var(--heading-secondary);
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        border-left: 5px solid var(--sidebar-bg);
+        padding-left: 15px;
+      }
 
-        p {
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-            text-align: justify;
-        }
+      h3 {
+        font-size: 1.3rem;
+        color: var(--heading-tertiary);
+        margin-top: 1.8rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+      }
 
-        ul, ol {
-            margin-bottom: 1.2rem;
-            padding-left: 2rem;
-        }
+      p {
+        line-height: 1.7;
+        margin-bottom: 1.2rem;
+        text-align: justify;
+      }
 
-        li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
+      ul,
+      ol {
+        margin-bottom: 1.2rem;
+        padding-left: 2rem;
+      }
 
-        strong {
-            color: var(--heading-secondary);
-            font-weight: 600;
-        }
-        
-        a {
-            color: var(--link-color);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--link-color);
-            transition: color 0.2s;
-        }
-        
-        a:hover {
-            color: var(--link-hover);
-            border-bottom: 1px solid var(--link-hover);
-        }
+      li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
 
-        /* Code Blocks */
-        pre {
-            background-color: var(--code-bg);
-            color: var(--code-text);
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+      strong {
+        color: var(--heading-secondary);
+        font-weight: 600;
+      }
 
-        code {
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 0.95rem;
-        }
+      a {
+        color: var(--link-color);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--link-color);
+        transition: color 0.2s;
+      }
 
-        /* Inline code */
-        p code, li code {
-            background-color: var(--inline-code-bg);
-            color: var(--inline-code-text);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
+      a:hover {
+        color: var(--link-hover);
+        border-bottom: 1px solid var(--link-hover);
+      }
 
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background-color: var(--table-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
+      /* Code Blocks */
+      pre {
+        background-color: var(--code-bg);
+        color: var(--code-text);
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        th, td {
-            padding: 15px 20px;
-            text-align: left;
-            border-bottom: 1px solid var(--table-border);
-            vertical-align: top;
-        }
+      code {
+        font-family: "Consolas", "Monaco", "Courier New", monospace;
+        font-size: 0.95rem;
+      }
 
-        th {
-            background-color: var(--table-head-bg);
-            color: var(--table-head-text);
-            font-weight: 700;
-        }
+      /* Inline code */
+      p code,
+      li code {
+        background-color: var(--inline-code-bg);
+        color: var(--inline-code-text);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
 
-        tr:hover {
-            background-color: var(--table-row-hover);
-        }
+      /* Tables */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        background-color: var(--table-bg);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
 
-        blockquote {
-            border-left: 5px solid var(--blockquote-border);
-            background-color: var(--blockquote-bg);
-            margin: 2rem 0;
-            padding: 20px 25px;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        blockquote strong {
-            color: var(--heading-tertiary);
-        }
+      th,
+      td {
+        padding: 15px 20px;
+        text-align: left;
+        border-bottom: 1px solid var(--table-border);
+        vertical-align: top;
+      }
 
-        /* Floating Action Buttons */
-        .fab-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 100;
-        }
+      th {
+        background-color: var(--table-head-bg);
+        color: var(--table-head-text);
+        font-weight: 700;
+      }
 
-        .fab {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background-color: var(--fab-bg);
-            color: var(--fab-color);
-            border: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 24px;
-        }
+      tr:hover {
+        background-color: var(--table-row-hover);
+      }
 
-        .fab:hover {
-            background-color: var(--fab-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
+      blockquote {
+        border-left: 5px solid var(--blockquote-border);
+        background-color: var(--blockquote-bg);
+        margin: 2rem 0;
+        padding: 20px 25px;
+        border-radius: 0 8px 8px 0;
+      }
 
-        .fab:active {
-            transform: translateY(0);
-        }
+      blockquote strong {
+        color: var(--heading-tertiary);
+      }
 
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--nav-active);
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--heading-secondary);
-        }
+      /* Floating Action Buttons */
+      .fab-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 100;
+      }
 
+      .fab {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background-color: var(--fab-bg);
+        color: var(--fab-color);
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: 24px;
+      }
+
+      .fab:hover {
+        background-color: var(--fab-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .fab:active {
+        transform: translateY(0);
+      }
+
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-color);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--nav-active);
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--heading-secondary);
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Sidebar Navigation -->
     <aside>
-        <div class="sidebar-header">
-            <h2>KU Data Hub</h2>
-        </div>
-        
-        <div class="nav-container">
-            <div class="nav-item active" onclick="showSection('doc1', this)">
-                <div class="nav-title">[01] Project Proposal</div>
-                <div class="nav-sub">ภาพรวมโครงการ</div>
-            </div>
-            <div class="nav-item" onclick="showSection('doc2', this)">
-                <div class="nav-title">[02] Data Lake Readiness</div>
-                <div class="nav-sub">ความพร้อมและการเปรียบเทียบ</div>
-            </div>
-            <div class="nav-item" onclick="showSection('doc3', this)">
-                <div class="nav-title">[03] Technical Design</div>
-                <div class="nav-sub">สถาปัตยกรรมระบบและฟังก์ชัน</div>
-            </div>
-            <div class="nav-item" onclick="showSection('doc4', this)">
-                <div class="nav-title">[04] Tech Deep Dive</div>
-                <div class="nav-sub">รายละเอียดเชิงลึกเทคโนโลยี</div>
-            </div>
-            <div class="nav-item" onclick="showSection('doc5', this)">
-                <div class="nav-title">[05] Security Policy</div>
-                <div class="nav-sub">นโยบายความปลอดภัยและ BCP</div>
-            </div>
-            <div class="nav-item" onclick="showSection('doc6', this)">
-                <div class="nav-title">[06] AWS Strategy</div>
-                <div class="nav-sub">ทางเลือก AWS</div>
-            </div>
-        </div>
+      <div class="sidebar-header">
+        <h2>KU Data Hub</h2>
+      </div>
 
-        <div class="sidebar-footer">
-            Digital Strategy by<br>Nipon W., DVM | 2026
+      <div class="nav-container">
+        <div class="nav-item active" onclick="showSection('doc1', this)">
+          <div class="nav-title">[01] Project Proposal</div>
+          <div class="nav-sub">ภาพรวมโครงการ</div>
         </div>
+        <div class="nav-item" onclick="showSection('doc2', this)">
+          <div class="nav-title">[02] Data Lake Readiness</div>
+          <div class="nav-sub">ความพร้อมและการเปรียบเทียบ</div>
+        </div>
+        <div class="nav-item" onclick="showSection('doc3', this)">
+          <div class="nav-title">[03] Technical Design</div>
+          <div class="nav-sub">สถาปัตยกรรมระบบและฟังก์ชัน</div>
+        </div>
+        <div class="nav-item" onclick="showSection('doc4', this)">
+          <div class="nav-title">[04] Tech Deep Dive</div>
+          <div class="nav-sub">รายละเอียดเชิงลึกเทคโนโลยี</div>
+        </div>
+        <div class="nav-item" onclick="showSection('doc5', this)">
+          <div class="nav-title">[05] Security Policy</div>
+          <div class="nav-sub">นโยบายความปลอดภัยและ BCP</div>
+        </div>
+        <div class="nav-item" onclick="showSection('doc6', this)">
+          <div class="nav-title">[06] AWS Strategy</div>
+          <div class="nav-sub">ทางเลือก AWS</div>
+        </div>
+        <div class="nav-item" onclick="showSection('doc7', this)">
+          <div class="nav-title">[07] Compliance & Security</div>
+          <div class="nav-sub">ความปลอดภัยเชิงลึกและ PDPA</div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        Digital Strategy by<br />Nipon W., DVM | 2026
+      </div>
     </aside>
 
     <!-- Main Content -->
     <main id="mainContent">
+      <!-- Document 01 -->
+      <section id="doc1" class="content-section active">
+        <h1>
+          [01] ข้อเสนอโครงการพัฒนาระบบบริหารจัดการข้อมูลศูนย์กลาง (Centralized
+          Data Hub Proposal)
+        </h1>
 
-        <!-- Document 01 -->
-        <section id="doc1" class="content-section active">
-            <h1>[01] ข้อเสนอโครงการพัฒนาระบบบริหารจัดการข้อมูลศูนย์กลาง (Centralized Data Hub Proposal)</h1>
+        <h2>1. บทสรุปผู้บริหาร (Executive Summary)</h2>
+        <p>
+          โครงการนี้มีวัตถุประสงค์เพื่อจัดตั้ง "ระบบบริหารจัดการข้อมูลศูนย์กลาง"
+          (Central Data Hub) สำหรับคณะสัตวแพทยศาสตร์และโรงพยาบาลสัตว์ทั้ง 5
+          วิทยาเขต
+          โดยมุ่งเน้นการเชื่อมโยงข้อมูลจากหน่วยงานที่มีการบริหารจัดการอิสระ
+          (Decentralized Operations)
+          เข้าสู่ฐานข้อมูลกลางเพื่อการวิเคราะห์และตัดสินใจในระดับนโยบาย
+          (Centralized Intelligence) ครอบคลุมงานด้านเวชภัณฑ์ การบริการสัตวแพทย์
+          และข้อมูลทางการศึกษา
+        </p>
 
-            <h2>1. บทสรุปผู้บริหาร (Executive Summary)</h2>
-            <p>โครงการนี้มีวัตถุประสงค์เพื่อจัดตั้ง "ระบบบริหารจัดการข้อมูลศูนย์กลาง" (Central Data Hub) สำหรับคณะสัตวแพทยศาสตร์และโรงพยาบาลสัตว์ทั้ง 5 วิทยาเขต โดยมุ่งเน้นการเชื่อมโยงข้อมูลจากหน่วยงานที่มีการบริหารจัดการอิสระ (Decentralized Operations) เข้าสู่ฐานข้อมูลกลางเพื่อการวิเคราะห์และตัดสินใจในระดับนโยบาย (Centralized Intelligence) ครอบคลุมงานด้านเวชภัณฑ์ การบริการสัตวแพทย์ และข้อมูลทางการศึกษา</p>
+        <h2>
+          2. หลักการและเหตุผลทางสถาปัตยกรรม (System Architecture Rationale)
+        </h2>
+        <p>
+          ระบบได้รับการออกแบบภายใต้แนวคิด
+          <strong>Federated Data Architecture</strong>
+          (กระบวนการซอฟต์แวร์ที่อนุญาตให้ฐานข้อมูลหลายฐานทำงานเป็นหนึ่งเดียว)
+          ซึ่งเป็นสถาปัตยกรรมที่เหมาะสมที่สุดสำหรับองค์กรที่มีหลายสาขาและมีความหลากหลายในการดำเนินงาน
+        </p>
 
-            <h2>2. หลักการและเหตุผลทางสถาปัตยกรรม (System Architecture Rationale)</h2>
-            <p>ระบบได้รับการออกแบบภายใต้แนวคิด <strong>Federated Data Architecture</strong> (กระบวนการซอฟต์แวร์ที่อนุญาตให้ฐานข้อมูลหลายฐานทำงานเป็นหนึ่งเดียว) ซึ่งเป็นสถาปัตยกรรมที่เหมาะสมที่สุดสำหรับองค์กรที่มีหลายสาขาและมีความหลากหลายในการดำเนินงาน</p>
+        <h3>องค์ประกอบหลักของระบบ</h3>
+        <ol>
+          <li>
+            <strong>หน่วยงานระดับปฏิบัติการ (Local Nodes):</strong>
+            โรงพยาบาลสัตว์และหน่วยงานในแต่ละวิทยาเขตที่มีระบบการทำงานเป็นของตนเอง
+            สามารถดำเนินงานประจำวันได้อย่างอิสระโดยไม่ต้องพึ่งพาระบบกลางตลอดเวลา
+          </li>
+          <li>
+            <strong>ช่องทางเชื่อมต่อข้อมูล (Data Ingestion Layer):</strong>
+            กลไกในการรับส่งข้อมูลจากแต่ละวิทยาเขตเข้าสู่ส่วนกลางอย่างปลอดภัยและเป็นมาตรฐานเดียวกัน
+          </li>
+          <li>
+            <strong>ศูนย์ข้อมูลกลาง (Central Hub):</strong> แหล่งรวบรวม จัดเก็บ
+            และประมวลผลข้อมูลเพื่อแสดงผลในภาพรวม (Dashboard) สำหรับผู้บริหาร
+          </li>
+          <li>
+            <strong>มาตรฐานข้อมูล (Standard Interface):</strong>
+            ข้อกำหนดโครงสร้างข้อมูลที่ทุกวิทยาเขตต้องปฏิบัติตามเพื่อให้ข้อมูลสามารถนำมาประมวลผลร่วมกันได้
+          </li>
+        </ol>
 
-            <h3>องค์ประกอบหลักของระบบ</h3>
-            <ol>
-                <li><strong>หน่วยงานระดับปฏิบัติการ (Local Nodes):</strong> โรงพยาบาลสัตว์และหน่วยงานในแต่ละวิทยาเขตที่มีระบบการทำงานเป็นของตนเอง สามารถดำเนินงานประจำวันได้อย่างอิสระโดยไม่ต้องพึ่งพาระบบกลางตลอดเวลา</li>
-                <li><strong>ช่องทางเชื่อมต่อข้อมูล (Data Ingestion Layer):</strong> กลไกในการรับส่งข้อมูลจากแต่ละวิทยาเขตเข้าสู่ส่วนกลางอย่างปลอดภัยและเป็นมาตรฐานเดียวกัน</li>
-                <li><strong>ศูนย์ข้อมูลกลาง (Central Hub):</strong> แหล่งรวบรวม จัดเก็บ และประมวลผลข้อมูลเพื่อแสดงผลในภาพรวม (Dashboard) สำหรับผู้บริหาร</li>
-                <li><strong>มาตรฐานข้อมูล (Standard Interface):</strong> ข้อกำหนดโครงสร้างข้อมูลที่ทุกวิทยาเขตต้องปฏิบัติตามเพื่อให้ข้อมูลสามารถนำมาประมวลผลร่วมกันได้</li>
-            </ol>
+        <h2>3. กลยุทธ์การเชื่อมโยงข้อมูล (Data Integration Strategy)</h2>
+        <p>
+          เพื่อตอบสนองต่อความต้องการที่ให้ส่วนกลางเป็นผู้กำหนดมาตรฐาน
+          และให้แต่ละวิทยาเขตจัดส่งข้อมูลเข้ามา
+          ทางโครงการขอเสนอแนวทางดำเนินงานดังนี้:
+        </p>
 
-            <h2>3. กลยุทธ์การเชื่อมโยงข้อมูล (Data Integration Strategy)</h2>
-            <p>เพื่อตอบสนองต่อความต้องการที่ให้ส่วนกลางเป็นผู้กำหนดมาตรฐาน และให้แต่ละวิทยาเขตจัดส่งข้อมูลเข้ามา ทางโครงการขอเสนอแนวทางดำเนินงานดังนี้:</p>
+        <h3>แนวทางหลัก: การเชื่อมต่อผ่าน API (API-Based Integration)</h3>
+        <ul>
+          <li>
+            <strong>หลักการทำงาน:</strong> ส่วนกลางจะพัฒนา "ช่องทางดิจิทัล" (API
+            Endpoint) ที่เปรียบเสมือนประตูรับข้อมูลที่มีแบบฟอร์มมาตรฐานกำกับไว้
+          </li>
+          <li>
+            <strong>กระบวนการ:</strong> เมื่อหน่วยงานสาขามีการทำธุรกรรม (เช่น
+            การตัดสต๊อกยา หรือ สรุปยอดรายวัน)
+            ระบบของสาขาจะส่งข้อมูลชุดนั้นผ่านเครือข่ายอินเทอร์เน็ตมายังช่องทางของส่วนกลางทันที
+          </li>
+          <li>
+            <strong>ประโยชน์:</strong> ข้อมูลจะเป็นปัจจุบัน (Real-time)
+            ช่วยให้บริหารจัดการทรัพยากรข้ามวิทยาเขตได้ทันท่วงที
+          </li>
+        </ul>
 
-            <h3>แนวทางหลัก: การเชื่อมต่อผ่าน API (API-Based Integration)</h3>
+        <h3>
+          แนวทางรอง: การนำเข้าข้อมูลผ่านไฟล์ (File-Based Import via Staging)
+        </h3>
+        <ul>
+          <li>
+            <strong>หลักการทำงาน:</strong>
+            สำหรับระบบงานเก่าที่ไม่สามารถเชื่อมต่ออินเทอร์เน็ตได้ตลอดเวลา
+            ให้ทำการส่งออกข้อมูลเป็นไฟล์มาตรฐาน (เช่น CSV หรือ Excel)
+            ตามรอบเวลาที่กำหนด
+          </li>
+          <li>
+            <strong>กระบวนการ:</strong>
+            เจ้าหน้าที่อัปโหลดไฟล์เข้าสู่พื้นที่จัดเก็บปลอดภัย (Secure Storage)
+            จากนั้นระบบอัตโนมัติจะประมวลผลและนำเข้าฐานข้อมูลกลางในช่วงเวลากลางคืน
+          </li>
+        </ul>
+
+        <h2>
+          4. กรณีศึกษา: ระบบบริหารเวชภัณฑ์และการจัดซื้อ (Inventory &
+          Procurement)
+        </h2>
+        <p>
+          ความท้าทายสำคัญของการรวมข้อมูลจาก 5 วิทยาเขต
+          คือความแตกต่างของชื่อเรียกและหน่วยนับสินค้า
+          ระบบจึงต้องมีกลไกการจัดการข้อมูลหลัก (Master Data Management)
+        </p>
+        <ol>
+          <li>
+            <strong>การจัดทำรหัสมาตรฐาน (Global SKU Standardization):</strong>
+            ส่วนกลางกำหนดใช้มาตรฐาน
+            <strong>Thai Medicines Terminology (TMT)</strong>
+            ซึ่งพัฒนาโดยศูนย์พัฒนามาตรฐานระบบข้อมูลสุขภาพไทย (สมสท.)
+            เพื่อให้สอดคล้องกับระบบสาธารณสุขของประเทศ โดยแบ่งรหัสเป็น 2
+            ระดับสำคัญ:
             <ul>
-                <li><strong>หลักการทำงาน:</strong> ส่วนกลางจะพัฒนา "ช่องทางดิจิทัล" (API Endpoint) ที่เปรียบเสมือนประตูรับข้อมูลที่มีแบบฟอร์มมาตรฐานกำกับไว้</li>
-                <li><strong>กระบวนการ:</strong> เมื่อหน่วยงานสาขามีการทำธุรกรรม (เช่น การตัดสต๊อกยา หรือ สรุปยอดรายวัน) ระบบของสาขาจะส่งข้อมูลชุดนั้นผ่านเครือข่ายอินเทอร์เน็ตมายังช่องทางของส่วนกลางทันที</li>
-                <li><strong>ประโยชน์:</strong> ข้อมูลจะเป็นปัจจุบัน (Real-time) ช่วยให้บริหารจัดการทรัพยากรข้ามวิทยาเขตได้ทันท่วงที</li>
-            </ul>
-
-            <h3>แนวทางรอง: การนำเข้าข้อมูลผ่านไฟล์ (File-Based Import via Staging)</h3>
-            <ul>
-                <li><strong>หลักการทำงาน:</strong> สำหรับระบบงานเก่าที่ไม่สามารถเชื่อมต่ออินเทอร์เน็ตได้ตลอดเวลา ให้ทำการส่งออกข้อมูลเป็นไฟล์มาตรฐาน (เช่น CSV หรือ Excel) ตามรอบเวลาที่กำหนด</li>
-                <li><strong>กระบวนการ:</strong> เจ้าหน้าที่อัปโหลดไฟล์เข้าสู่พื้นที่จัดเก็บปลอดภัย (Secure Storage) จากนั้นระบบอัตโนมัติจะประมวลผลและนำเข้าฐานข้อมูลกลางในช่วงเวลากลางคืน</li>
-            </ul>
-
-            <h2>4. กรณีศึกษา: ระบบบริหารเวชภัณฑ์และการจัดซื้อ (Inventory & Procurement)</h2>
-            <p>ความท้าทายสำคัญของการรวมข้อมูลจาก 5 วิทยาเขต คือความแตกต่างของชื่อเรียกและหน่วยนับสินค้า ระบบจึงต้องมีกลไกการจัดการข้อมูลหลัก (Master Data Management)</p>
-            <ol>
-                <li><strong>การจัดทำรหัสมาตรฐาน (Global SKU Standardization):</strong> ส่วนกลางกำหนดใช้มาตรฐาน <strong>Thai Medicines Terminology (TMT)</strong> ซึ่งพัฒนาโดยศูนย์พัฒนามาตรฐานระบบข้อมูลสุขภาพไทย (สมสท.) เพื่อให้สอดคล้องกับระบบสาธารณสุขของประเทศ โดยแบ่งรหัสเป็น 2 ระดับสำคัญ:
-                    <ul>
-                        <li><strong>รหัสยาชื่อสามัญ (Generic Product Use - GPU):</strong> สำหรับวิเคราะห์การใช้ยาในภาพรวม เปรียบเทียบประสิทธิภาพการรักษา และการบริหารคลังยาเชิงนโยบาย (เช่น <em>Paracetamol 500 mg tablet</em>)</li>
-                        <li><strong>รหัสยาชื่อการค้า (Trade Product Use - TPU):</strong> สำหรับงานจัดซื้อจัดจ้างที่ต้องระบุยี่ห้อและบริษัทผู้ผลิต (เช่น <em>Sara 500 mg tablet</em>, <em>Tylenol 500 mg tablet</em>)</li>
-                        <li><strong>ข้อแนะนำการออกแบบฐานข้อมูล (Database Schema Recommendation):</strong>
-                            <ul>
-                                <li>เพื่อให้ฐานข้อมูลของแต่ละวิทยาเขตมีอิสระ (Local Autonomy) ระบบไม่ควรบังคับให้เปลี่ยน Primary Key (PK) เดิมของวิทยาเขต</li>
-                                <li>ควรสร้าง <strong>"ตารางเชื่อมโยง (Mapping Table)"</strong> ที่ส่วนกลาง เก็บข้อมูลคู่รหัส โดย 1 รายการยา สามารถมีรหัสกำกับได้หลายชุด เช่น <code>Local_ID</code>, <code>TMT_GPU_Code</code>, <code>TMT_TPU_Code</code></li>
-                                <li>วิธีนี้จะช่วยให้วิทยาเขต A ยังคงใช้รหัส "A001" ได้เหมือนเดิม แต่เมื่อส่งข้อมูลมาส่วนกลาง ระบบจะทราบทันทีว่าคือยา Paracetamol (GPU: xxxxx) ยี่ห้อ Sara (TPU: yyyyy)</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://www.this.or.th/tmt.php" target="_blank">สำนักงานคณะกรรมการอาหารและยา (FDA) และ สมสท. - บัญชีข้อมูลยาและรหัสยามาตรฐานไทย (TMT)</a></blockquote>
-                </li>
-                <li><strong>การจับคู่ข้อมูล (Data Mapping):</strong> แต่ละวิทยาเขตทำการจับคู่รหัสท้องถิ่น (Local SKU) เข้ากับรหัสมาตรฐานของส่วนกลาง เพื่อให้ระบบทราบว่า "Paracetamol" ของที่หนึ่ง คือสินค้าเดียวกับ "Para 500mg" ของอีกที่หนึ่ง</li>
-                <li><strong>ผลลัพธ์ที่ได้ (Outcome):</strong>
-                    <ul>
-                        <li><strong>การบริหารสินค้าคงคลัง:</strong> สามารถตรวจสอบได้ทันทีว่ายาชนิดใดขาดแคลนในวิทยาเขตหนึ่ง แต่มีมากเกินความจำเป็นในอีกวิทยาเขตหนึ่ง เพื่อทำการโอนย้าย</li>
-                        <li><strong>การรวมซื้อ (Bulk Procurement):</strong> รวบรวมปริมาณความต้องการจากทุกวิทยาเขตเพื่อสั่งซื้อรวมกัน ซึ่งช่วยเพิ่มอำนาจต่อรองราคา</li>
-                    </ul>
-                </li>
-            </ol>
-
-            <h2>5. การขยายผลสู่ระบบงานอื่น (Scalability & Future Modules)</h2>
-            <p>โครงสร้างพื้นฐานนี้รองรับการขยายขอบเขตงานได้ทันทีโดยไม่ต้องรื้อถอนระบบเดิม</p>
-            <ul>
-                <li><strong>งานบริการสัตวแพทย์:</strong> รวบรวมสถิติโรค หัตถการ และประเภทสัตว์ที่เข้ารับการรักษา เพื่อวิเคราะห์แนวโน้มทางระบาดวิทยา (กรณีมีข้อมูลเข้ามาในฐานข้อมูล)</li>
-                <li><strong>งานรายรับและบัญชี:</strong> ติดตามสถานะทางการเงิน รายได้แยกตามแผนก และยอดหนี้ค้างชำระ</li>
-                <li><strong>งานทรัพยากรบุคคล:</strong> วิเคราะห์ภาระงาน (Workload) ของสัตวแพทย์และบุคลากรเพื่อการจัดสรรอัตรากำลังที่เหมาะสม</li>
-            </ul>
-
-            <h2>6. บทวิเคราะห์ข้อดีและข้อจำกัด (Pros & Cons Analysis)</h2>
-            <h3>ข้อดี (Advantages)</h3>
-            <ol>
-                <li><strong>ความเป็นอิสระ (Autonomy):</strong> แต่ละวิทยาเขตยังคงมีความคล่องตัวในการดำเนินงาน ไม่ต้องรอการตัดสินใจจากส่วนกลางในทุกขั้นตอน</li>
-                <li><strong>ความยืดหยุ่น (Scalability):</strong> รองรับการเพิ่มวิทยาเขตใหม่หรือระบบงานใหม่ได้ง่าย เพียงปฏิบัติตามมาตรฐานข้อมูลที่กำหนด</li>
-                <li><strong>ความต่อเนื่องทางธุรกิจ (Business Continuity):</strong> หากระบบส่วนกลางขัดข้อง ระบบที่วิทยาเขตยังสามารถให้บริการรักษาพยาบาลได้ตามปกติ</li>
-            </ol>
-
-            <h3>ข้อจำกัด (Limitations)</h3>
-            <ol>
-                <li><strong>ความซับซ้อนในการจัดการข้อมูล (Data Consistency):</strong> ต้องมีการควบคุมดูแลข้อมูลหลัก (Master Data) อย่างเข้มงวด เพื่อป้องกันความสับสนของชื่อรายการต่างๆ</li>
-                <li><strong>ความต้องการบุคลากร (Resource Requirement):</strong> จำเป็นต้องมีทีมงานหรือผู้รับผิดชอบในการดูแลรักษามาตรฐานข้อมูล และแก้ไขปัญหาการเชื่อมต่อในระยะแรก</li>
-            </ol>
-
-            <h2>7. ข้อแนะนำด้านบุคลากรและการกำกับดูแลข้อมูล (Data Governance & Personnel)</h2>
-            <p>เพื่อให้ระบบดำเนินไปตามมาตรฐานสากล จำเป็นต้องมีโครงสร้างการทำงานและบุคลากรส่วนกลางที่ทำหน้าที่ <strong>Data Governance (ธรรมาภิบาลข้อมูล)</strong> ดังนี้: (ธรรมาภิบาลข้อมูล (Data Governance) คือ ระบบการกำหนดสิทธิ หน้าที่ และความรับผิดชอบในการจัดการข้อมูลขององค์กรอย่างเป็นระบบ ตลอดวงจรชีวิตข้อมูล (Data Life Cycle) ตั้งแต่การสร้าง การจัดเก็บ การใช้ ไปจนถึงการทำลาย เพื่อให้ข้อมูลมีคุณภาพ ถูกต้อง ครบถ้วน เป็นปัจจุบัน ปลอดภัย และเป็นส่วนตัว สามารถนำไปใช้ประโยชน์ได้อย่างเต็มประสิทธิภาพและสอดคล้องกับกฎหมาย เช่น PDPA.)</p>
-            
-            <h3>หลักการและรูปแบบการทำงาน (Workflow Principles)</h3>
-            <ul>
-                <li><strong>Central Standard, Local Execution:</strong> ส่วนกลางเป็นผู้กำหนดมาตรฐาน (Standard) แต่หน้างานเป็นผู้ปฏิบัติ (Execution)</li>
-                <li><strong>Approval Workflow:</strong> เมื่อวิทยาเขตต้องการเพิ่มรายการยาใหม่หรือรหัสโรคใหม่เข้าระบบ ต้องผ่านการตรวจสอบ (Validate) จากผู้เชี่ยวชาญส่วนกลางก่อน เพื่อป้องกันข้อมูลซ้ำซ้อน (Duplicate Data)</li>
-            </ul>
-
-            <h3>โครงสร้างบุคลากรที่จำเป็น (Key Roles)</h3>
-            <ol>
-                <li><strong>Data Steward (ผู้บริบาลข้อมูล):</strong>
-                    <ul>
-                        <li><strong>บทบาท:</strong> ผู้เชี่ยวชาญเฉพาะด้าน (Subject Matter Expert - SME) เช่น เภสัชกรอาวุโส หรือสัตวแพทย์ผู้ทรงคุณวุฒิ แนะนำเป็นคณะกรรมการในบางหน้าที่ เช่น กรรมการ Diagnosis Term, กรรมการจัดซื้อยา</li>
-                        <li><strong>หน้าที่:</strong> รับผิดชอบความถูกต้องของ "ความหมายข้อมูล" (Data Definition) เช่น ตรวจสอบว่ายาตัวใหม่ที่ขอเพิ่มเข้ามา ตรงกับรหัส TMT ใด หรือวินิจฉัยว่าชื่อโรคที่กรอกมาถูกต้องตามหลักวิชาการหรือไม่</li>
-                    </ul>
-                </li>
-                <li><strong>Data Custodian (ผู้ดูแลข้อมูลทางเทคนิค):</strong>
-                    <ul>
-                        <li><strong>บทบาท:</strong> เจ้าหน้าที่ไอที หรือผู้ดูแลระบบฐานข้อมูล</li>
-                        <li><strong>หน้าที่:</strong> รับผิดชอบโครงสร้างทางเทคนิค ความปลอดภัย การสำรองข้อมูล และกำหนดสิทธิ์การเข้าถึง (Access Control) ให้เป็นไปตามนโยบาย</li>
-                    </ul>
-                </li>
-                <li><strong>Data Quality Analyst (นักวิเคราะห์คุณภาพข้อมูล):</strong>
-                    <ul>
-                        <li><strong>บทบาท:</strong> นักสถิติ หรือเจ้าหน้าที่สารสนเทศ</li>
-                        <li><strong>หน้าที่:</strong> ตรวจสอบความผิดปกติของข้อมูล (Anomaly Detection) เช่น ค้นหาข้อมูลที่กรอกผิดรูปแบบ หรือข้อมูลที่ขาดหายไป และประสานงานกับหน้างานเพื่อแก้ไข</li>
-                    </ul>
-                </li>
-            </ol>
-        </section>
-
-        <!-- Document 02 -->
-        <section id="doc2" class="content-section">
-            <h1>[02] ความพร้อมสู่ Data Lake และกรณีศึกษาเปรียบเทียบ (Data Lake Readiness & Case Studies)</h1>
-            <p>เอกสารฉบับนี้จัดทำขึ้นเพื่อเติมเต็มส่วนประกอบที่จำเป็นสำหรับการจัดทำ Data Lake ของคณะสัตวแพทยศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ ให้ครอบคลุมทุกมิติ รวมถึงนำเสนอกรณีศึกษาและการวิเคราะห์เปรียบเทียบเชิงลึกเพื่อประกอบการตัดสินใจของผู้บริหาร</p>
-
-            <h2>1. สิ่งที่ต้องพิจารณาเพิ่มเติมเพื่อความสมบูรณ์ (The Missing Pieces for Data Lake)</h2>
-            <p>นอกเหนือจาก Architecture และ Security ที่ได้วางไว้ การจะยกระดับสู่ "Data Lake" ที่แท้จริง ต้องพิจารณาประเด็นเหล่านี้เพิ่มเติม:</p>
-            
-            <h3>1.1 กลยุทธ์จัดการข้อมูลที่ไม่มีโครงสร้าง (Unstructured Data Strategy)</h3>
-            <p>ในบริบทของคณะสัตวแพทยศาสตร์ ข้อมูลที่มีค่าที่สุดมักไม่ใช่ตัวเลขในตาราง แต่เป็น <strong>ภาพถ่ายทางรังสี (DICOM), วิดีโอการผ่าตัด, และผลแล็บที่เป็นไฟล์ PDF</strong></p>
-            <ul>
-                <li><strong>สิ่งที่ต้องทำ:</strong> วางแผนใช้ <strong>Google Cloud Storage (Object Storage)</strong> เพื่อเก็บไฟล์ดิบเหล่านี้ แทนการเก็บใน Database (Cloud SQL) ซึ่งจะทำให้ระบบช้าและแพง</li>
-                <li><strong>Data Lake Concept:</strong> โยนไฟล์ภาพดิบลง Cloud Storage (ราคาถูก) -> ใช้ AI (Vertex AI / Document AI) ดึงข้อมูล Metadata ออกมา -> เก็บ Metadata ลง BigQuery เพื่อวิเคราะห์</li>
-            </ul>
-            <blockquote>
-                <strong>ขยายความ: การดึง Metadata จากเอกสาร (Metadata Extraction Example)</strong><br>
-                กรณี <strong>"ภาพสแกนใบบันทึกการตรวจรักษา (Opd Card) ที่เขียนด้วยลายมือ"</strong>:
-                <ol>
-                    <li><strong>Input:</strong> เจ้าหน้าที่สแกนใบบันทึกการตรวจที่เป็นกระดาษ Upload เข้าระบบ</li>
-                    <li><strong>Process:</strong> ใช้บริการ <strong>Google Cloud Document AI (OCR)</strong> อ่านภาพนั้น</li>
-                    <li><strong>Extraction:</strong> AI จะดึงข้อมูลสำคัญออกมาเป็นคู่ Key-Value อัตโนมัติ เช่น:
-                        <ul>
-                            <li><code>Patient_Name</code>: "Moo-Yong" (หมูหยอง)</li>
-                            <li><code>Symptoms</code>: "Vomiting, Diarrhea" (อาเจียน, ท้องเสีย)</li>
-                            <li><code>Diagnosis</code>: "Parvovirus" (ลำไส้อักเสบ)</li>
-                        </ul>
-                    </li>
-                    <li><strong>Output:</strong> นำข้อมูลเหล่านี้ไปเก็บใน BigQuery ทำให้เราสามารถ <strong>"ค้นหา (Search)"</strong> คำว่า "Parvovirus" แล้วเจอเอกสารใบนี้ได้ทันที แม้ต้นฉบับจะเป็นแค่ไฟล์รูปภาพ</li>
-                </ol>
-            </blockquote>
-
-            <h3>1.2 ธรรมาภิบาลคุณภาพข้อมูล (Data Quality Governance)</h3>
-            <p>Data Lake มักล้มเหลวกลายเป็น "Data Swamp (หนองน้ำข้อมูล)" เพราะขยะข้อมูล (Garbage Data)</p>
-            <ul>
-                <li><strong>สิ่งที่ต้องทำ:</strong> กำหนดกฎ <strong>"Data Validation"</strong> ตั้งแต่ต้นทาง (AppSheet/API) เช่น ห้ามใส่น้ำหนักเป็นติดลบ, บังคับเลือกพันธุ์สุนัขจาก List เท่านั้น (ห้ามพิมพ์เองว่า "พุดเดิ้ล" บ้าง "Poodle" บ้าง)</li>
-            </ul>
-
-            <h3>1.3 บัญชีข้อมูล (Data Catalog)</h3>
-            <p>เมื่อรวบรวมข้อมูลจาก 5 วิทยาเขต ข้อมูลจะมหาศาลจนหาไม่เจอ</p>
-            <ul>
-                <li><strong>สิ่งที่ต้องทำ:</strong> ต้องมีระบบค้นหาว่า "ข้อมูลประวัติวัคซีนอยู่ที่ตารางไหน?" หรือ "ใครเป็นเจ้าของข้อมูลชุดนี้?"</li>
-            </ul>
-            <blockquote>
-                <strong>รู้จักกับ Google Cloud Dataplex (Intelligent Data Fabric)</strong><br>
-                Dataplex เป็นบริการที่เปรียบเสมือน <strong>"บรรณารักษ์อัจฉริยะ"</strong> สำหรับข้อมูลองค์กร โดยทำหน้าที่:
-                <ol>
-                    <li><strong>Data Discovery:</strong> สแกนข้อมูลทั้งหมดใน Cloud Storage และ BigQuery อัตโนมัติ เพื่อสร้าง "สารบัญข้อมูล" ให้รู้ว่ามีข้อมูลอะไรอยู่ที่ไหนบ้าง</li>
-                    <li><strong>Unified Security:</strong> กำหนดนโยบายความปลอดภัยที่เดียว (Centralized Policy) เช่น "ห้ามใครเห็นชื่อเจ้าของสัตว์ ยกเว้นสัตวแพทย์เจ้าของเคส" ระบบจะไปล็อกข้อมูลทุกที่ให้ตามสั่ง</li>
-                    <li><strong>Data Lineage:</strong> ติดตามเส้นทางข้อมูลได้ว่า รายงานสรุปนี้ มาจากตารางไหน ถูกแก้ไขโดยใคร เมื่อไหร่ เพื่อความโปร่งใสในการตรวจสอบ</li>
-                </ol>
-            </blockquote>
-
-            <h2>2. กรณีศึกษาการใช้งานจริง (Case Studies)</h2>
-            <p>ตัวอย่างองค์กรที่ใช้ Tech Stack (Cloud Run, Cloud SQL, BigQuery) เพื่อให้ผู้บริหารเห็นภาพความเสถียรและการรองรับการขยายตัว</p>
-
-            <h3>ตัวอย่างที่ 1: Spotify (Global Scale)</h3>
-            <ul>
-                <li><strong>การใช้งาน:</strong> ใช้ <strong>BigQuery</strong> เป็น Data Lake หลักในการเก็บข้อมูลการฟังเพลงของผู้ใช้งานทั่วโลก</li>
-                <li><strong>ความเชื่อมโยงกับคณะ:</strong> เปรียบเทียบ "Logs การฟังเพลง" เป็น "ประวัติการรักษา/Lab" จำนวนมหาศาล Spotify ใช้ BigQuery วิเคราะห์เพื่อทำ "Spotify Wrapped (สรุปประจำปี)" ได้ในเสี้ยววินาที เช่นเดียวกับที่คณะจะทำ <strong>"Health Report ประจำตัวสัตว์"</strong> ให้นิสิตหรือเจ้าของดูได้ทันที</li>
-            </ul>
-
-            <h3>ตัวอย่างที่ 2: Wongnai / LINE MAN (Thai Unicorn)</h3>
-            <ul>
-                <li><strong>การใช้งาน:</strong> ใช้โครงสร้าง Microservices บน Cloud เพื่อรองรับผู้ใช้งานช่วงพีค (เที่ยง/เย็น)</li>
-                <li><strong>ความเชื่อมโยงกับคณะ:</strong> ใช้ <strong>Cloud Run</strong> เพื่อรองรับการใช้งานที่ไม่สม่ำเสมอ (Auto-scale) เช่น ช่วงสอบที่นิสิตแห่กันมาลง Logbook หรือช่วงเช้าที่ OPD ในโรงพยาบาลคนเยอะ ระบบจะขยายตัวเองอัตโนมัติและหดตัวลงเมื่อคนน้อย ช่วยประหยัดงบประมาณ</li>
-            </ul>
-            <blockquote>
-                <strong>รายละเอียดระบบ Logbook นิสิต (Cloud Run Implementation)</strong>
+              <li>
+                <strong>รหัสยาชื่อสามัญ (Generic Product Use - GPU):</strong>
+                สำหรับวิเคราะห์การใช้ยาในภาพรวม เปรียบเทียบประสิทธิภาพการรักษา
+                และการบริหารคลังยาเชิงนโยบาย (เช่น
+                <em>Paracetamol 500 mg tablet</em>)
+              </li>
+              <li>
+                <strong>รหัสยาชื่อการค้า (Trade Product Use - TPU):</strong>
+                สำหรับงานจัดซื้อจัดจ้างที่ต้องระบุยี่ห้อและบริษัทผู้ผลิต (เช่น
+                <em>Sara 500 mg tablet</em>, <em>Tylenol 500 mg tablet</em>)
+              </li>
+              <li>
+                <strong
+                  >ข้อแนะนำการออกแบบฐานข้อมูล (Database Schema
+                  Recommendation):</strong
+                >
                 <ul>
-                    <li><strong>โครงสร้าง (Structure):</strong>
-                        <ul>
-                            <li><strong>Frontend:</strong> เว็บแอปพลิเคชัน (React/Vue) ที่รองรับการแสดงผลบนมือถือ (Mobile-first)</li>
-                            <li><strong>Backend:</strong> API Service รันบน <strong>Cloud Run</strong> ทำหน้าที่รับข้อมูล ตรวจสอบสิทธิ์ และบันทึกลงฐานข้อมูล</li>
-                        </ul>
-                    </li>
-                    <li><strong>ข้อมูลตัวอย่าง (Sample JSON Payload):</strong>
-                        <pre><code>{
+                  <li>
+                    เพื่อให้ฐานข้อมูลของแต่ละวิทยาเขตมีอิสระ (Local Autonomy)
+                    ระบบไม่ควรบังคับให้เปลี่ยน Primary Key (PK) เดิมของวิทยาเขต
+                  </li>
+                  <li>
+                    ควรสร้าง
+                    <strong>"ตารางเชื่อมโยง (Mapping Table)"</strong>
+                    ที่ส่วนกลาง เก็บข้อมูลคู่รหัส โดย 1 รายการยา
+                    สามารถมีรหัสกำกับได้หลายชุด เช่น <code>Local_ID</code>,
+                    <code>TMT_GPU_Code</code>, <code>TMT_TPU_Code</code>
+                  </li>
+                  <li>
+                    วิธีนี้จะช่วยให้วิทยาเขต A ยังคงใช้รหัส "A001" ได้เหมือนเดิม
+                    แต่เมื่อส่งข้อมูลมาส่วนกลาง ระบบจะทราบทันทีว่าคือยา
+                    Paracetamol (GPU: xxxxx) ยี่ห้อ Sara (TPU: yyyyy)
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <blockquote>
+              <strong>อ้างอิง (Reference):</strong>
+              <a href="https://www.this.or.th/tmt.php" target="_blank"
+                >สำนักงานคณะกรรมการอาหารและยา (FDA) และ สมสท. -
+                บัญชีข้อมูลยาและรหัสยามาตรฐานไทย (TMT)</a
+              >
+            </blockquote>
+          </li>
+          <li>
+            <strong>การจับคู่ข้อมูล (Data Mapping):</strong>
+            แต่ละวิทยาเขตทำการจับคู่รหัสท้องถิ่น (Local SKU)
+            เข้ากับรหัสมาตรฐานของส่วนกลาง เพื่อให้ระบบทราบว่า "Paracetamol"
+            ของที่หนึ่ง คือสินค้าเดียวกับ "Para 500mg" ของอีกที่หนึ่ง
+          </li>
+          <li>
+            <strong>ผลลัพธ์ที่ได้ (Outcome):</strong>
+            <ul>
+              <li>
+                <strong>การบริหารสินค้าคงคลัง:</strong>
+                สามารถตรวจสอบได้ทันทีว่ายาชนิดใดขาดแคลนในวิทยาเขตหนึ่ง
+                แต่มีมากเกินความจำเป็นในอีกวิทยาเขตหนึ่ง เพื่อทำการโอนย้าย
+              </li>
+              <li>
+                <strong>การรวมซื้อ (Bulk Procurement):</strong>
+                รวบรวมปริมาณความต้องการจากทุกวิทยาเขตเพื่อสั่งซื้อรวมกัน
+                ซึ่งช่วยเพิ่มอำนาจต่อรองราคา
+              </li>
+            </ul>
+          </li>
+        </ol>
+
+        <h2>5. การขยายผลสู่ระบบงานอื่น (Scalability & Future Modules)</h2>
+        <p>
+          โครงสร้างพื้นฐานนี้รองรับการขยายขอบเขตงานได้ทันทีโดยไม่ต้องรื้อถอนระบบเดิม
+        </p>
+        <ul>
+          <li>
+            <strong>งานบริการสัตวแพทย์:</strong> รวบรวมสถิติโรค หัตถการ
+            และประเภทสัตว์ที่เข้ารับการรักษา เพื่อวิเคราะห์แนวโน้มทางระบาดวิทยา
+            (กรณีมีข้อมูลเข้ามาในฐานข้อมูล)
+          </li>
+          <li>
+            <strong>งานรายรับและบัญชี:</strong> ติดตามสถานะทางการเงิน
+            รายได้แยกตามแผนก และยอดหนี้ค้างชำระ
+          </li>
+          <li>
+            <strong>งานทรัพยากรบุคคล:</strong> วิเคราะห์ภาระงาน (Workload)
+            ของสัตวแพทย์และบุคลากรเพื่อการจัดสรรอัตรากำลังที่เหมาะสม
+          </li>
+        </ul>
+
+        <h2>6. บทวิเคราะห์ข้อดีและข้อจำกัด (Pros & Cons Analysis)</h2>
+        <h3>ข้อดี (Advantages)</h3>
+        <ol>
+          <li>
+            <strong>ความเป็นอิสระ (Autonomy):</strong>
+            แต่ละวิทยาเขตยังคงมีความคล่องตัวในการดำเนินงาน
+            ไม่ต้องรอการตัดสินใจจากส่วนกลางในทุกขั้นตอน
+          </li>
+          <li>
+            <strong>ความยืดหยุ่น (Scalability):</strong>
+            รองรับการเพิ่มวิทยาเขตใหม่หรือระบบงานใหม่ได้ง่าย
+            เพียงปฏิบัติตามมาตรฐานข้อมูลที่กำหนด
+          </li>
+          <li>
+            <strong>ความต่อเนื่องทางธุรกิจ (Business Continuity):</strong>
+            หากระบบส่วนกลางขัดข้อง
+            ระบบที่วิทยาเขตยังสามารถให้บริการรักษาพยาบาลได้ตามปกติ
+          </li>
+        </ol>
+
+        <h3>ข้อจำกัด (Limitations)</h3>
+        <ol>
+          <li>
+            <strong>ความซับซ้อนในการจัดการข้อมูล (Data Consistency):</strong>
+            ต้องมีการควบคุมดูแลข้อมูลหลัก (Master Data) อย่างเข้มงวด
+            เพื่อป้องกันความสับสนของชื่อรายการต่างๆ
+          </li>
+          <li>
+            <strong>ความต้องการบุคลากร (Resource Requirement):</strong>
+            จำเป็นต้องมีทีมงานหรือผู้รับผิดชอบในการดูแลรักษามาตรฐานข้อมูล
+            และแก้ไขปัญหาการเชื่อมต่อในระยะแรก
+          </li>
+        </ol>
+
+        <h2>
+          7. ข้อแนะนำด้านบุคลากรและการกำกับดูแลข้อมูล (Data Governance &
+          Personnel)
+        </h2>
+        <p>
+          เพื่อให้ระบบดำเนินไปตามมาตรฐานสากล
+          จำเป็นต้องมีโครงสร้างการทำงานและบุคลากรส่วนกลางที่ทำหน้าที่
+          <strong>Data Governance (ธรรมาภิบาลข้อมูล)</strong> ดังนี้:
+          (ธรรมาภิบาลข้อมูล (Data Governance) คือ ระบบการกำหนดสิทธิ หน้าที่
+          และความรับผิดชอบในการจัดการข้อมูลขององค์กรอย่างเป็นระบบ
+          ตลอดวงจรชีวิตข้อมูล (Data Life Cycle) ตั้งแต่การสร้าง การจัดเก็บ
+          การใช้ ไปจนถึงการทำลาย เพื่อให้ข้อมูลมีคุณภาพ ถูกต้อง ครบถ้วน
+          เป็นปัจจุบัน ปลอดภัย และเป็นส่วนตัว
+          สามารถนำไปใช้ประโยชน์ได้อย่างเต็มประสิทธิภาพและสอดคล้องกับกฎหมาย เช่น
+          PDPA.)
+        </p>
+
+        <h3>หลักการและรูปแบบการทำงาน (Workflow Principles)</h3>
+        <ul>
+          <li>
+            <strong>Central Standard, Local Execution:</strong>
+            ส่วนกลางเป็นผู้กำหนดมาตรฐาน (Standard) แต่หน้างานเป็นผู้ปฏิบัติ
+            (Execution)
+          </li>
+          <li>
+            <strong>Approval Workflow:</strong>
+            เมื่อวิทยาเขตต้องการเพิ่มรายการยาใหม่หรือรหัสโรคใหม่เข้าระบบ
+            ต้องผ่านการตรวจสอบ (Validate) จากผู้เชี่ยวชาญส่วนกลางก่อน
+            เพื่อป้องกันข้อมูลซ้ำซ้อน (Duplicate Data)
+          </li>
+        </ul>
+
+        <h3>โครงสร้างบุคลากรที่จำเป็น (Key Roles)</h3>
+        <ol>
+          <li>
+            <strong>Data Steward (ผู้บริบาลข้อมูล):</strong>
+            <ul>
+              <li>
+                <strong>บทบาท:</strong> ผู้เชี่ยวชาญเฉพาะด้าน (Subject Matter
+                Expert - SME) เช่น เภสัชกรอาวุโส หรือสัตวแพทย์ผู้ทรงคุณวุฒิ
+                แนะนำเป็นคณะกรรมการในบางหน้าที่ เช่น กรรมการ Diagnosis Term,
+                กรรมการจัดซื้อยา
+              </li>
+              <li>
+                <strong>หน้าที่:</strong> รับผิดชอบความถูกต้องของ
+                "ความหมายข้อมูล" (Data Definition) เช่น
+                ตรวจสอบว่ายาตัวใหม่ที่ขอเพิ่มเข้ามา ตรงกับรหัส TMT ใด
+                หรือวินิจฉัยว่าชื่อโรคที่กรอกมาถูกต้องตามหลักวิชาการหรือไม่
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Data Custodian (ผู้ดูแลข้อมูลทางเทคนิค):</strong>
+            <ul>
+              <li>
+                <strong>บทบาท:</strong> เจ้าหน้าที่ไอที หรือผู้ดูแลระบบฐานข้อมูล
+              </li>
+              <li>
+                <strong>หน้าที่:</strong> รับผิดชอบโครงสร้างทางเทคนิค
+                ความปลอดภัย การสำรองข้อมูล และกำหนดสิทธิ์การเข้าถึง (Access
+                Control) ให้เป็นไปตามนโยบาย
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Data Quality Analyst (นักวิเคราะห์คุณภาพข้อมูล):</strong>
+            <ul>
+              <li><strong>บทบาท:</strong> นักสถิติ หรือเจ้าหน้าที่สารสนเทศ</li>
+              <li>
+                <strong>หน้าที่:</strong> ตรวจสอบความผิดปกติของข้อมูล (Anomaly
+                Detection) เช่น ค้นหาข้อมูลที่กรอกผิดรูปแบบ
+                หรือข้อมูลที่ขาดหายไป และประสานงานกับหน้างานเพื่อแก้ไข
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Document 02 -->
+      <section id="doc2" class="content-section">
+        <h1>
+          [02] ความพร้อมสู่ Data Lake และกรณีศึกษาเปรียบเทียบ (Data Lake
+          Readiness & Case Studies)
+        </h1>
+        <p>
+          เอกสารฉบับนี้จัดทำขึ้นเพื่อเติมเต็มส่วนประกอบที่จำเป็นสำหรับการจัดทำ
+          Data Lake ของคณะสัตวแพทยศาสตร์ มหาวิทยาลัยเกษตรศาสตร์
+          ให้ครอบคลุมทุกมิติ
+          รวมถึงนำเสนอกรณีศึกษาและการวิเคราะห์เปรียบเทียบเชิงลึกเพื่อประกอบการตัดสินใจของผู้บริหาร
+        </p>
+
+        <h2>
+          1. สิ่งที่ต้องพิจารณาเพิ่มเติมเพื่อความสมบูรณ์ (The Missing Pieces for
+          Data Lake)
+        </h2>
+        <p>
+          นอกเหนือจาก Architecture และ Security ที่ได้วางไว้ การจะยกระดับสู่
+          "Data Lake" ที่แท้จริง ต้องพิจารณาประเด็นเหล่านี้เพิ่มเติม:
+        </p>
+
+        <h3>
+          1.1 กลยุทธ์จัดการข้อมูลที่ไม่มีโครงสร้าง (Unstructured Data Strategy)
+        </h3>
+        <p>
+          ในบริบทของคณะสัตวแพทยศาสตร์ ข้อมูลที่มีค่าที่สุดมักไม่ใช่ตัวเลขในตาราง
+          แต่เป็น
+          <strong
+            >ภาพถ่ายทางรังสี (DICOM), วิดีโอการผ่าตัด, และผลแล็บที่เป็นไฟล์
+            PDF</strong
+          >
+        </p>
+        <ul>
+          <li>
+            <strong>สิ่งที่ต้องทำ:</strong> วางแผนใช้
+            <strong>Google Cloud Storage (Object Storage)</strong>
+            เพื่อเก็บไฟล์ดิบเหล่านี้ แทนการเก็บใน Database (Cloud SQL)
+            ซึ่งจะทำให้ระบบช้าและแพง
+          </li>
+          <li>
+            <strong>Data Lake Concept:</strong> โยนไฟล์ภาพดิบลง Cloud Storage
+            (ราคาถูก) -> ใช้ AI (Vertex AI / Document AI) ดึงข้อมูล Metadata
+            ออกมา -> เก็บ Metadata ลง BigQuery เพื่อวิเคราะห์
+          </li>
+        </ul>
+        <blockquote>
+          <strong
+            >ขยายความ: การดึง Metadata จากเอกสาร (Metadata Extraction
+            Example)</strong
+          ><br />
+          กรณี
+          <strong
+            >"ภาพสแกนใบบันทึกการตรวจรักษา (Opd Card) ที่เขียนด้วยลายมือ"</strong
+          >:
+          <ol>
+            <li>
+              <strong>Input:</strong>
+              เจ้าหน้าที่สแกนใบบันทึกการตรวจที่เป็นกระดาษ Upload เข้าระบบ
+            </li>
+            <li>
+              <strong>Process:</strong> ใช้บริการ
+              <strong>Google Cloud Document AI (OCR)</strong> อ่านภาพนั้น
+            </li>
+            <li>
+              <strong>Extraction:</strong> AI จะดึงข้อมูลสำคัญออกมาเป็นคู่
+              Key-Value อัตโนมัติ เช่น:
+              <ul>
+                <li><code>Patient_Name</code>: "Moo-Yong" (หมูหยอง)</li>
+                <li>
+                  <code>Symptoms</code>: "Vomiting, Diarrhea" (อาเจียน,
+                  ท้องเสีย)
+                </li>
+                <li><code>Diagnosis</code>: "Parvovirus" (ลำไส้อักเสบ)</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Output:</strong> นำข้อมูลเหล่านี้ไปเก็บใน BigQuery
+              ทำให้เราสามารถ <strong>"ค้นหา (Search)"</strong> คำว่า
+              "Parvovirus" แล้วเจอเอกสารใบนี้ได้ทันที
+              แม้ต้นฉบับจะเป็นแค่ไฟล์รูปภาพ
+            </li>
+          </ol>
+        </blockquote>
+
+        <h3>1.2 ธรรมาภิบาลคุณภาพข้อมูล (Data Quality Governance)</h3>
+        <p>
+          Data Lake มักล้มเหลวกลายเป็น "Data Swamp (หนองน้ำข้อมูล)"
+          เพราะขยะข้อมูล (Garbage Data)
+        </p>
+        <ul>
+          <li>
+            <strong>สิ่งที่ต้องทำ:</strong> กำหนดกฎ
+            <strong>"Data Validation"</strong> ตั้งแต่ต้นทาง (AppSheet/API) เช่น
+            ห้ามใส่น้ำหนักเป็นติดลบ, บังคับเลือกพันธุ์สุนัขจาก List เท่านั้น
+            (ห้ามพิมพ์เองว่า "พุดเดิ้ล" บ้าง "Poodle" บ้าง)
+          </li>
+        </ul>
+
+        <h3>1.3 บัญชีข้อมูล (Data Catalog)</h3>
+        <p>เมื่อรวบรวมข้อมูลจาก 5 วิทยาเขต ข้อมูลจะมหาศาลจนหาไม่เจอ</p>
+        <ul>
+          <li>
+            <strong>สิ่งที่ต้องทำ:</strong> ต้องมีระบบค้นหาว่า
+            "ข้อมูลประวัติวัคซีนอยู่ที่ตารางไหน?" หรือ
+            "ใครเป็นเจ้าของข้อมูลชุดนี้?"
+          </li>
+        </ul>
+        <blockquote>
+          <strong
+            >รู้จักกับ Google Cloud Dataplex (Intelligent Data Fabric)</strong
+          ><br />
+          Dataplex เป็นบริการที่เปรียบเสมือน
+          <strong>"บรรณารักษ์อัจฉริยะ"</strong> สำหรับข้อมูลองค์กร โดยทำหน้าที่:
+          <ol>
+            <li>
+              <strong>Data Discovery:</strong> สแกนข้อมูลทั้งหมดใน Cloud Storage
+              และ BigQuery อัตโนมัติ เพื่อสร้าง "สารบัญข้อมูล"
+              ให้รู้ว่ามีข้อมูลอะไรอยู่ที่ไหนบ้าง
+            </li>
+            <li>
+              <strong>Unified Security:</strong> กำหนดนโยบายความปลอดภัยที่เดียว
+              (Centralized Policy) เช่น "ห้ามใครเห็นชื่อเจ้าของสัตว์
+              ยกเว้นสัตวแพทย์เจ้าของเคส" ระบบจะไปล็อกข้อมูลทุกที่ให้ตามสั่ง
+            </li>
+            <li>
+              <strong>Data Lineage:</strong> ติดตามเส้นทางข้อมูลได้ว่า
+              รายงานสรุปนี้ มาจากตารางไหน ถูกแก้ไขโดยใคร เมื่อไหร่
+              เพื่อความโปร่งใสในการตรวจสอบ
+            </li>
+          </ol>
+        </blockquote>
+
+        <h2>2. กรณีศึกษาการใช้งานจริง (Case Studies)</h2>
+        <p>
+          ตัวอย่างองค์กรที่ใช้ Tech Stack (Cloud Run, Cloud SQL, BigQuery)
+          เพื่อให้ผู้บริหารเห็นภาพความเสถียรและการรองรับการขยายตัว
+        </p>
+
+        <h3>ตัวอย่างที่ 1: Spotify (Global Scale)</h3>
+        <ul>
+          <li>
+            <strong>การใช้งาน:</strong> ใช้ <strong>BigQuery</strong> เป็น Data
+            Lake หลักในการเก็บข้อมูลการฟังเพลงของผู้ใช้งานทั่วโลก
+          </li>
+          <li>
+            <strong>ความเชื่อมโยงกับคณะ:</strong> เปรียบเทียบ "Logs การฟังเพลง"
+            เป็น "ประวัติการรักษา/Lab" จำนวนมหาศาล Spotify ใช้ BigQuery
+            วิเคราะห์เพื่อทำ "Spotify Wrapped (สรุปประจำปี)" ได้ในเสี้ยววินาที
+            เช่นเดียวกับที่คณะจะทำ
+            <strong>"Health Report ประจำตัวสัตว์"</strong>
+            ให้นิสิตหรือเจ้าของดูได้ทันที
+          </li>
+        </ul>
+
+        <h3>ตัวอย่างที่ 2: Wongnai / LINE MAN (Thai Unicorn)</h3>
+        <ul>
+          <li>
+            <strong>การใช้งาน:</strong> ใช้โครงสร้าง Microservices บน Cloud
+            เพื่อรองรับผู้ใช้งานช่วงพีค (เที่ยง/เย็น)
+          </li>
+          <li>
+            <strong>ความเชื่อมโยงกับคณะ:</strong> ใช้
+            <strong>Cloud Run</strong> เพื่อรองรับการใช้งานที่ไม่สม่ำเสมอ
+            (Auto-scale) เช่น ช่วงสอบที่นิสิตแห่กันมาลง Logbook หรือช่วงเช้าที่
+            OPD ในโรงพยาบาลคนเยอะ ระบบจะขยายตัวเองอัตโนมัติและหดตัวลงเมื่อคนน้อย
+            ช่วยประหยัดงบประมาณ
+          </li>
+        </ul>
+        <blockquote>
+          <strong
+            >รายละเอียดระบบ Logbook นิสิต (Cloud Run Implementation)</strong
+          >
+          <ul>
+            <li>
+              <strong>โครงสร้าง (Structure):</strong>
+              <ul>
+                <li>
+                  <strong>Frontend:</strong> เว็บแอปพลิเคชัน (React/Vue)
+                  ที่รองรับการแสดงผลบนมือถือ (Mobile-first)
+                </li>
+                <li>
+                  <strong>Backend:</strong> API Service รันบน
+                  <strong>Cloud Run</strong> ทำหน้าที่รับข้อมูล ตรวจสอบสิทธิ์
+                  และบันทึกลงฐานข้อมูล
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>ข้อมูลตัวอย่าง (Sample JSON Payload):</strong>
+              <pre><code>{
   "student_id": "66xxxxxx",
   "rotation_unit": "Surgery",
   "case_data": {
@@ -630,220 +958,413 @@
   "supervisor_id": "VET-009",
   "status": "PENDING_APPROVAL"
 }</code></pre>
-                    </li>
-                    <li><strong>ตัวอย่างการทำงาน (Workflow):</strong>
-                        <ol>
-                            <li>นิสิตทำหัตถการเสร็จ -> เปิดมือถือ -> เลือกเคส -> กดส่ง (Submit)</li>
-                            <li>ระบบส่ง Notification ไปหาอาจารย์ผู้คุม (Supervisor)</li>
-                            <li>อาจารย์เปิดดูรายละเอียด -> กด "อนุมัติ (Approve)" หรือ "ส่งกลับแก้ไข (Reject)"</li>
-                            <li>เมื่ออนุมัติแล้ว ข้อมูลจะถูกล็อก (Lock) และนับเป็นหน่วยกิตสะสมทันที</li>
-                        </ol>
-                    </li>
-                </ul>
-            </blockquote>
-
-            <h3>ตัวอย่างที่ 3: ระบบ Telemedicine ในโรงพยาบาลชั้นนำ</h3>
-            <ul>
-                <li><strong>การใช้งาน:</strong> เก็บข้อมูลคนไข้ (Cloud SQL) และภาพ X-Ray (Cloud Storage) แยกกัน แต่เชื่อมโยงด้วย Patient ID</li>
-                <li><strong>ความเชื่อมโยงกับคณะ:</strong> เป็นโมเดลต้นแบบในการทำ <strong>Referral System</strong> ระหว่าง 5 วิทยาเขต โดยนำเสนอโมเดลการทำงานใหม่ดังนี้:</li>
-            </ul>
-            <blockquote>
-                <strong>โมเดลการทำงานร่วมกันและการส่งต่อผู้เชี่ยวชาญ (Collaborative & Referral Care Model)</strong><br>
-                เพื่อเพิ่มประสิทธิภาพการรักษา ลดต้นทุน และพัฒนาทักษะบุคลากร (Upskilling) ระบบจะถูกออกแบบเพื่อสนับสนุนกระบวนการทำงานดังนี้:
-                <p><strong>1. การเตรียมข้อมูลหน้างาน (Pre-consultation Workup):</strong></p>
-                <ul>
-                    <li><strong>ผู้รับผิดชอบ:</strong> สัตวแพทย์ประจำสาขา (General Practitioner / Junior Vet)</li>
-                    <li><strong>หน้าที่:</strong> ทำหน้าที่เป็น "ด่านหน้า" ในการซักประวัติ ตรวจร่างกายเบื้องต้น และสั่งตรวจทางห้องปฏิบัติการ (Lab/X-ray) ตามมาตรฐาน</li>
-                    <li><strong>เทคนิคที่ใช้:</strong> ข้อมูลทั้งหมด (ผลเลือด, ภาพ DICOM) จะถูกอัปโหลดขึ้น <strong>Central Hub</strong> ทันที เพื่อเตรียมพร้อมสำหรับผู้เชี่ยวชาญ</li>
-                </ul>
-                <p><strong>2. การวิเคราะห์โดยผู้เชี่ยวชาญ (Specialist Analysis):</strong></p>
-                <ul>
-                    <li><strong>รูปแบบงาน:</strong> เปลี่ยนจากการ "รอตรวจ" หน้างาน เป็นการ <strong>"วิเคราะห์ข้อมูลผ่านระบบ (Tele-analysis)"</strong></li>
-                    <li><strong>กระบวนการ:</strong> ผู้เชี่ยวชาญ (Specialist) เข้าดูข้อมูลเคสผ่านระบบ (Asynchronous Review) เพื่อวางแผนการรักษา จ่ายยา หรือให้คำแนะนำ <em>ก่อน</em> ที่จะมีการนัดหมาย VDO Call หรือเจอตัวสัตว์จริง</li>
-                    <li><strong>ประโยชน์:</strong> ผู้เชี่ยวชาญใช้เวลาโฟกัสที่การ "วิเคราะห์" อย่างเต็มที่ ไม่เสียเวลากับงานเอกสารพื้นฐาน และลดการรอคอยของผู้รับบริการ</li>
-                </ul>
-                <p><strong>3. การส่งมอบการรักษาและยา (Treatment & Fulfillment):</strong></p>
-                <ul>
-                    <li><strong>การจ่ายยา:</strong> ผู้เชี่ยวชาญสั่งจ่ายยาผ่านระบบ -> คลังยาจัดส่งทางขนส่ง (Logistics) หรือให้รับที่สาขาใกล้บ้าน</li>
-                    <li><strong>การส่งต่อทักษะ (Skill Transfer):</strong> สำหรับหัตถการเฉพาะทาง (เช่น Ultrasound, Echo) จะใช้โอกาสนี้ในการ <strong>Train-the-Trainer</strong> ให้สัตวแพทย์หน้างานปฏิบัติภายใต้การกำกับดูแล เพื่อยกระดับทักษะให้สูงกว่ามาตรฐานตลาด (Upskill) และลดภาระงานพื้นฐานของผู้เชี่ยวชาญในระยะยาว</li>
-                </ul>
-                <p><strong>4. การบริหารจัดการ (Management Structure):</strong></p>
-                <ul>
-                    <li><strong>ตารางงาน:</strong> จัดตารางผู้เชี่ยวชาญแบบ <strong>"Slot-based"</strong> สำหรับการ Tele-consult เน้นการแก้ปัญหาเคส (Case-based problem solving) มากกว่าการสอนแบบบรรยาย (Lecture)</li>
-                    <li><strong>ความรับผิดชอบ:</strong> ระบบจะระบุ <strong>"เจ้าของไข้ (Case Owner)"</strong> ชัดเจน โดยผู้เชี่ยวชาญทำหน้าที่เป็น Consultant ที่มีบทบาทร่วมในการตัดสินใจ ไม่ใช่เพียงผู้สั่งการ</li>
-                </ul>
-            </blockquote>
-
-            <h2>3. เจาะลึก GDCC (Cloud ภาครัฐ): สิ่งที่ "ต้องทำเพิ่ม" หากเลือกใช้</h2>
-            <p>หากผู้บริหารมีนโยบายให้ใช้ GDCC (ซึ่งเป็น Infrastructure-as-a-Service: IaaS) ทีมงานคณะจะต้องรับภาระหน้าที่เพิ่มขึ้นเปรียบเสมือนการ **"สร้างบ้านเอง vs เช่าคอนโด"** ดังนี้:</p>
-            <h3>ตารางเปรียบเทียบภาระงาน (Workload Comparison)</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>รายการที่ต้องทำ</th>
-                        <th>Google Cloud (Managed Service)</th>
-                        <th>GDCC (Self-Managed IaaS)</th>
-                        <th>เครื่องมือที่ต้องใช้บน GDCC (Tools needed)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>1. การติดตั้ง Server</strong></td>
-                        <td><strong>ไม่ต้องทำ</strong> (Ready to use)</td>
-                        <td><strong>ต้องทำเอง:</strong> ลง OS (Linux), แบ่ง Partition, ตั้งค่า Network</td>
-                        <td>Ubuntu/CentOS, Terraform, Ansible</td>
-                    </tr>
-                    <tr>
-                        <td><strong>2. ติดตั้ง Database</strong></td>
-                        <td><strong>ไม่ต้องทำ</strong> (กดปุ่มเดียวได้เลย)</td>
-                        <td><strong>ต้องทำเอง:</strong> Download PostgreSQL, Install, Config ค่า Memory/Connection</td>
-                        <td>PostgreSQL, PgAdmin, DBeaver</td>
-                    </tr>
-                    <tr>
-                        <td><strong>3. ความปลอดภัย (Patch)</strong></td>
-                        <td><strong>Google ทำให้</strong> (Auto-patch)</td>
-                        <td><strong>ทำเองทุกเดือน:</strong> ต้องคอยตามข่าวว่า Linux/Database มีรูรั่วไหม แล้วสั่ง Update เอง</td>
-                        <td>Yum/Apt-get update, Nessus (Scan ช่องโหว่)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>4. การสำรองข้อมูล</strong></td>
-                        <td><strong>อัตโนมัติ</strong> (ติ๊กถูกช่อง Backup)</td>
-                        <td><strong>เขียน Script เอง:</strong> ต้องเขียน Script (Cronjob) ให้ Dump Database ทุกคืน แล้วส่งไฟล์ไปเก็บที่อื่น</td>
-                        <td>Shell Script, Bacula, Veeam</td>
-                    </tr>
-                    <tr>
-                        <td><strong>5. รองรับโหลดเยอะ (Scale)</strong></td>
-                        <td><strong>อัตโนมัติ</strong> (Cloud Run ขยายเอง)</td>
-                        <td><strong>ทำเองยากมาก:</strong> ต้องสร้าง VM เพิ่มเอง, ตั้งค่า Load Balancer เอง, ย้าย IP ไปมา</td>
-                        <td>HAProxy, Nginx, Kubernetes (K8s)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>6. Monitoring</strong></td>
-                        <td><strong>มีให้เลย</strong> (Cloud Monitoring)</td>
-                        <td><strong>ต้องติดตั้งเอง:</strong> หาโปรแกรมมาเฝ้าระวังว่า Server ล่มไหม, CPU เต็มไหม</td>
-                        <td>Zabbix, Prometheus, Grafana</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3>บทสรุปสำหรับผู้บริหาร</h3>
-            <ul>
-                <li><strong>การใช้ Google Cloud:</strong> เหมือนจ้างทีมผู้เชี่ยวชาญระดับโลกมาดูแลระบบพื้นฐานให้ 24 ชม. ทำให้ทีมงานคณะมีเวลาไปโฟกัสที่ <strong>"ข้อมูล (Data) และ แอปพลิเคชัน"</strong></li>
-                <li><strong>การใช้ GDCC:</strong> ประหยัดค่าเช่าที่ (Free Tier) แต่ <strong>"ต้นทุนแฝงสูงมาก"</strong> คือต้องจ้างบุคลากร (System Admin / DevOps) อย่างน้อย 1-2 คน เพื่อมาดูแลสิ่งที่ Google ทำให้ฟรี (การติดตั้ง, อัปเดต, สำรองข้อมูล, เฝ้าระวัง)</li>
-            </ul>
-
-            <h2>4. ทางเลือก Cloud Provider อื่นๆ ที่นิยมในประเทศไทย (Alternative Providers Analysis)</h2>
-            <p>นอกเหนือจาก Google Cloud แล้ว ตลาดในประเทศไทยยังมีผู้ให้บริการรายใหญ่ที่นิยมใช้ในระดับองค์กร ได้แก่ **AWS (Amazon)**, **Microsoft Azure**, และ **Huawei Cloud**</p>
-
-            <h3>ตารางเปรียบเทียบเทคโนโลยีเทียบเคียง (Service Mapping)</h3>
-            <p>หากไม่ใช้ Google Cloud จะต้องใช้บริการตัวใดมาแทนในฟังก์ชันเดียวกัน:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ผู้ให้บริการ (Provider)</th>
-                        <th>Compute (รันแอป/API)</th>
-                        <th>Database (ฐานข้อมูล)</th>
-                        <th>Data Warehouse (วิเคราะห์)</th>
-                        <th>จุดเด่น (Pros)</th>
-                        <th>ข้อสังเกต (Cons)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Google Cloud</strong></td>
-                        <td>Cloud Run</td>
-                        <td>Cloud SQL</td>
-                        <td>BigQuery</td>
-                        <td><strong>Integration:</strong> เชื่อมกับ Gmail/AppSheet ของ มก. ได้ดีที่สุด</td>
-                        <td>ตลาดแรงงานในไทยอาจน้อยกว่า AWS เล็กน้อย</td>
-                    </tr>
-                    <tr>
-                        <td><strong>AWS (Amazon)</strong></td>
-                        <td>AWS App Runner / Fargate</td>
-                        <td>Amazon RDS</td>
-                        <td>Amazon Redshift</td>
-                        <td><strong>Maturity:</strong> เป็นเจ้าตลาด มีเครื่องมือเยอะที่สุด และมี Region ในไทย</td>
-                        <td><strong>Complex Pricing:</strong> การคิดราคาซับซ้อน และ Learning Curve สูง</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Microsoft Azure</strong></td>
-                        <td>Azure Container Apps</td>
-                        <td>Azure Database for PostgreSQL</td>
-                        <td>Azure Synapse</td>
-                        <td><strong>Corporate:</strong> ดีที่สุดถ้าองค์กรใช้ Office 365 หรือ Active Directory เข้มข้น</td>
-                        <td>หน้าจอจัดการ (Portal) ค่อนข้างช้าและซับซ้อน</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Huawei Cloud</strong></td>
-                        <td>Cloud Container Engine (CCE)</td>
-                        <td>RDS for PostgreSQL</td>
-                        <td>GaussDB (DWS)</td>
-                        <td><strong>Price:</strong> ราคามักจะถูกกว่าเจ้าอื่น และมี Data Center ในไทย</td>
-                        <td>ระบบ Ecosystem และเอกสารคู่มือ (Docs) ยังไม่สมบูรณ์เท่าฝั่งอเมริกา</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3>บทวิเคราะห์ความเหมาะสมสำหรับคณะสัตวแพทยศาสตร์ มก.</h3>
-            <ol>
-                <li><strong>ทำไม Google Cloud ถึงยังเป็นตัวเลือกอันดับ 1 ในข้อเสนอนี้?</strong>
-                    <ul>
-                        <li><strong>User Identity:</strong> เพราะบุคลากรและนิสิตทุกคนมีบัญชี **Google Workspace (@ku.ac.th)** อยู่แล้ว การใช้ Google Cloud ทำให้ระบบ Login และการกำหนดสิทธิ์ (Permission) ไร้รอยต่อที่สุด</li>
-                        <li><strong>AppSheet Integration:</strong> AppSheet เป็นผลิตภัณฑ์ของ Google โดยตรง การเชื่อมต่อกับ Cloud SQL บน Google Cloud จึงทำได้ง่ายและปลอดภัยที่สุดโดยไม่ต้องตั้งค่า Network ที่ซับซ้อน</li>
-                    </ul>
+            </li>
+            <li>
+              <strong>ตัวอย่างการทำงาน (Workflow):</strong>
+              <ol>
+                <li>
+                  นิสิตทำหัตถการเสร็จ -> เปิดมือถือ -> เลือกเคส -> กดส่ง
+                  (Submit)
                 </li>
-                <li><strong>เมื่อไหร่ที่ควรพิจารณาเจ้าอื่น?</strong>
-                    <ul>
-                        <li><strong>เลือก Microsoft Azure:</strong> หากทางคณะมีนโยบายเปลี่ยนระบบอีเมลทั้งหมดไปใช้ Outlook/Microsoft 365 หรือมี Server เดิมเป็น Windows Server จำนวนมาก</li>
-                        <li><strong>เลือก Huawei Cloud:</strong> หากมีงบประมาณจำกัดมาก และต้องการ Data Center ที่ตั้งอยู่ในประเทศไทยเท่านั้น (Data Residency)</li>
-                        <li><strong>เลือก AWS:</strong> หากทีม Developer ที่จ้างมา มีความเชี่ยวชาญ AWS เป็นพิเศษ (เพราะหาคนเป็น AWS ได้ง่ายที่สุดในตลาด)</li>
-                    </ul>
+                <li>ระบบส่ง Notification ไปหาอาจารย์ผู้คุม (Supervisor)</li>
+                <li>
+                  อาจารย์เปิดดูรายละเอียด -> กด "อนุมัติ (Approve)" หรือ
+                  "ส่งกลับแก้ไข (Reject)"
                 </li>
-            </ol>
-        </section>
+                <li>
+                  เมื่ออนุมัติแล้ว ข้อมูลจะถูกล็อก (Lock)
+                  และนับเป็นหน่วยกิตสะสมทันที
+                </li>
+              </ol>
+            </li>
+          </ul>
+        </blockquote>
 
-        <!-- Document 03 -->
-        <section id="doc3" class="content-section">
-            <h1>[03] สถาปัตยกรรมระบบและข้อกำหนดฟังก์ชันงาน (System Architecture & Functional Requirements)</h1>
-            <p>เอกสารฉบับนี้อธิบายรายละเอียดโครงสร้างทางเทคนิค การทำงานร่วมกันของเทคโนโลยี และฟังก์ชันการทำงานของระบบสำหรับคณะสัตวแพทยศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ ครอบคลุมทั้ง 5 วิทยาเขต</p>
+        <h3>ตัวอย่างที่ 3: ระบบ Telemedicine ในโรงพยาบาลชั้นนำ</h3>
+        <ul>
+          <li>
+            <strong>การใช้งาน:</strong> เก็บข้อมูลคนไข้ (Cloud SQL) และภาพ X-Ray
+            (Cloud Storage) แยกกัน แต่เชื่อมโยงด้วย Patient ID
+          </li>
+          <li>
+            <strong>ความเชื่อมโยงกับคณะ:</strong> เป็นโมเดลต้นแบบในการทำ
+            <strong>Referral System</strong> ระหว่าง 5 วิทยาเขต
+            โดยนำเสนอโมเดลการทำงานใหม่ดังนี้:
+          </li>
+        </ul>
+        <blockquote>
+          <strong
+            >โมเดลการทำงานร่วมกันและการส่งต่อผู้เชี่ยวชาญ (Collaborative &
+            Referral Care Model)</strong
+          ><br />
+          เพื่อเพิ่มประสิทธิภาพการรักษา ลดต้นทุน และพัฒนาทักษะบุคลากร
+          (Upskilling) ระบบจะถูกออกแบบเพื่อสนับสนุนกระบวนการทำงานดังนี้:
+          <p>
+            <strong
+              >1. การเตรียมข้อมูลหน้างาน (Pre-consultation Workup):</strong
+            >
+          </p>
+          <ul>
+            <li>
+              <strong>ผู้รับผิดชอบ:</strong> สัตวแพทย์ประจำสาขา (General
+              Practitioner / Junior Vet)
+            </li>
+            <li>
+              <strong>หน้าที่:</strong> ทำหน้าที่เป็น "ด่านหน้า" ในการซักประวัติ
+              ตรวจร่างกายเบื้องต้น และสั่งตรวจทางห้องปฏิบัติการ (Lab/X-ray)
+              ตามมาตรฐาน
+            </li>
+            <li>
+              <strong>เทคนิคที่ใช้:</strong> ข้อมูลทั้งหมด (ผลเลือด, ภาพ DICOM)
+              จะถูกอัปโหลดขึ้น <strong>Central Hub</strong> ทันที
+              เพื่อเตรียมพร้อมสำหรับผู้เชี่ยวชาญ
+            </li>
+          </ul>
+          <p>
+            <strong
+              >2. การวิเคราะห์โดยผู้เชี่ยวชาญ (Specialist Analysis):</strong
+            >
+          </p>
+          <ul>
+            <li>
+              <strong>รูปแบบงาน:</strong> เปลี่ยนจากการ "รอตรวจ" หน้างาน เป็นการ
+              <strong>"วิเคราะห์ข้อมูลผ่านระบบ (Tele-analysis)"</strong>
+            </li>
+            <li>
+              <strong>กระบวนการ:</strong> ผู้เชี่ยวชาญ (Specialist)
+              เข้าดูข้อมูลเคสผ่านระบบ (Asynchronous Review) เพื่อวางแผนการรักษา
+              จ่ายยา หรือให้คำแนะนำ <em>ก่อน</em> ที่จะมีการนัดหมาย VDO Call
+              หรือเจอตัวสัตว์จริง
+            </li>
+            <li>
+              <strong>ประโยชน์:</strong> ผู้เชี่ยวชาญใช้เวลาโฟกัสที่การ
+              "วิเคราะห์" อย่างเต็มที่ ไม่เสียเวลากับงานเอกสารพื้นฐาน
+              และลดการรอคอยของผู้รับบริการ
+            </li>
+          </ul>
+          <p>
+            <strong
+              >3. การส่งมอบการรักษาและยา (Treatment & Fulfillment):</strong
+            >
+          </p>
+          <ul>
+            <li>
+              <strong>การจ่ายยา:</strong> ผู้เชี่ยวชาญสั่งจ่ายยาผ่านระบบ ->
+              คลังยาจัดส่งทางขนส่ง (Logistics) หรือให้รับที่สาขาใกล้บ้าน
+            </li>
+            <li>
+              <strong>การส่งต่อทักษะ (Skill Transfer):</strong>
+              สำหรับหัตถการเฉพาะทาง (เช่น Ultrasound, Echo) จะใช้โอกาสนี้ในการ
+              <strong>Train-the-Trainer</strong>
+              ให้สัตวแพทย์หน้างานปฏิบัติภายใต้การกำกับดูแล
+              เพื่อยกระดับทักษะให้สูงกว่ามาตรฐานตลาด (Upskill)
+              และลดภาระงานพื้นฐานของผู้เชี่ยวชาญในระยะยาว
+            </li>
+          </ul>
+          <p><strong>4. การบริหารจัดการ (Management Structure):</strong></p>
+          <ul>
+            <li>
+              <strong>ตารางงาน:</strong> จัดตารางผู้เชี่ยวชาญแบบ
+              <strong>"Slot-based"</strong> สำหรับการ Tele-consult
+              เน้นการแก้ปัญหาเคส (Case-based problem solving)
+              มากกว่าการสอนแบบบรรยาย (Lecture)
+            </li>
+            <li>
+              <strong>ความรับผิดชอบ:</strong> ระบบจะระบุ
+              <strong>"เจ้าของไข้ (Case Owner)"</strong> ชัดเจน
+              โดยผู้เชี่ยวชาญทำหน้าที่เป็น Consultant
+              ที่มีบทบาทร่วมในการตัดสินใจ ไม่ใช่เพียงผู้สั่งการ
+            </li>
+          </ul>
+        </blockquote>
 
-            <h2>1. คำอธิบายองค์ประกอบทางเทคโนโลยี (Technical Components Overview)</h2>
-            <p>เพื่อให้เข้าใจบทบาทของแต่ละเทคโนโลยีที่ใช้งานร่วมกัน ขอเปรียบเทียบกับโครงสร้างการทำงานในโรงพยาบาลสัตว์ ดังนี้:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>เทคโนโลยี (Technology)</th>
-                        <th>หน้าที่หลัก (Role)</th>
-                        <th>การเปรียบเทียบ (Analogy)</th>
-                        <th>คำอธิบายโดยละเอียด</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Google Cloud Run</strong></td>
-                        <td><strong>หน่วยประมวลผล</strong> (Compute)</td>
-                        <td><strong>"บุคลากรทางการแพทย์"</strong></td>
-                        <td>ทำหน้าที่รับคำสั่งจากผู้ใช้ ประมวลผลข้อมูล และตัดสินใจตามเงื่อนไขที่กำหนด ระบบจะทำงานเมื่อมีคำสั่งเรียกใช้เท่านั้น ช่วยลดการใช้ทรัพยากรโดยเปล่าประโยชน์</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Google Cloud SQL</strong></td>
-                        <td><strong>ฐานข้อมูล</strong> (Database)</td>
-                        <td><strong>"ห้องเวชระเบียน / คลังยา"</strong></td>
-                        <td>พื้นที่จัดเก็บข้อมูลที่มีโครงสร้างชัดเจน มีความถูกต้องแม่นยำสูง และมีความปลอดภัยเข้มงวด ทำหน้าที่บันทึกธุรกรรมต่างๆ เช่น การเบิกจ่ายยา หรือประวัติการรักษา</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Google BigQuery</strong></td>
-                        <td><strong>คลังข้อมูลวิเคราะห์</strong> (Data Warehouse)</td>
-                        <td><strong>"ศูนย์วิจัยและสถิติ"</strong></td>
-                        <td>แหล่งรวบรวมข้อมูลย้อนหลังขนาดใหญ่จากหลายแหล่ง เพื่อนำมาวิเคราะห์หาแนวโน้ม สถิติ และข้อมูลเชิงลึก (Insights) โดยไม่กระทบต่อประสิทธิภาพการทำงานของระบบหลัก</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h2>
+          3. เจาะลึก GDCC (Cloud ภาครัฐ): สิ่งที่ "ต้องทำเพิ่ม" หากเลือกใช้
+        </h2>
+        <p>
+          หากผู้บริหารมีนโยบายให้ใช้ GDCC (ซึ่งเป็น Infrastructure-as-a-Service:
+          IaaS) ทีมงานคณะจะต้องรับภาระหน้าที่เพิ่มขึ้นเปรียบเสมือนการ
+          **"สร้างบ้านเอง vs เช่าคอนโด"** ดังนี้:
+        </p>
+        <h3>ตารางเปรียบเทียบภาระงาน (Workload Comparison)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>รายการที่ต้องทำ</th>
+              <th>Google Cloud (Managed Service)</th>
+              <th>GDCC (Self-Managed IaaS)</th>
+              <th>เครื่องมือที่ต้องใช้บน GDCC (Tools needed)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. การติดตั้ง Server</strong></td>
+              <td><strong>ไม่ต้องทำ</strong> (Ready to use)</td>
+              <td>
+                <strong>ต้องทำเอง:</strong> ลง OS (Linux), แบ่ง Partition,
+                ตั้งค่า Network
+              </td>
+              <td>Ubuntu/CentOS, Terraform, Ansible</td>
+            </tr>
+            <tr>
+              <td><strong>2. ติดตั้ง Database</strong></td>
+              <td><strong>ไม่ต้องทำ</strong> (กดปุ่มเดียวได้เลย)</td>
+              <td>
+                <strong>ต้องทำเอง:</strong> Download PostgreSQL, Install, Config
+                ค่า Memory/Connection
+              </td>
+              <td>PostgreSQL, PgAdmin, DBeaver</td>
+            </tr>
+            <tr>
+              <td><strong>3. ความปลอดภัย (Patch)</strong></td>
+              <td><strong>Google ทำให้</strong> (Auto-patch)</td>
+              <td>
+                <strong>ทำเองทุกเดือน:</strong> ต้องคอยตามข่าวว่า Linux/Database
+                มีรูรั่วไหม แล้วสั่ง Update เอง
+              </td>
+              <td>Yum/Apt-get update, Nessus (Scan ช่องโหว่)</td>
+            </tr>
+            <tr>
+              <td><strong>4. การสำรองข้อมูล</strong></td>
+              <td><strong>อัตโนมัติ</strong> (ติ๊กถูกช่อง Backup)</td>
+              <td>
+                <strong>เขียน Script เอง:</strong> ต้องเขียน Script (Cronjob)
+                ให้ Dump Database ทุกคืน แล้วส่งไฟล์ไปเก็บที่อื่น
+              </td>
+              <td>Shell Script, Bacula, Veeam</td>
+            </tr>
+            <tr>
+              <td><strong>5. รองรับโหลดเยอะ (Scale)</strong></td>
+              <td><strong>อัตโนมัติ</strong> (Cloud Run ขยายเอง)</td>
+              <td>
+                <strong>ทำเองยากมาก:</strong> ต้องสร้าง VM เพิ่มเอง, ตั้งค่า
+                Load Balancer เอง, ย้าย IP ไปมา
+              </td>
+              <td>HAProxy, Nginx, Kubernetes (K8s)</td>
+            </tr>
+            <tr>
+              <td><strong>6. Monitoring</strong></td>
+              <td><strong>มีให้เลย</strong> (Cloud Monitoring)</td>
+              <td>
+                <strong>ต้องติดตั้งเอง:</strong> หาโปรแกรมมาเฝ้าระวังว่า Server
+                ล่มไหม, CPU เต็มไหม
+              </td>
+              <td>Zabbix, Prometheus, Grafana</td>
+            </tr>
+          </tbody>
+        </table>
 
-            <h2>2. แผนผังการทำงานและการรักษาความปลอดภัย (System Workflow & Security)</h2>
-            <p>กระบวนการทำงานเมื่อผู้ใช้งานเข้าถึงระบบผ่าน AppSheet โดยเชื่อมต่อกับระบบยืนยันตัวตนของมหาวิทยาลัย มีขั้นตอนดังนี้:</p>
+        <h3>บทสรุปสำหรับผู้บริหาร</h3>
+        <ul>
+          <li>
+            <strong>การใช้ Google Cloud:</strong>
+            เหมือนจ้างทีมผู้เชี่ยวชาญระดับโลกมาดูแลระบบพื้นฐานให้ 24 ชม.
+            ทำให้ทีมงานคณะมีเวลาไปโฟกัสที่
+            <strong>"ข้อมูล (Data) และ แอปพลิเคชัน"</strong>
+          </li>
+          <li>
+            <strong>การใช้ GDCC:</strong> ประหยัดค่าเช่าที่ (Free Tier) แต่
+            <strong>"ต้นทุนแฝงสูงมาก"</strong> คือต้องจ้างบุคลากร (System Admin
+            / DevOps) อย่างน้อย 1-2 คน เพื่อมาดูแลสิ่งที่ Google ทำให้ฟรี
+            (การติดตั้ง, อัปเดต, สำรองข้อมูล, เฝ้าระวัง)
+          </li>
+        </ul>
 
-            <pre><code>sequenceDiagram
+        <h2>
+          4. ทางเลือก Cloud Provider อื่นๆ ที่นิยมในประเทศไทย (Alternative
+          Providers Analysis)
+        </h2>
+        <p>
+          นอกเหนือจาก Google Cloud แล้ว
+          ตลาดในประเทศไทยยังมีผู้ให้บริการรายใหญ่ที่นิยมใช้ในระดับองค์กร ได้แก่
+          **AWS (Amazon)**, **Microsoft Azure**, และ **Huawei Cloud**
+        </p>
+
+        <h3>ตารางเปรียบเทียบเทคโนโลยีเทียบเคียง (Service Mapping)</h3>
+        <p>
+          หากไม่ใช้ Google Cloud จะต้องใช้บริการตัวใดมาแทนในฟังก์ชันเดียวกัน:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>ผู้ให้บริการ (Provider)</th>
+              <th>Compute (รันแอป/API)</th>
+              <th>Database (ฐานข้อมูล)</th>
+              <th>Data Warehouse (วิเคราะห์)</th>
+              <th>จุดเด่น (Pros)</th>
+              <th>ข้อสังเกต (Cons)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google Cloud</strong></td>
+              <td>Cloud Run</td>
+              <td>Cloud SQL</td>
+              <td>BigQuery</td>
+              <td>
+                <strong>Integration:</strong> เชื่อมกับ Gmail/AppSheet ของ มก.
+                ได้ดีที่สุด
+              </td>
+              <td>ตลาดแรงงานในไทยอาจน้อยกว่า AWS เล็กน้อย</td>
+            </tr>
+            <tr>
+              <td><strong>AWS (Amazon)</strong></td>
+              <td>AWS App Runner / Fargate</td>
+              <td>Amazon RDS</td>
+              <td>Amazon Redshift</td>
+              <td>
+                <strong>Maturity:</strong> เป็นเจ้าตลาด มีเครื่องมือเยอะที่สุด
+                และมี Region ในไทย
+              </td>
+              <td>
+                <strong>Complex Pricing:</strong> การคิดราคาซับซ้อน และ Learning
+                Curve สูง
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Microsoft Azure</strong></td>
+              <td>Azure Container Apps</td>
+              <td>Azure Database for PostgreSQL</td>
+              <td>Azure Synapse</td>
+              <td>
+                <strong>Corporate:</strong> ดีที่สุดถ้าองค์กรใช้ Office 365 หรือ
+                Active Directory เข้มข้น
+              </td>
+              <td>หน้าจอจัดการ (Portal) ค่อนข้างช้าและซับซ้อน</td>
+            </tr>
+            <tr>
+              <td><strong>Huawei Cloud</strong></td>
+              <td>Cloud Container Engine (CCE)</td>
+              <td>RDS for PostgreSQL</td>
+              <td>GaussDB (DWS)</td>
+              <td>
+                <strong>Price:</strong> ราคามักจะถูกกว่าเจ้าอื่น และมี Data
+                Center ในไทย
+              </td>
+              <td>
+                ระบบ Ecosystem และเอกสารคู่มือ (Docs)
+                ยังไม่สมบูรณ์เท่าฝั่งอเมริกา
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>บทวิเคราะห์ความเหมาะสมสำหรับคณะสัตวแพทยศาสตร์ มก.</h3>
+        <ol>
+          <li>
+            <strong
+              >ทำไม Google Cloud ถึงยังเป็นตัวเลือกอันดับ 1
+              ในข้อเสนอนี้?</strong
+            >
+            <ul>
+              <li>
+                <strong>User Identity:</strong> เพราะบุคลากรและนิสิตทุกคนมีบัญชี
+                **Google Workspace (@ku.ac.th)** อยู่แล้ว การใช้ Google Cloud
+                ทำให้ระบบ Login และการกำหนดสิทธิ์ (Permission) ไร้รอยต่อที่สุด
+              </li>
+              <li>
+                <strong>AppSheet Integration:</strong> AppSheet เป็นผลิตภัณฑ์ของ
+                Google โดยตรง การเชื่อมต่อกับ Cloud SQL บน Google Cloud
+                จึงทำได้ง่ายและปลอดภัยที่สุดโดยไม่ต้องตั้งค่า Network ที่ซับซ้อน
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>เมื่อไหร่ที่ควรพิจารณาเจ้าอื่น?</strong>
+            <ul>
+              <li>
+                <strong>เลือก Microsoft Azure:</strong>
+                หากทางคณะมีนโยบายเปลี่ยนระบบอีเมลทั้งหมดไปใช้ Outlook/Microsoft
+                365 หรือมี Server เดิมเป็น Windows Server จำนวนมาก
+              </li>
+              <li>
+                <strong>เลือก Huawei Cloud:</strong> หากมีงบประมาณจำกัดมาก
+                และต้องการ Data Center ที่ตั้งอยู่ในประเทศไทยเท่านั้น (Data
+                Residency)
+              </li>
+              <li>
+                <strong>เลือก AWS:</strong> หากทีม Developer ที่จ้างมา
+                มีความเชี่ยวชาญ AWS เป็นพิเศษ (เพราะหาคนเป็น AWS
+                ได้ง่ายที่สุดในตลาด)
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Document 03 -->
+      <section id="doc3" class="content-section">
+        <h1>
+          [03] สถาปัตยกรรมระบบและข้อกำหนดฟังก์ชันงาน (System Architecture &
+          Functional Requirements)
+        </h1>
+        <p>
+          เอกสารฉบับนี้อธิบายรายละเอียดโครงสร้างทางเทคนิค
+          การทำงานร่วมกันของเทคโนโลยี
+          และฟังก์ชันการทำงานของระบบสำหรับคณะสัตวแพทยศาสตร์
+          มหาวิทยาลัยเกษตรศาสตร์ ครอบคลุมทั้ง 5 วิทยาเขต
+        </p>
+
+        <h2>
+          1. คำอธิบายองค์ประกอบทางเทคโนโลยี (Technical Components Overview)
+        </h2>
+        <p>
+          เพื่อให้เข้าใจบทบาทของแต่ละเทคโนโลยีที่ใช้งานร่วมกัน
+          ขอเปรียบเทียบกับโครงสร้างการทำงานในโรงพยาบาลสัตว์ ดังนี้:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>เทคโนโลยี (Technology)</th>
+              <th>หน้าที่หลัก (Role)</th>
+              <th>การเปรียบเทียบ (Analogy)</th>
+              <th>คำอธิบายโดยละเอียด</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google Cloud Run</strong></td>
+              <td><strong>หน่วยประมวลผล</strong> (Compute)</td>
+              <td><strong>"บุคลากรทางการแพทย์"</strong></td>
+              <td>
+                ทำหน้าที่รับคำสั่งจากผู้ใช้ ประมวลผลข้อมูล
+                และตัดสินใจตามเงื่อนไขที่กำหนด
+                ระบบจะทำงานเมื่อมีคำสั่งเรียกใช้เท่านั้น
+                ช่วยลดการใช้ทรัพยากรโดยเปล่าประโยชน์
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Google Cloud SQL</strong></td>
+              <td><strong>ฐานข้อมูล</strong> (Database)</td>
+              <td><strong>"ห้องเวชระเบียน / คลังยา"</strong></td>
+              <td>
+                พื้นที่จัดเก็บข้อมูลที่มีโครงสร้างชัดเจน มีความถูกต้องแม่นยำสูง
+                และมีความปลอดภัยเข้มงวด ทำหน้าที่บันทึกธุรกรรมต่างๆ เช่น
+                การเบิกจ่ายยา หรือประวัติการรักษา
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Google BigQuery</strong></td>
+              <td><strong>คลังข้อมูลวิเคราะห์</strong> (Data Warehouse)</td>
+              <td><strong>"ศูนย์วิจัยและสถิติ"</strong></td>
+              <td>
+                แหล่งรวบรวมข้อมูลย้อนหลังขนาดใหญ่จากหลายแหล่ง
+                เพื่อนำมาวิเคราะห์หาแนวโน้ม สถิติ และข้อมูลเชิงลึก (Insights)
+                โดยไม่กระทบต่อประสิทธิภาพการทำงานของระบบหลัก
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>
+          2. แผนผังการทำงานและการรักษาความปลอดภัย (System Workflow & Security)
+        </h2>
+        <p>
+          กระบวนการทำงานเมื่อผู้ใช้งานเข้าถึงระบบผ่าน AppSheet
+          โดยเชื่อมต่อกับระบบยืนยันตัวตนของมหาวิทยาลัย มีขั้นตอนดังนี้:
+        </p>
+
+        <pre><code>sequenceDiagram
     participant User as ผู้ใช้งาน (Staff/Student)
     participant Auth as ระบบยืนยันตัวตน (KU Auth)
     participant AppSheet as แอปพลิเคชัน (AppSheet)
@@ -871,488 +1392,1094 @@
     CloudSQL-->>AppSheet: ยืนยันผลการบันทึก
     AppSheet-->>User: แจ้งเตือนสถานะ "บันทึกสำเร็จ"</code></pre>
 
-            <h2>3. รายละเอียดระบบสมุดบันทึกการปฏิบัติงานดิจิทัล (Digital Logbook Module)</h2>
-            <p>ระบบบันทึกการฝึกงานทางคลินิกสำหรับนิสิตสัตวแพทย์ ออกแบบโดยอ้างอิงมาตรฐานการศึกษาฐานสมรรถนะ (Competency-Based Medical Education)</p>
+        <h2>
+          3. รายละเอียดระบบสมุดบันทึกการปฏิบัติงานดิจิทัล (Digital Logbook
+          Module)
+        </h2>
+        <p>
+          ระบบบันทึกการฝึกงานทางคลินิกสำหรับนิสิตสัตวแพทย์
+          ออกแบบโดยอ้างอิงมาตรฐานการศึกษาฐานสมรรถนะ (Competency-Based Medical
+          Education)
+        </p>
 
-            <h3>3.1 แนวคิดการออกแบบ</h3>
-            <p>ระบบมุ่งเน้นการประเมิน <strong>"ระดับความไว้วางใจในการปฏิบัติงาน" (Entrustable Professional Activities - EPA)</strong> เพื่อให้มั่นใจว่านิสิตมีทักษะพร้อมสำหรับการเป็นสัตวแพทย์ มากกว่าเพียงการนับจำนวนเคส</p>
+        <h3>3.1 แนวคิดการออกแบบ</h3>
+        <p>
+          ระบบมุ่งเน้นการประเมิน
+          <strong
+            >"ระดับความไว้วางใจในการปฏิบัติงาน" (Entrustable Professional
+            Activities - EPA)</strong
+          >
+          เพื่อให้มั่นใจว่านิสิตมีทักษะพร้อมสำหรับการเป็นสัตวแพทย์
+          มากกว่าเพียงการนับจำนวนเคส
+        </p>
 
-            <h3>3.2 โครงสร้างข้อมูลและการบันทึก (Data Structure)</h3>
-            <p>ระบบจะจัดเก็บข้อมูลสำคัญ ดังนี้:</p>
-            <ol>
-                <li><strong>ข้อมูลการปฏิบัติงาน (Encounter Data):</strong>
-                    <ul>
-                        <li>วัน เวลา และสถานที่ (วิทยาเขต/หน่วยงาน)</li>
-                        <li>ข้อมูลสัตว์ป่วย (ชนิดสัตว์, สายพันธุ์, เพศ, อายุ) <em>โดยไม่ระบุชื่อเจ้าของเพื่อความเป็นส่วนตัว</em></li>
-                    </ul>
-                </li>
-                <li><strong>ข้อมูลทางคลินิก (Clinical Details):</strong>
-                    <ul>
-                        <li>อาการหลัก (Chief Complaint)</li>
-                        <li>การวินิจฉัยโรค (Diagnosis) อ้างอิงตามรหัสมาตรฐานสากล</li>
-                        <li>หัตถการที่ปฏิบัติ (Procedures) เช่น การผ่าตัด, การเก็บตัวอย่าง</li>
-                    </ul>
-                </li>
-                <li><strong>บทบาทและการประเมิน (Role & Assessment):</strong>
-                    <ul>
-                        <li><strong>สิ่งที่วัด:</strong> ความสามารถในการปฏิบัติงานด้วยตนเอง (Autonomy) และความปลอดภัย (Safety)</li>
-                        <li><strong>ผู้ประเมิน:</strong> อาจารย์สัตวแพทย์ผู้ควบคุมการฝึกงาน (Clinical Supervisor)</li>
-                        <li><strong>เกณฑ์มาตรฐาน (EPA Levels):</strong> ใช้เกณฑ์สากล 5 ระดับ (Chen & ten Cate Framework) เพื่อลดความรู้สึกส่วนตัว (Subjectivity) ของผู้ประเมิน และสร้างมาตรฐานเดียวกัน:
-                            <ul>
-                                <li><strong>Level 1 - สังเกตการณ์ (Observation Only):</strong> นิสิตทำได้เพียงสังเกตการปฏิบัติงานของอาจารย์หรือพี่สัตวแพทย์ ยังไม่มีความรู้หรือทักษะเพียงพอที่จะได้รับอนุญาตให้ลงมือทำ</li>
-                                <li><strong>Level 2 - ปฏิบัติภายใต้การดูแลอย่างใกล้ชิด (Direct Supervision):</strong> นิสิตสามารถลงมือทำหัตถการได้ แต่ต้องมีอาจารย์ยืนกำกับดูแล (Proactive Supervision) อยู่ข้างๆ ตลอดเวลา เพื่อความปลอดภัยและให้คำแนะนำทันที</li>
-                                <li><strong>Level 3 - ปฏิบัติภายใต้การดูแลแบบห่างๆ (Indirect Supervision):</strong> นิสิตปฏิบัติงานได้ด้วยตนเอง อาจารย์ไม่จำเป็นต้องยืนกำกับตลอดเวลา แต่ต้องอยู่ในบริเวณที่สามารถเข้ามาช่วยเหลือได้ทันทีเมื่อร้องขอ (Reactive Supervision)</li>
-                                <li><strong>Level 4 - ปฏิบัติได้โดยไม่ต้องมีการดูแล (Distant/Unsupervised):</strong> นิสิตมีความสามารถเพียงพอที่จะปฏิบัติงานได้ด้วยตนเองอย่างมั่นใจและปลอดภัยเสมือนสัตวแพทย์จบใหม่ อาจารย์เพียงตรวจสอบความถูกต้องภายหลัง (Post-hoc Review) <em>ถือเป็นเกณฑ์ "ผ่าน" สมรรถนะ</em></li>
-                                <li><strong>Level 5 - สามารถกำกับดูแลผู้อื่นได้ (Supervision of Others):</strong> นิสิตมีความชำนาญสูงจนสามารถทำหน้าที่สอนหรือกำกับดูแลนิสิตรุ่นน้องในการทำหัตถการนั้นได้</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://www.aavmc.org/competency-based-veterinary-education/" target="_blank">AAVMC Competency-Based Veterinary Education (CBVE) Framework - EPAs</a></blockquote>
-                </li>
-                <li><strong>การสะท้อนคิด (Reflection):</strong>
-                    <ul>
-                        <li>สิ่งที่ได้เรียนรู้จากเคสนี้ (Learning Outcome)</li>
-                        <li>ข้อผิดพลาดหรือสิ่งที่ควรปรับปรุง (Self-Correction)</li>
-                    </ul>
-                </li>
-            </ol>
-
-            <h2>4. โครงสร้างฟังก์ชันระบบบริหารจัดการหลัก (Core Modules Overview)</h2>
-            <p>ระบบส่วนกลางได้รับการออกแบบให้ครอบคลุมภารกิจหลักของคณะฯ ดังนี้:</p>
-
-            <h3>4.1 ระบบบริหารจัดการโรงพยาบาล (Hospital Management)</h3>
+        <h3>3.2 โครงสร้างข้อมูลและการบันทึก (Data Structure)</h3>
+        <p>ระบบจะจัดเก็บข้อมูลสำคัญ ดังนี้:</p>
+        <ol>
+          <li>
+            <strong>ข้อมูลการปฏิบัติงาน (Encounter Data):</strong>
             <ul>
-                <li><strong>คลังยาและเวชภัณฑ์รวมศูนย์:</strong> แสดงยอดคงเหลือของทั้ง 5 วิทยาเขตในหน้าจอเดียว (Single View) รองรับระบบแจ้งเตือนจุดสั่งซื้อ และการโอนย้ายสินค้าระหว่างสาขา</li>
-                <li><strong>ระบบติดตามรายรับ:</strong> รวบรวมข้อมูลรายได้ประจำวัน แยกประเภทการชำระเงิน (เงินสด/โอน/เครดิต) เพื่อการตรวจสอบยอดที่แม่นยำ</li>
-                <li><strong>ระบบส่งต่อผู้ป่วย (Referral System):</strong> เชื่อมโยงข้อมูลเพื่อการส่งต่อระหว่างวิทยาเขต
-                    <ul>
-                        <li><strong>การจัดการภาพถ่ายทางการแพทย์ (Medical Imaging):</strong> สำหรับภาพถ่ายทางรังสีความละเอียดสูง (High-Resolution DICOM) ให้ดำเนินการจัดส่งผ่านสื่อบันทึกข้อมูลถาวร (เช่น DVD) ควบคู่กับตัวสัตว์ เพื่อให้สัตวแพทย์ปลายทางสามารถใช้ซอฟต์แวร์เฉพาะทางในการวิเคราะห์โรคได้</li>
-                        <li><strong>การจัดการผลวินิจฉัย (Diagnostic Reports):</strong> ระบบส่วนกลางจะทำหน้าที่จัดเก็บและแสดงผลเฉพาะ <strong>"รายงานผลการตรวจ (Radiology Report)"</strong> และ <strong>"ผลทางห้องปฏิบัติการ (Lab Result)"</strong> ในรูปแบบดิจิทัล เพื่อให้สัตวแพทย์สามารถเข้าถึงข้อมูลสรุปและประวัติการรักษาได้ทันทีผ่านระบบ</li>
-                    </ul>
-                </li>
+              <li>วัน เวลา และสถานที่ (วิทยาเขต/หน่วยงาน)</li>
+              <li>
+                ข้อมูลสัตว์ป่วย (ชนิดสัตว์, สายพันธุ์, เพศ, อายุ)
+                <em>โดยไม่ระบุชื่อเจ้าของเพื่อความเป็นส่วนตัว</em>
+              </li>
             </ul>
-
-            <h3>4.2 ระบบบริหารการศึกษา (Education Management)</h3>
+          </li>
+          <li>
+            <strong>ข้อมูลทางคลินิก (Clinical Details):</strong>
             <ul>
-                <li><strong>Digital Portfolio:</strong> ระบบสรุปยอดการปฏิบัติงานของนิสิตรายบุคคล แสดงผลเป็นกราฟแยกตามระบบอวัยวะหรือชนิดสัตว์ เพื่อใช้ประกอบการจบการศึกษา</li>
-                <li><strong>Thesis Tracking:</strong> ระบบติดตามความก้าวหน้าวิทยานิพนธ์ โดยแบ่งระยะการดำเนินงานและจุดวัดผล (Milestones) เป็น 4 ระยะมาตรฐาน:
-                    <ol>
-                        <li><strong>ระยะเสนอหัวข้อ (Proposal Phase):</strong>
-                            <ul>
-                                <li><em>จุดวัด:</em> การอนุมัติหัวข้อและเค้าโครงงานวิจัย (Topic Approval)</li>
-                                <li><em>เอกสาร:</em> ไฟล์ PDF เค้าโครงวิจัยฉบับสมบูรณ์</li>
-                            </ul>
-                        </li>
-                        <li><strong>ระยะดำเนินการวิจัย (Implementation Phase):</strong>
-                            <ul>
-                                <li><em>จุดวัด:</em> ความคืบหน้าการเก็บข้อมูล (Data Collection Progress) เช่น "เก็บตัวอย่างเลือดครบ 50% แล้ว"</li>
-                                <li><em>การแจ้งเตือน:</em> ระบบแจ้งเตือนหากไม่มีการอัปเดต Log เกิน 2 เดือน</li>
-                            </ul>
-                        </li>
-                        <li><strong>ระยะวิเคราะห์และเขียนเล่ม (Analysis & Drafting Phase):</strong>
-                            <ul>
-                                <li><em>จุดวัด:</em> การส่งร่างบทที่ 1-3 และบทที่ 4-5</li>
-                            </ul>
-                        </li>
-                        <li><strong>ระยะสอบและตีพิมพ์ (Defense & Publication Phase):</strong>
-                            <ul>
-                                <li><em>จุดวัด:</em> ผ่านการสอบป้องกัน (Defense Score) และสถานะการตีพิมพ์ (Published Status)</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </li>
+              <li>อาการหลัก (Chief Complaint)</li>
+              <li>การวินิจฉัยโรค (Diagnosis) อ้างอิงตามรหัสมาตรฐานสากล</li>
+              <li>
+                หัตถการที่ปฏิบัติ (Procedures) เช่น การผ่าตัด, การเก็บตัวอย่าง
+              </li>
             </ul>
-
-            <h3>4.3 ระบบงานสนับสนุน (Support Functions)</h3>
+          </li>
+          <li>
+            <strong>บทบาทและการประเมิน (Role & Assessment):</strong>
             <ul>
-                <li><strong>การจัดซื้อรวม (Consolidated Procurement):</strong> รวบรวมความต้องการวัสดุจากทุกหน่วยงานเพื่อออกใบสั่งซื้อรวม ช่วยลดขั้นตอนเอกสารและเพิ่มอำนาจต่อรอง</li>
-                <li><strong>ทะเบียนครุภัณฑ์ (Asset Management):</strong> ติดตามสถานะ สถานที่ตั้ง และประวัติการซ่อมบำรุงของเครื่องมือแพทย์ผ่านระบบ QR Code หรือ หมายเลขครุภัณฑ์ (Asset No.)</li>
+              <li>
+                <strong>สิ่งที่วัด:</strong> ความสามารถในการปฏิบัติงานด้วยตนเอง
+                (Autonomy) และความปลอดภัย (Safety)
+              </li>
+              <li>
+                <strong>ผู้ประเมิน:</strong> อาจารย์สัตวแพทย์ผู้ควบคุมการฝึกงาน
+                (Clinical Supervisor)
+              </li>
+              <li>
+                <strong>เกณฑ์มาตรฐาน (EPA Levels):</strong> ใช้เกณฑ์สากล 5 ระดับ
+                (Chen & ten Cate Framework) เพื่อลดความรู้สึกส่วนตัว
+                (Subjectivity) ของผู้ประเมิน และสร้างมาตรฐานเดียวกัน:
+                <ul>
+                  <li>
+                    <strong>Level 1 - สังเกตการณ์ (Observation Only):</strong>
+                    นิสิตทำได้เพียงสังเกตการปฏิบัติงานของอาจารย์หรือพี่สัตวแพทย์
+                    ยังไม่มีความรู้หรือทักษะเพียงพอที่จะได้รับอนุญาตให้ลงมือทำ
+                  </li>
+                  <li>
+                    <strong
+                      >Level 2 - ปฏิบัติภายใต้การดูแลอย่างใกล้ชิด (Direct
+                      Supervision):</strong
+                    >
+                    นิสิตสามารถลงมือทำหัตถการได้ แต่ต้องมีอาจารย์ยืนกำกับดูแล
+                    (Proactive Supervision) อยู่ข้างๆ ตลอดเวลา
+                    เพื่อความปลอดภัยและให้คำแนะนำทันที
+                  </li>
+                  <li>
+                    <strong
+                      >Level 3 - ปฏิบัติภายใต้การดูแลแบบห่างๆ (Indirect
+                      Supervision):</strong
+                    >
+                    นิสิตปฏิบัติงานได้ด้วยตนเอง
+                    อาจารย์ไม่จำเป็นต้องยืนกำกับตลอดเวลา
+                    แต่ต้องอยู่ในบริเวณที่สามารถเข้ามาช่วยเหลือได้ทันทีเมื่อร้องขอ
+                    (Reactive Supervision)
+                  </li>
+                  <li>
+                    <strong
+                      >Level 4 - ปฏิบัติได้โดยไม่ต้องมีการดูแล
+                      (Distant/Unsupervised):</strong
+                    >
+                    นิสิตมีความสามารถเพียงพอที่จะปฏิบัติงานได้ด้วยตนเองอย่างมั่นใจและปลอดภัยเสมือนสัตวแพทย์จบใหม่
+                    อาจารย์เพียงตรวจสอบความถูกต้องภายหลัง (Post-hoc Review)
+                    <em>ถือเป็นเกณฑ์ "ผ่าน" สมรรถนะ</em>
+                  </li>
+                  <li>
+                    <strong
+                      >Level 5 - สามารถกำกับดูแลผู้อื่นได้ (Supervision of
+                      Others):</strong
+                    >
+                    นิสิตมีความชำนาญสูงจนสามารถทำหน้าที่สอนหรือกำกับดูแลนิสิตรุ่นน้องในการทำหัตถการนั้นได้
+                  </li>
+                </ul>
+              </li>
             </ul>
-
-            <h2>5. บทวิเคราะห์ทางเลือกและกลยุทธ์การดำเนินงาน (Implementation Strategy & Alternatives)</h2>
-            <p>เพื่อให้การพัฒนาระบบสอดคล้องกับงบประมาณและทรัพยากรบุคคล การพิจารณาทางเลือกและแผนงานเป็นสิ่งสำคัญ</p>
-
-            <h3>5.1 การวิเคราะห์ทางเลือกทางสถาปัตยกรรม (Alternative Architecture Analysis)</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ทางเลือก (Option)</th>
-                        <th>รายละเอียด (Description)</th>
-                        <th>ความเหมาะสมกับโครงการ (Verdict)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Option A: ระบบสำเร็จรูป (Commercial HIS)</strong></td>
-                        <td>การจัดซื้อซอฟต์แวร์โรงพยาบาลที่มีจำหน่ายทั่วไป</td>
-                        <td><strong>ต่ำ</strong> - เนื่องจากขาดความยืดหยุ่นในการเชื่อมโยงข้อมูลข้ามวิทยาเขต และไม่รองรับฟังก์ชันการศึกษา (Digital Logbook) ของนิสิต</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Option B: ติดตั้ง Server แยกวิทยาเขต (Edge Computing)</strong></td>
-                        <td>การวางเครื่อง Server ไว้ที่แต่ละวิทยาเขตและทำการซิงค์ข้อมูล</td>
-                        <td><strong>ปานกลาง</strong> - ช่วยแก้ปัญหาอินเทอร์เน็ตได้ดีที่สุด แต่ภาระการดูแลรักษา (Maintenance Cost) สูงมาก ต้องมีเจ้าหน้าที่ IT ประจำทุกจุด</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Option C: ระบบศูนย์กลางบน Cloud (Cloud-Based)</strong></td>
-                        <td>การใช้โครงสร้างพื้นฐานของ Google Cloud (ตามที่เสนอ)</td>
-                        <td><strong>สูง</strong> - เหมาะสมที่สุดในแง่ความคุ้มค่า (Pay-per-use), ความปลอดภัยมาตรฐานโลก, และลดภาระการดูแล Hardware ของมหาวิทยาลัย</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h3>5.2 แผนการดำเนินงานระยะเริ่มต้น (Phasing Strategy)</h3>
-            <p>ไม่ควรพัฒนาระบบทั้งหมดพร้อมกันในคราวเดียว แต่ควรแบ่งระยะเพื่อลดความเสี่ยง ตัวอย่างทั่วไปที่หน่วยงานเริ่มต้นจากไม่มีระบบมาก่อน:</p>
-            <ol>
-                <li><strong>Phase 1 (เดือน 0-4): ระบบคลังยาและการจัดซื้อ</strong> - เนื่องจากเป็นข้อมูลคงที่ (Static Data) เห็นผลด้านการลดต้นทุนชัดเจน และผลกระทบต่อชีวิตสัตว์ต่ำ</li>
-                <li><strong>Phase 2 (เดือน 5-8): ระบบเวชระเบียนพื้นฐานและรายรับ</strong> - เริ่มเก็บข้อมูลเจ้าของและประวัติการรักษา</li>
-                <li><strong>Phase 3 (เดือน 9-12): ระบบการศึกษาและ Logbook</strong> - เริ่มใช้งานกับนิสิตกลุ่มนำร่อง เพื่อปรับปรุง Flow การใช้งานก่อนขยายผลจริง</li>
-            </ol>
-        </section>
-
-        <!-- Document 04 -->
-        <section id="doc4" class="content-section">
-            <h1>[04] รายละเอียดเทคโนโลยีและทางเลือกในการพัฒนา (Technology & Development Options)</h1>
-            <p>เอกสารฉบับนี้จัดทำขึ้นเพื่ออธิบายรายละเอียดทางเทคนิค เปรียบเทียบทางเลือก และชี้แจงประเด็นความปลอดภัยของเทคโนโลยีที่นำเสนอ โดยใช้คำอธิบายที่เข้าใจง่ายสำหรับผู้บริหารและบุคลากรทั่วไป</p>
-
-            <h2>1. คำอธิบายเทคโนโลยี: Cloud Run คืออะไร?</h2>
-            <p>เพื่อให้เข้าใจความแตกต่างระหว่างระบบ Server ทั่วไป (เช่น Virtual Machine) กับ Cloud Run ขอเปรียบเทียบกับรูปแบบการพักอาศัยดังนี้:</p>
-
+            <blockquote>
+              <strong>อ้างอิง (Reference):</strong>
+              <a
+                href="https://www.aavmc.org/competency-based-veterinary-education/"
+                target="_blank"
+                >AAVMC Competency-Based Veterinary Education (CBVE) Framework -
+                EPAs</a
+              >
+            </blockquote>
+          </li>
+          <li>
+            <strong>การสะท้อนคิด (Reflection):</strong>
             <ul>
-                <li><strong>Virtual Machine (VM) / Server แบบดั้งเดิม:</strong> เปรียบเสมือน <strong>"การเช่าบ้านรายเดือน"</strong>
-                    <ul>
-                        <li>ท่านต้องจ่ายค่าเช่าเต็มราคา ไม่ว่าจะเข้าไปพักหรือไม่</li>
-                        <li>ท่านต้องรับผิดชอบดูแลรักษาความสะอาด ซ่อมแซมระบบน้ำไฟ และดูแลความปลอดภัยด้วยตนเอง</li>
-                        <li><em>ข้อดี:</em> มีความเป็นส่วนตัวสูง ปรับแต่งพื้นที่ได้ตามใจชอบ</li>
-                        <li><em>ข้อเสีย:</em> มีค่าใช้จ่ายคงที่ (Fixed Cost) และมีภาระในการดูแลรักษา (Maintenance) สูง</li>
-                    </ul>
-                </li>
-                <li><strong>Cloud Run (Serverless):</strong> เปรียบเสมือน <strong>"การพักโรงแรมที่คิดค่าบริการตามนาที"</strong>
-                    <ul>
-                        <li>ท่านจ่ายค่าบริการเฉพาะช่วงเวลาที่มีผู้เข้าพักจริง (มีผู้ใช้งานระบบ) หากไม่มีผู้ใช้งาน ไม่ต้องเสียค่าใช้จ่าย</li>
-                        <li>ผู้ให้บริการ (Google) ดูแลโครงสร้างพื้นฐาน ระบบความปลอดภัย และการซ่อมบำรุงทั้งหมด ท่านเพียงแค่นำสัมภาระ (Application Code) เข้าไปวาง</li>
-                        <li><em>ข้อดี:</em> ประหยัดค่าใช้จ่ายในระยะยาว ไม่ต้องมีทีมงานดูแล Server ตลอด 24 ชม. และมีความเสถียรสูงระดับสากล</li>
-                        <li><em>ข้อเสีย:</em> ต้องมีการออกแบบซอฟต์แวร์ให้รองรับรูปแบบนี้ (Stateless)</li>
-                    </ul>
-                </li>
+              <li>สิ่งที่ได้เรียนรู้จากเคสนี้ (Learning Outcome)</li>
+              <li>ข้อผิดพลาดหรือสิ่งที่ควรปรับปรุง (Self-Correction)</li>
             </ul>
+          </li>
+        </ol>
 
-            <p><strong>สรุป:</strong> Cloud Run คือบริการที่ช่วยให้องค์กรนำระบบขึ้นใช้งานบนอินเทอร์เน็ตได้โดยไม่ต้องกังวลเรื่องการดูแล Server และจ่ายค่าบริการตามปริมาณการใช้งานจริง</p>
+        <h2>
+          4. โครงสร้างฟังก์ชันระบบบริหารจัดการหลัก (Core Modules Overview)
+        </h2>
+        <p>ระบบส่วนกลางได้รับการออกแบบให้ครอบคลุมภารกิจหลักของคณะฯ ดังนี้:</p>
 
-            <h2>2. ความปลอดภัยและความน่าเชื่อถือของ AppSheet</h2>
-            <p>จากข้อกังวลเรื่องความถูกต้องของข้อมูลในการใช้ AppSheet ขอชี้แจงดังนี้:</p>
-            <p><strong>ความเข้าใจคลาดเคลื่อน:</strong> มักเข้าใจว่า AppSheet ต้องใช้งานคู่กับ Google Sheets (Spreadsheet) ซึ่งอาจทำให้ข้อมูลถูกแก้ไขได้ง่ายโดยพลการ<br>
-            <strong>แนวทางแก้ไขระดับองค์กร:</strong> เราสามารถกำหนดให้ AppSheet ทำงานร่วมกับ <strong>Google Cloud SQL</strong> ซึ่งเป็นฐานข้อมูลมาตรฐานระดับองค์กร</p>
-
-            <h3>ทำไมการจับคู่ AppSheet + Cloud SQL จึงปลอดภัย?</h3>
-            <ol>
-                <li><strong>การแยกส่วนการแสดงผลกับฐานข้อมูล (Separation of UI & Data):</strong> ผู้ใช้งานทั่วไปจะเข้าถึงข้อมูลผ่านหน้าจอ AppSheet เท่านั้น ไม่สามารถเข้าถึงตัวฐานข้อมูลโดยตรงได้</li>
-                <li><strong>ความถูกต้องของข้อมูล (Data Integrity):</strong> ฐานข้อมูล Cloud SQL สามารถตั้งกฎเกณฑ์บังคับได้ เช่น "ห้ามลบชื่อยา หากยารายการนั้นยังมีสต๊อกคงเหลือ" ซึ่ง Google Sheets ทั่วไปไม่สามารถทำได้</li>
-                <li><strong>ระบบตรวจสอบย้อนหลัง (Audit Trail):</strong> สามารถบันทึกประวัติได้ว่า ใครทำรายการอะไร เมื่อเวลาเท่าไหร่ เพื่อความโปร่งใส</li>
-            </ol>
-
-            <h2>3. การวิเคราะห์เปรียบเทียบ: Google Cloud vs. GDCC (Oracle VM)</h2>
-            <p>การพิจารณาระหว่างการใช้บริการฟรีจากภาครัฐ (GDCC) กับบริการของ Google Cloud มีประเด็นที่ต้องพิจารณาดังนี้</p>
-
-            <h3>GDCC (Government Data Center and Cloud Service)</h3>
+        <h3>4.1 ระบบบริหารจัดการโรงพยาบาล (Hospital Management)</h3>
+        <ul>
+          <li>
+            <strong>คลังยาและเวชภัณฑ์รวมศูนย์:</strong> แสดงยอดคงเหลือของทั้ง 5
+            วิทยาเขตในหน้าจอเดียว (Single View) รองรับระบบแจ้งเตือนจุดสั่งซื้อ
+            และการโอนย้ายสินค้าระหว่างสาขา
+          </li>
+          <li>
+            <strong>ระบบติดตามรายรับ:</strong> รวบรวมข้อมูลรายได้ประจำวัน
+            แยกประเภทการชำระเงิน (เงินสด/โอน/เครดิต) เพื่อการตรวจสอบยอดที่แม่นยำ
+          </li>
+          <li>
+            <strong>ระบบส่งต่อผู้ป่วย (Referral System):</strong>
+            เชื่อมโยงข้อมูลเพื่อการส่งต่อระหว่างวิทยาเขต
             <ul>
-                <li><strong>ลักษณะสิทธิ์:</strong> ได้รับ Virtual Machine (VM) พร้อม GPU</li>
-                <li><strong>ความเหมาะสม:</strong> เหมาะสำหรับงานที่ต้องการการประมวลผลเฉพาะทาง เช่น <strong>ระบบปัญญาประดิษฐ์ (AI)</strong> ในอนาคต (เช่น การวิเคราะห์ฟิล์ม X-Ray) หรือหน่วยงานที่มีทีม System Administrator ดูแลระบบโดยเฉพาะ</li>
-                <li><strong>ข้อควรระวัง:</strong> องค์กรต้องรับผิดชอบการดูแลความปลอดภัยระดับระบบปฏิบัติการ (OS Security Patching) การตั้งค่าเครือข่าย และการสำรองข้อมูลด้วยตนเอง</li>
+              <li>
+                <strong>การจัดการภาพถ่ายทางการแพทย์ (Medical Imaging):</strong>
+                สำหรับภาพถ่ายทางรังสีความละเอียดสูง (High-Resolution DICOM)
+                ให้ดำเนินการจัดส่งผ่านสื่อบันทึกข้อมูลถาวร (เช่น DVD)
+                ควบคู่กับตัวสัตว์
+                เพื่อให้สัตวแพทย์ปลายทางสามารถใช้ซอฟต์แวร์เฉพาะทางในการวิเคราะห์โรคได้
+              </li>
+              <li>
+                <strong>การจัดการผลวินิจฉัย (Diagnostic Reports):</strong>
+                ระบบส่วนกลางจะทำหน้าที่จัดเก็บและแสดงผลเฉพาะ
+                <strong>"รายงานผลการตรวจ (Radiology Report)"</strong> และ
+                <strong>"ผลทางห้องปฏิบัติการ (Lab Result)"</strong>
+                ในรูปแบบดิจิทัล
+                เพื่อให้สัตวแพทย์สามารถเข้าถึงข้อมูลสรุปและประวัติการรักษาได้ทันทีผ่านระบบ
+              </li>
             </ul>
+          </li>
+        </ul>
 
-            <h3>Google Cloud (Cloud Run + Cloud SQL)</h3>
+        <h3>4.2 ระบบบริหารการศึกษา (Education Management)</h3>
+        <ul>
+          <li>
+            <strong>Digital Portfolio:</strong>
+            ระบบสรุปยอดการปฏิบัติงานของนิสิตรายบุคคล
+            แสดงผลเป็นกราฟแยกตามระบบอวัยวะหรือชนิดสัตว์
+            เพื่อใช้ประกอบการจบการศึกษา
+          </li>
+          <li>
+            <strong>Thesis Tracking:</strong> ระบบติดตามความก้าวหน้าวิทยานิพนธ์
+            โดยแบ่งระยะการดำเนินงานและจุดวัดผล (Milestones) เป็น 4 ระยะมาตรฐาน:
+            <ol>
+              <li>
+                <strong>ระยะเสนอหัวข้อ (Proposal Phase):</strong>
+                <ul>
+                  <li>
+                    <em>จุดวัด:</em> การอนุมัติหัวข้อและเค้าโครงงานวิจัย (Topic
+                    Approval)
+                  </li>
+                  <li><em>เอกสาร:</em> ไฟล์ PDF เค้าโครงวิจัยฉบับสมบูรณ์</li>
+                </ul>
+              </li>
+              <li>
+                <strong>ระยะดำเนินการวิจัย (Implementation Phase):</strong>
+                <ul>
+                  <li>
+                    <em>จุดวัด:</em> ความคืบหน้าการเก็บข้อมูล (Data Collection
+                    Progress) เช่น "เก็บตัวอย่างเลือดครบ 50% แล้ว"
+                  </li>
+                  <li>
+                    <em>การแจ้งเตือน:</em> ระบบแจ้งเตือนหากไม่มีการอัปเดต Log
+                    เกิน 2 เดือน
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong
+                  >ระยะวิเคราะห์และเขียนเล่ม (Analysis & Drafting
+                  Phase):</strong
+                >
+                <ul>
+                  <li><em>จุดวัด:</em> การส่งร่างบทที่ 1-3 และบทที่ 4-5</li>
+                </ul>
+              </li>
+              <li>
+                <strong
+                  >ระยะสอบและตีพิมพ์ (Defense & Publication Phase):</strong
+                >
+                <ul>
+                  <li>
+                    <em>จุดวัด:</em> ผ่านการสอบป้องกัน (Defense Score)
+                    และสถานะการตีพิมพ์ (Published Status)
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+        </ul>
+
+        <h3>4.3 ระบบงานสนับสนุน (Support Functions)</h3>
+        <ul>
+          <li>
+            <strong>การจัดซื้อรวม (Consolidated Procurement):</strong>
+            รวบรวมความต้องการวัสดุจากทุกหน่วยงานเพื่อออกใบสั่งซื้อรวม
+            ช่วยลดขั้นตอนเอกสารและเพิ่มอำนาจต่อรอง
+          </li>
+          <li>
+            <strong>ทะเบียนครุภัณฑ์ (Asset Management):</strong> ติดตามสถานะ
+            สถานที่ตั้ง และประวัติการซ่อมบำรุงของเครื่องมือแพทย์ผ่านระบบ QR Code
+            หรือ หมายเลขครุภัณฑ์ (Asset No.)
+          </li>
+        </ul>
+
+        <h2>
+          5. บทวิเคราะห์ทางเลือกและกลยุทธ์การดำเนินงาน (Implementation Strategy
+          & Alternatives)
+        </h2>
+        <p>
+          เพื่อให้การพัฒนาระบบสอดคล้องกับงบประมาณและทรัพยากรบุคคล
+          การพิจารณาทางเลือกและแผนงานเป็นสิ่งสำคัญ
+        </p>
+
+        <h3>
+          5.1 การวิเคราะห์ทางเลือกทางสถาปัตยกรรม (Alternative Architecture
+          Analysis)
+        </h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ทางเลือก (Option)</th>
+              <th>รายละเอียด (Description)</th>
+              <th>ความเหมาะสมกับโครงการ (Verdict)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Option A: ระบบสำเร็จรูป (Commercial HIS)</strong></td>
+              <td>การจัดซื้อซอฟต์แวร์โรงพยาบาลที่มีจำหน่ายทั่วไป</td>
+              <td>
+                <strong>ต่ำ</strong> -
+                เนื่องจากขาดความยืดหยุ่นในการเชื่อมโยงข้อมูลข้ามวิทยาเขต
+                และไม่รองรับฟังก์ชันการศึกษา (Digital Logbook) ของนิสิต
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong
+                  >Option B: ติดตั้ง Server แยกวิทยาเขต (Edge Computing)</strong
+                >
+              </td>
+              <td>
+                การวางเครื่อง Server ไว้ที่แต่ละวิทยาเขตและทำการซิงค์ข้อมูล
+              </td>
+              <td>
+                <strong>ปานกลาง</strong> - ช่วยแก้ปัญหาอินเทอร์เน็ตได้ดีที่สุด
+                แต่ภาระการดูแลรักษา (Maintenance Cost) สูงมาก ต้องมีเจ้าหน้าที่
+                IT ประจำทุกจุด
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Option C: ระบบศูนย์กลางบน Cloud (Cloud-Based)</strong>
+              </td>
+              <td>การใช้โครงสร้างพื้นฐานของ Google Cloud (ตามที่เสนอ)</td>
+              <td>
+                <strong>สูง</strong> - เหมาะสมที่สุดในแง่ความคุ้มค่า
+                (Pay-per-use), ความปลอดภัยมาตรฐานโลก, และลดภาระการดูแล Hardware
+                ของมหาวิทยาลัย
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>5.2 แผนการดำเนินงานระยะเริ่มต้น (Phasing Strategy)</h3>
+        <p>
+          ไม่ควรพัฒนาระบบทั้งหมดพร้อมกันในคราวเดียว
+          แต่ควรแบ่งระยะเพื่อลดความเสี่ยง
+          ตัวอย่างทั่วไปที่หน่วยงานเริ่มต้นจากไม่มีระบบมาก่อน:
+        </p>
+        <ol>
+          <li>
+            <strong>Phase 1 (เดือน 0-4): ระบบคลังยาและการจัดซื้อ</strong> -
+            เนื่องจากเป็นข้อมูลคงที่ (Static Data) เห็นผลด้านการลดต้นทุนชัดเจน
+            และผลกระทบต่อชีวิตสัตว์ต่ำ
+          </li>
+          <li>
+            <strong>Phase 2 (เดือน 5-8): ระบบเวชระเบียนพื้นฐานและรายรับ</strong>
+            - เริ่มเก็บข้อมูลเจ้าของและประวัติการรักษา
+          </li>
+          <li>
+            <strong>Phase 3 (เดือน 9-12): ระบบการศึกษาและ Logbook</strong> -
+            เริ่มใช้งานกับนิสิตกลุ่มนำร่อง เพื่อปรับปรุง Flow
+            การใช้งานก่อนขยายผลจริง
+          </li>
+        </ol>
+      </section>
+
+      <!-- Document 04 -->
+      <section id="doc4" class="content-section">
+        <h1>
+          [04] รายละเอียดเทคโนโลยีและทางเลือกในการพัฒนา (Technology &
+          Development Options)
+        </h1>
+        <p>
+          เอกสารฉบับนี้จัดทำขึ้นเพื่ออธิบายรายละเอียดทางเทคนิค
+          เปรียบเทียบทางเลือก และชี้แจงประเด็นความปลอดภัยของเทคโนโลยีที่นำเสนอ
+          โดยใช้คำอธิบายที่เข้าใจง่ายสำหรับผู้บริหารและบุคลากรทั่วไป
+        </p>
+
+        <h2>1. คำอธิบายเทคโนโลยี: Cloud Run คืออะไร?</h2>
+        <p>
+          เพื่อให้เข้าใจความแตกต่างระหว่างระบบ Server ทั่วไป (เช่น Virtual
+          Machine) กับ Cloud Run ขอเปรียบเทียบกับรูปแบบการพักอาศัยดังนี้:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Virtual Machine (VM) / Server แบบดั้งเดิม:</strong>
+            เปรียบเสมือน <strong>"การเช่าบ้านรายเดือน"</strong>
             <ul>
-                <li><strong>ลักษณะบริการ:</strong> Managed Service (ผู้ให้บริการดูแลระบบให้)</li>
-                <li><strong>ความเหมาะสม:</strong> เหมาะสำหรับ <strong>ระบบฐานข้อมูลกลางและเว็บแอปพลิเคชัน</strong> ที่ต้องการความเสถียรสูง การเชื่อมต่อที่ราบรื่นกับบัญชี Google (@ku.ac.th) และลดภาระงานดูแลรักษาระบบ (Maintenance-free)</li>
-                <li><strong>ความคุ้มค่า:</strong> แม้มีค่าใช้จ่าย (Pay-per-use) แต่เมื่อเทียบกับต้นทุนค่าแรงบุคลากรในการดูแล Server เอง ถือว่ามีความคุ้มค่าสูงในระยะยาว</li>
+              <li>ท่านต้องจ่ายค่าเช่าเต็มราคา ไม่ว่าจะเข้าไปพักหรือไม่</li>
+              <li>
+                ท่านต้องรับผิดชอบดูแลรักษาความสะอาด ซ่อมแซมระบบน้ำไฟ
+                และดูแลความปลอดภัยด้วยตนเอง
+              </li>
+              <li>
+                <em>ข้อดี:</em> มีความเป็นส่วนตัวสูง ปรับแต่งพื้นที่ได้ตามใจชอบ
+              </li>
+              <li>
+                <em>ข้อเสีย:</em> มีค่าใช้จ่ายคงที่ (Fixed Cost)
+                และมีภาระในการดูแลรักษา (Maintenance) สูง
+              </li>
             </ul>
-
-            <h2>4. ข้อเสนอแนะทางเลือกในการพัฒนา (Recommended Options)</h2>
-            <p>ขอเสนอ <strong>"รูปแบบผสมผสาน (Hybrid Model)"</strong> เพื่อประสิทธิภาพสูงสุด:</p>
-            <ol>
-                <li><strong>ระบบส่วนกลาง (Central Hub):</strong> พัฒนาด้วย <strong>Custom Web Application</strong> บน <strong>Cloud Run</strong>
-                    <ul>
-                        <li><em>เหตุผล:</em> เพื่อความยืดหยุ่นสูงสุดในการออกแบบหน้าจอสำหรับผู้บริหาร รองรับตรรกะการคำนวณที่ซับซ้อน และมีความปลอดภัยสูง</li>
-                    </ul>
-                </li>
-                <li><strong>ระบบปฏิบัติการหน้างาน (Operational Tools):</strong> ใช้ <strong>AppSheet</strong> ในบางส่วนงาน
-                    <ul>
-                        <li><em>เหตุผล:</em> เพื่อความรวดเร็วในการจัดทำแบบฟอร์มบันทึกข้อมูลหน้างาน (Data Entry) และความสะดวกในการใช้งานผ่านอุปกรณ์พกพา</li>
-                    </ul>
-                </li>
-                <li><strong>ฐานข้อมูล (Database):</strong> ใช้ <strong>Google Cloud SQL</strong> เพียงแหล่งเดียว
-                    <ul>
-                        <li><em>เหตุผล:</em> เพื่อให้ข้อมูลจากทั้งสองส่วนเชื่อมโยงกันและเป็นมาตรฐานเดียวกัน (Single Source of Truth)</li>
-                    </ul>
-                </li>
-            </ol>
-        </section>
-
-        <!-- Document 05 -->
-        <section id="doc5" class="content-section">
-            <h1>[05] นโยบายความมั่นคงปลอดภัยและความเป็นส่วนตัวของข้อมูล (Data Security & Privacy Policy)</h1>
-            <p>เอกสารฉบับนี้จัดทำขึ้นเพื่อกำหนดแนวทางปฏิบัติในการบริหารจัดการข้อมูลของคณะสัตวแพทยศาสตร์และโรงพยาบาลสัตว์ มหาวิทยาลัยเกษตรศาสตร์ ให้สอดคล้องกับมาตรฐานวิชาชีพสัตวแพทย์สากล (AAHA) และกฎหมายคุ้มครองข้อมูลส่วนบุคคลของไทย (PDPA) รวมถึงมาตรฐานความปลอดภัยระดับโลก (ISO)</p>
-
-            <h2>1. มาตรฐานสถานพยาบาลสัตว์ AAHA (American Animal Hospital Association)</h2>
-            <p>AAHA เป็นมาตรฐานการรับรองสถานพยาบาลสัตว์ที่เป็นที่ยอมรับทั่วโลก แม้จะไม่มีผลบังคับทางกฎหมายในไทยโดยตรง แต่เป็น <strong>"Best Practice"</strong> ที่ควรยึดถือ โดยเฉพาะในส่วนของเวชระเบียน (Medical Records)</p>
-
-            <h3>ข้อกำหนดสำคัญด้านข้อมูล (Key Standards)</h3>
-            <ol>
-                <li><strong>ความลับของข้อมูล (Confidentiality):</strong>
-                    <ul>
-                        <li>ข้อมูลเวชระเบียนถือเป็นความลับระหว่างสัตวแพทย์และลูกค้า (VCPR - Veterinarian-Client-Patient Relationship)</li>
-                        <li><strong>ข้อปฏิบัติ:</strong> ห้ามเปิดเผยข้อมูลการรักษาแก่บุคคลภายนอก (รวมถึงร้านอาบน้ำตัดขน หรือฟาร์มเพาะพันธุ์) ยกเว้นได้รับความยินยอมเป็นลายลักษณ์อักษรจากเจ้าของสัตว์ หรือมีคำสั่งศาล</li>
-                    </ul>
-                </li>
-                <li><strong>ความสมบูรณ์ของเวชระเบียน (Medical Record Integrity):</strong>
-                    <ul>
-                        <li>ข้อมูลในเวชระเบียนต้อง "อ่านออก, แก้ไขไม่ได้โดยไม่ทิ้งร่องรอย (Tamper-proof), และระบุตัวตนผู้บันทึกได้"</li>
-                        <li><strong>การประยุกต์ใช้กับระบบดิจิทัล:</strong> ระบบต้องมี <strong>Audit Logs</strong> ที่แสดงว่า ใคร (User ID) เข้ามาแก้ไขข้อมูลเมื่อไหร่ และแก้จากอะไรเป็นอะไร (Original vs New Value)</li>
-                    </ul>
-                </li>
-                <li><strong>การสำรองข้อมูล (Data Backup):</strong>
-                    <ul>
-                        <li>ต้องมีการสำรองข้อมูลเวชระเบียนอย่างสม่ำเสมอ และเก็บไว้ในสถานที่ปลอดภัย (Off-site storage) เพื่อป้องกันเหตุไฟไหม้หรือข้อมูลสูญหาย</li>
-                        <li><em>ระบบ Google Cloud SQL ที่เสนอไป รองรับ Automated Daily Backup อัตโนมัติ ซึ่งผ่านเกณฑ์ข้อนี้</em></li>
-                    </ul>
-                </li>
-            </ol>
-            <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://www.aaha.org/resources/aaha-standards/" target="_blank">AAHA Standards of Accreditation - Medical Records</a></blockquote>
-
-            <h2>2. พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA Compliance)</h2>
-            <p>กฎหมายไทยเน้นคุ้มครอง "ข้อมูลส่วนบุคคล" ของมนุษย์ ในบริบทของโรงพยาบาลสัตว์คือ <strong>"ข้อมูลเจ้าของสัตว์ (Pet Owner)"</strong> ส่วนข้อมูลตัวสัตว์ (เช่น ประวัติการฉีดวัคซีนสุนัข) ถือเป็น <strong>"ทรัพย์สิน"</strong> ตามกฎหมายแพ่ง ไม่ใช่ข้อมูลส่วนบุคคล แต่ต้องดูแลตามจรรยาบรรณวิชาชีพ</p>
-
-            <h3>ข้อมูลที่ต้องคุ้มครองเข้มงวด</h3>
-            <ol>
-                <li><strong>ข้อมูลระบุตัวตนทั่วไป (General Personal Data):</strong> ชื่อ-นามสกุล, เบอร์โทรศัพท์, ที่อยู่, เลขบัตรประชาชนของเจ้าของสัตว์</li>
-                <li><strong>ข้อมูลอ่อนไหว (Sensitive Data):</strong> ข้อมูลสุขภาพของเจ้าของ (ถ้ามีการเก็บ), เชื้อชาติ, ศาสนา (มักไม่จำเป็นต้องเก็บในงานสัตวแพทย์)</li>
-            </ol>
-
-            <h3>แนวทางปฏิบัติสำหรับโรงพยาบาลสัตว์ (Implementation)</h3>
-            <ol>
-                <li><strong>ฐานความจำเป็น (Legal Basis):</strong>
-                    <ul>
-                        <li><strong>Contract:</strong> เก็บข้อมูลชื่อที่อยู่เพื่อ "ให้บริการรักษาและเรียกเก็บเงิน" (ไม่ต้องขอ Consent ใหม่ ถ้าเป็นลูกค้าเดิมและใช้เพื่อวัตถุประสงค์เดิม)</li>
-                        <li><strong>Consent:</strong> ต้องขอความยินยอมแยกต่างหาก หากจะนำข้อมูลไปใช้ <strong>"การตลาด"</strong> (เช่น ส่งโปรโมชั่นอาหารสุนัข) หรือ <strong>"ส่งต่อข้อมูลให้ Partner"</strong> (เช่น บริษัทประกันภัยสัตว์เลี้ยง)</li>
-                    </ul>
-                </li>
-                <li><strong>สิทธิของเจ้าของข้อมูล (Data Subject Rights) และการบริหารจัดการ:</strong>
-                    <ul>
-                        <li><strong>สิทธิ์ในการขอรับสำเนา (Right to Access - มาตรา 30):</strong> เจ้าของสัตว์มีสิทธิ์ขอเข้าถึงและขอรับสำเนาข้อมูลส่วนบุคคลที่เกี่ยวกับตน อย่างไรก็ตาม เพื่อป้องกันภาระงานที่เกินสมควรแก่เจ้าหน้าที่ โรงพยาบาลสามารถดำเนินการได้ดังนี้:
-                            <ul>
-                                <li><strong>การเรียกเก็บค่าใช้จ่าย:</strong> กฎหมายอนุญาตให้ผู้ควบคุมข้อมูลส่วนบุคคลสามารถเรียกเก็บ "ค่าใช้จ่ายตามจริง" หรือค่าธรรมเนียมการดำเนินการ (Administration Fee) สำหรับการจัดทำสำเนาได้ โดยโรงพยาบาลควรประกาศอัตราค่าธรรมเนียมให้ชัดเจน</li>
-                                <li><strong>การปฏิเสธคำขอ:</strong> โรงพยาบาลมีสิทธิ์ปฏิเสธคำขอได้ หากพิสูจน์ได้ว่าเป็นคำขอที่ฟุ่มเฟือย (Excessive) หรือเป็นการขอซ้ำซ้อนโดยไม่มีเหตุอันควร (Repetitive Requests) ทั้งนี้ต้องชี้แจงเหตุผลในการปฏิเสธเป็นหนังสือหรือผ่านระบบอิเล็กทรอนิกส์</li>
-                            </ul>
-                        </li>
-                        <li><strong>สิทธิ์ในการขอให้ลบข้อมูล (Right to be forgotten):</strong> โรงพยาบาลอาจปฏิเสธการลบข้อมูลเวชระเบียนได้ หากจำเป็นต้องเก็บไว้เพื่อเป็นหลักฐานทางกฎหมายหรือการก่อตั้งสิทธิเรียกร้องตามกฎหมาย (ตามอายุความฟ้องร้องทางการแพทย์ 10 ปี)</li>
-                        <li><strong>แนวทางปฏิบัติแนะนำ:</strong> เพื่อลดภาระงานเอกสาร ควรส่งเสริมให้เจ้าของสัตว์เข้าถึงข้อมูลประวัติการรักษาผ่าน <strong>ช่องทางดิจิทัล (Customer Portal / Line OA)</strong> ซึ่งถือเป็นการตอบสนองสิทธิ์ในการเข้าถึงข้อมูลแล้วโดยไม่ต้องจัดพิมพ์เอกสาร</li>
-                    </ul>
-                </li>
-                <li><strong>การแจ้งเตือนเหตุละเมิด (Data Breach Notification):</strong>
-                    <ul>
-                        <li>หากข้อมูลรั่วไหล (เช่น ไฟล์ Excel รายชื่อลูกค้าหลุด) ต้องแจ้งสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) ภายใน 72 ชั่วโมง</li>
-                    </ul>
-                </li>
-            </ol>
-            <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://www.pdpc.or.th/" target="_blank">สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (PDPC Thailand) - สิทธิของเจ้าของข้อมูลส่วนบุคคล</a></blockquote>
-
-            <h2>3. มาตรฐานความปลอดภัยสารสนเทศ ISO (International Organization for Standardization)</h2>
-            <p>เพื่อให้ระบบเป็นที่ยอมรับในระดับสากลและมีความน่าเชื่อถือสูงสุด ควรเลือกใช้ผู้ให้บริการ Cloud ที่ได้รับมาตรฐานดังนี้:</p>
-
-            <h3>ISO/IEC 27001 (Information Security Management)</h3>
+          </li>
+          <li>
+            <strong>Cloud Run (Serverless):</strong> เปรียบเสมือน
+            <strong>"การพักโรงแรมที่คิดค่าบริการตามนาที"</strong>
             <ul>
-                <li><strong>คืออะไร:</strong> มาตรฐานหลักด้านการบริหารจัดการความมั่นคงปลอดภัยสารสนเทศ</li>
-                <li><strong>สาระสำคัญ:</strong> การประเมินความเสี่ยง (Risk Assessment), การควบคุมการเข้าถึง (Access Control), และความปลอดภัยทางกายภาพของ Server</li>
-                <li><strong>สถานะปัจจุบัน:</strong> Google Cloud Platform (GCP) ที่ทางโครงการเลือกใช้ <strong>ผ่านการรับรอง ISO 27001</strong> แล้ว</li>
+              <li>
+                ท่านจ่ายค่าบริการเฉพาะช่วงเวลาที่มีผู้เข้าพักจริง
+                (มีผู้ใช้งานระบบ) หากไม่มีผู้ใช้งาน ไม่ต้องเสียค่าใช้จ่าย
+              </li>
+              <li>
+                ผู้ให้บริการ (Google) ดูแลโครงสร้างพื้นฐาน ระบบความปลอดภัย
+                และการซ่อมบำรุงทั้งหมด ท่านเพียงแค่นำสัมภาระ (Application Code)
+                เข้าไปวาง
+              </li>
+              <li>
+                <em>ข้อดี:</em> ประหยัดค่าใช้จ่ายในระยะยาว ไม่ต้องมีทีมงานดูแล
+                Server ตลอด 24 ชม. และมีความเสถียรสูงระดับสากล
+              </li>
+              <li>
+                <em>ข้อเสีย:</em> ต้องมีการออกแบบซอฟต์แวร์ให้รองรับรูปแบบนี้
+                (Stateless)
+              </li>
             </ul>
+          </li>
+        </ul>
 
-            <h3>ISO/IEC 27701 (Privacy Information Management)</h3>
+        <p>
+          <strong>สรุป:</strong> Cloud Run
+          คือบริการที่ช่วยให้องค์กรนำระบบขึ้นใช้งานบนอินเทอร์เน็ตได้โดยไม่ต้องกังวลเรื่องการดูแล
+          Server และจ่ายค่าบริการตามปริมาณการใช้งานจริง
+        </p>
+
+        <h2>2. ความปลอดภัยและความน่าเชื่อถือของ AppSheet</h2>
+        <p>
+          จากข้อกังวลเรื่องความถูกต้องของข้อมูลในการใช้ AppSheet ขอชี้แจงดังนี้:
+        </p>
+        <p>
+          <strong>ความเข้าใจคลาดเคลื่อน:</strong> มักเข้าใจว่า AppSheet
+          ต้องใช้งานคู่กับ Google Sheets (Spreadsheet)
+          ซึ่งอาจทำให้ข้อมูลถูกแก้ไขได้ง่ายโดยพลการ<br />
+          <strong>แนวทางแก้ไขระดับองค์กร:</strong> เราสามารถกำหนดให้ AppSheet
+          ทำงานร่วมกับ
+          <strong>Google Cloud SQL</strong> ซึ่งเป็นฐานข้อมูลมาตรฐานระดับองค์กร
+        </p>
+
+        <h3>ทำไมการจับคู่ AppSheet + Cloud SQL จึงปลอดภัย?</h3>
+        <ol>
+          <li>
+            <strong
+              >การแยกส่วนการแสดงผลกับฐานข้อมูล (Separation of UI &
+              Data):</strong
+            >
+            ผู้ใช้งานทั่วไปจะเข้าถึงข้อมูลผ่านหน้าจอ AppSheet เท่านั้น
+            ไม่สามารถเข้าถึงตัวฐานข้อมูลโดยตรงได้
+          </li>
+          <li>
+            <strong>ความถูกต้องของข้อมูล (Data Integrity):</strong> ฐานข้อมูล
+            Cloud SQL สามารถตั้งกฎเกณฑ์บังคับได้ เช่น "ห้ามลบชื่อยา
+            หากยารายการนั้นยังมีสต๊อกคงเหลือ" ซึ่ง Google Sheets
+            ทั่วไปไม่สามารถทำได้
+          </li>
+          <li>
+            <strong>ระบบตรวจสอบย้อนหลัง (Audit Trail):</strong>
+            สามารถบันทึกประวัติได้ว่า ใครทำรายการอะไร เมื่อเวลาเท่าไหร่
+            เพื่อความโปร่งใส
+          </li>
+        </ol>
+
+        <h2>3. การวิเคราะห์เปรียบเทียบ: Google Cloud vs. GDCC (Oracle VM)</h2>
+        <p>
+          การพิจารณาระหว่างการใช้บริการฟรีจากภาครัฐ (GDCC) กับบริการของ Google
+          Cloud มีประเด็นที่ต้องพิจารณาดังนี้
+        </p>
+
+        <h3>GDCC (Government Data Center and Cloud Service)</h3>
+        <ul>
+          <li>
+            <strong>ลักษณะสิทธิ์:</strong> ได้รับ Virtual Machine (VM) พร้อม GPU
+          </li>
+          <li>
+            <strong>ความเหมาะสม:</strong>
+            เหมาะสำหรับงานที่ต้องการการประมวลผลเฉพาะทาง เช่น
+            <strong>ระบบปัญญาประดิษฐ์ (AI)</strong> ในอนาคต (เช่น
+            การวิเคราะห์ฟิล์ม X-Ray) หรือหน่วยงานที่มีทีม System Administrator
+            ดูแลระบบโดยเฉพาะ
+          </li>
+          <li>
+            <strong>ข้อควรระวัง:</strong>
+            องค์กรต้องรับผิดชอบการดูแลความปลอดภัยระดับระบบปฏิบัติการ (OS
+            Security Patching) การตั้งค่าเครือข่าย และการสำรองข้อมูลด้วยตนเอง
+          </li>
+        </ul>
+
+        <h3>Google Cloud (Cloud Run + Cloud SQL)</h3>
+        <ul>
+          <li>
+            <strong>ลักษณะบริการ:</strong> Managed Service
+            (ผู้ให้บริการดูแลระบบให้)
+          </li>
+          <li>
+            <strong>ความเหมาะสม:</strong> เหมาะสำหรับ
+            <strong>ระบบฐานข้อมูลกลางและเว็บแอปพลิเคชัน</strong>
+            ที่ต้องการความเสถียรสูง การเชื่อมต่อที่ราบรื่นกับบัญชี Google
+            (@ku.ac.th) และลดภาระงานดูแลรักษาระบบ (Maintenance-free)
+          </li>
+          <li>
+            <strong>ความคุ้มค่า:</strong> แม้มีค่าใช้จ่าย (Pay-per-use)
+            แต่เมื่อเทียบกับต้นทุนค่าแรงบุคลากรในการดูแล Server เอง
+            ถือว่ามีความคุ้มค่าสูงในระยะยาว
+          </li>
+        </ul>
+
+        <h2>4. ข้อเสนอแนะทางเลือกในการพัฒนา (Recommended Options)</h2>
+        <p>
+          ขอเสนอ
+          <strong>"รูปแบบผสมผสาน (Hybrid Model)"</strong>
+          เพื่อประสิทธิภาพสูงสุด:
+        </p>
+        <ol>
+          <li>
+            <strong>ระบบส่วนกลาง (Central Hub):</strong> พัฒนาด้วย
+            <strong>Custom Web Application</strong> บน
+            <strong>Cloud Run</strong>
             <ul>
-                <li><strong>คืออะไร:</strong> ส่วนขยายของ ISO 27001 ที่เน้นเรื่อง "การจัดการข้อมูลส่วนบุคคล" โดยเฉพาะ (สอดคล้องกับ GDPR และ PDPA)</li>
-                <li><strong>สาระสำคัญ:</strong> การแยกบทบาทระหว่างผู้ควบคุมข้อมูล (Controller) และผู้ประมวลผลข้อมูล (Processor) อย่างชัดเจน</li>
+              <li>
+                <em>เหตุผล:</em>
+                เพื่อความยืดหยุ่นสูงสุดในการออกแบบหน้าจอสำหรับผู้บริหาร
+                รองรับตรรกะการคำนวณที่ซับซ้อน และมีความปลอดภัยสูง
+              </li>
             </ul>
-            <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://cloud.google.com/security/compliance/offerings" target="_blank">Google Cloud Compliance Offerings (ISO 27001, 27701)</a></blockquote>
+          </li>
+          <li>
+            <strong>ระบบปฏิบัติการหน้างาน (Operational Tools):</strong> ใช้
+            <strong>AppSheet</strong> ในบางส่วนงาน
+            <ul>
+              <li>
+                <em>เหตุผล:</em>
+                เพื่อความรวดเร็วในการจัดทำแบบฟอร์มบันทึกข้อมูลหน้างาน (Data
+                Entry) และความสะดวกในการใช้งานผ่านอุปกรณ์พกพา
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>ฐานข้อมูล (Database):</strong> ใช้
+            <strong>Google Cloud SQL</strong> เพียงแหล่งเดียว
+            <ul>
+              <li>
+                <em>เหตุผล:</em>
+                เพื่อให้ข้อมูลจากทั้งสองส่วนเชื่อมโยงกันและเป็นมาตรฐานเดียวกัน
+                (Single Source of Truth)
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </section>
 
-            <h2>4. นโยบายดิจิทัลสากลและแนวปฏิบัติ (International Digital Policies)</h2>
-            <h3>GDPR (General Data Protection Regulation - EU)</h3>
-            <p>แม้จะเป็นกฎหมายยุโรป แต่ถือเป็น "มาตรฐานทองคำ" ของโลก หากโรงพยาบาลมีลูกค้าเป็นชาวต่างชาติ (Expat) หรือมีการส่ง Lab ไปต่างประเทศ ควรปฏิบัติตามหลักการ GDPR ซึ่ง PDPA ของไทยถอดแบบมาเกือบทั้งหมด</p>
+      <!-- Document 05 -->
+      <section id="doc5" class="content-section">
+        <h1>
+          [05] นโยบายความมั่นคงปลอดภัยและความเป็นส่วนตัวของข้อมูล (Data Security
+          & Privacy Policy)
+        </h1>
+        <p>
+          เอกสารฉบับนี้จัดทำขึ้นเพื่อกำหนดแนวทางปฏิบัติในการบริหารจัดการข้อมูลของคณะสัตวแพทยศาสตร์และโรงพยาบาลสัตว์
+          มหาวิทยาลัยเกษตรศาสตร์ ให้สอดคล้องกับมาตรฐานวิชาชีพสัตวแพทย์สากล
+          (AAHA) และกฎหมายคุ้มครองข้อมูลส่วนบุคคลของไทย (PDPA)
+          รวมถึงมาตรฐานความปลอดภัยระดับโลก (ISO)
+        </p>
 
-            <h3>NIST Cybersecurity Framework (USA)</h3>
-            <p>กรอบการทำงานด้านความปลอดภัยไซเบอร์ที่นิยมใช้ทั่วโลก ประกอบด้วย 5 ขั้นตอนที่องค์กรควรมี:</p>
-            <ol>
-                <li><strong>Identify:</strong> ระบุว่าข้อมูลสำคัญอยู่ที่ไหน (เช่น อยู่ใน Cloud SQL)</li>
-                <li><strong>Protect:</strong> ป้องกันการเข้าถึง (เช่น บังคับใช้ KU Login และ AppSheet Security Filter)</li>
-                <li><strong>Detect:</strong> ตรวจจับความผิดปกติ (เช่น มีการ Login ผิดเกิน 5 ครั้ง)</li>
-                <li><strong>Respond:</strong> ตอบสนองเมื่อเกิดเหตุ (เช่น ตัดการเชื่อมต่อทันที)</li>
-                <li><strong>Recover:</strong> กู้คืนข้อมูล (เช่น Restore จาก Backup)</li>
-            </ol>
+        <h2>
+          1. มาตรฐานสถานพยาบาลสัตว์ AAHA (American Animal Hospital Association)
+        </h2>
+        <p>
+          AAHA เป็นมาตรฐานการรับรองสถานพยาบาลสัตว์ที่เป็นที่ยอมรับทั่วโลก
+          แม้จะไม่มีผลบังคับทางกฎหมายในไทยโดยตรง แต่เป็น
+          <strong>"Best Practice"</strong> ที่ควรยึดถือ
+          โดยเฉพาะในส่วนของเวชระเบียน (Medical Records)
+        </p>
 
-            <h2>5. แผนรองรับการดำเนินธุรกิจต่อเนื่อง (Business Continuity Plan - BCP)</h2>
-            <p>เนื่องจากระบบงานหลักพึ่งพาเทคโนโลยี Cloud การเตรียมพร้อมรับมือเหตุขัดข้องจึงเป็นส่วนหนึ่งของนโยบายความมั่นคงปลอดภัย (Availability) ตามมาตรฐาน <strong>ISO 22301 (Business Continuity Management)</strong></p>
+        <h3>ข้อกำหนดสำคัญด้านข้อมูล (Key Standards)</h3>
+        <ol>
+          <li>
+            <strong>ความลับของข้อมูล (Confidentiality):</strong>
+            <ul>
+              <li>
+                ข้อมูลเวชระเบียนถือเป็นความลับระหว่างสัตวแพทย์และลูกค้า (VCPR -
+                Veterinarian-Client-Patient Relationship)
+              </li>
+              <li>
+                <strong>ข้อปฏิบัติ:</strong>
+                ห้ามเปิดเผยข้อมูลการรักษาแก่บุคคลภายนอก (รวมถึงร้านอาบน้ำตัดขน
+                หรือฟาร์มเพาะพันธุ์)
+                ยกเว้นได้รับความยินยอมเป็นลายลักษณ์อักษรจากเจ้าของสัตว์
+                หรือมีคำสั่งศาล
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong
+              >ความสมบูรณ์ของเวชระเบียน (Medical Record Integrity):</strong
+            >
+            <ul>
+              <li>
+                ข้อมูลในเวชระเบียนต้อง "อ่านออก, แก้ไขไม่ได้โดยไม่ทิ้งร่องรอย
+                (Tamper-proof), และระบุตัวตนผู้บันทึกได้"
+              </li>
+              <li>
+                <strong>การประยุกต์ใช้กับระบบดิจิทัล:</strong> ระบบต้องมี
+                <strong>Audit Logs</strong> ที่แสดงว่า ใคร (User ID)
+                เข้ามาแก้ไขข้อมูลเมื่อไหร่ และแก้จากอะไรเป็นอะไร (Original vs
+                New Value)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>การสำรองข้อมูล (Data Backup):</strong>
+            <ul>
+              <li>
+                ต้องมีการสำรองข้อมูลเวชระเบียนอย่างสม่ำเสมอ
+                และเก็บไว้ในสถานที่ปลอดภัย (Off-site storage)
+                เพื่อป้องกันเหตุไฟไหม้หรือข้อมูลสูญหาย
+              </li>
+              <li>
+                <em
+                  >ระบบ Google Cloud SQL ที่เสนอไป รองรับ Automated Daily Backup
+                  อัตโนมัติ ซึ่งผ่านเกณฑ์ข้อนี้</em
+                >
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <blockquote>
+          <strong>อ้างอิง (Reference):</strong>
+          <a
+            href="https://www.aaha.org/resources/aaha-standards/"
+            target="_blank"
+            >AAHA Standards of Accreditation - Medical Records</a
+          >
+        </blockquote>
 
-            <h3>มาตรการรับมือกรณีสัญญาณอินเทอร์เน็ตขัดข้อง (Internet Outage Protocol)</h3>
-            <ol>
-                <li><strong>ระดับปฏิบัติการ (AppSheet Offline Mode):</strong>
-                    <ul>
-                        <li>กำหนดให้แอปพลิเคชัน AppSheet เปิดใช้งานฟีเจอร์ <strong>"Offline Use"</strong></li>
-                        <li><strong>แนวทางปฏิบัติ:</strong> เจ้าหน้าที่สามารถบันทึกข้อมูล (เช่น ตัดสต๊อก, บันทึกเคส) ลงในอุปกรณ์ได้ตามปกติแม้ไม่มีสัญญาณ ข้อมูลจะถูกพักไว้ในเครื่อง (Local Cache) และทำการซิงโครไนซ์ (Sync) ขึ้น Cloud SQL อัตโนมัติเมื่อสัญญาณกลับมา</li>
-                    </ul>
-                </li>
-                <li><strong>ระดับบริหารจัดการ (Manual Fallback):</strong>
-                    <ul>
-                        <li>กรณีไฟดับหรืออุปกรณ์เสียหาย ให้เตรียม <strong>"แบบฟอร์มกระดาษฉุกเฉิน (Emergency Paper Forms)"</strong> ที่มีฟิลด์ข้อมูลตรงกับในแอปพลิเคชัน</li>
-                        <li>เมื่อระบบกลับมาใช้งานได้ ให้เจ้าหน้าที่ธุรการทำการบันทึกข้อมูลย้อนหลัง (Data Entry) โดยระบุหมายเหตุว่าเป็นข้อมูลจากช่วงระบบขัดข้อง</li>
-                    </ul>
-                </li>
-            </ol>
-            <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://www.iso.org/standard/75106.html" target="_blank">ISO 22301:2019 Security and resilience — Business continuity management systems</a></blockquote>
+        <h2>2. พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA Compliance)</h2>
+        <p>
+          กฎหมายไทยเน้นคุ้มครอง "ข้อมูลส่วนบุคคล" ของมนุษย์
+          ในบริบทของโรงพยาบาลสัตว์คือ
+          <strong>"ข้อมูลเจ้าของสัตว์ (Pet Owner)"</strong> ส่วนข้อมูลตัวสัตว์
+          (เช่น ประวัติการฉีดวัคซีนสุนัข) ถือเป็น
+          <strong>"ทรัพย์สิน"</strong> ตามกฎหมายแพ่ง ไม่ใช่ข้อมูลส่วนบุคคล
+          แต่ต้องดูแลตามจรรยาบรรณวิชาชีพ
+        </p>
 
-            <h2>6. การบริหารจัดการการเปลี่ยนแปลง (Change Management)</h2>
-            <p>ความเสี่ยงด้านความปลอดภัยส่วนใหญ่เกิดจากผู้ใช้งาน (Human Error) การบริหารการเปลี่ยนแปลงที่ดีจึงช่วยลดความเสี่ยงนี้ได้ โดยอ้างอิงโมเดล <strong>ADKAR</strong> หรือมาตรฐาน <strong>ISO/IEC 20000</strong></p>
-            <ol>
-                <li><strong>การฝึกอบรม (Training & Onboarding):</strong>
-                    <ul>
-                        <li>จัดอบรมการใช้งานและนโยบายความปลอดภัย (PDPA) ให้แก่เจ้าหน้าที่ทุกคนก่อนเริ่มใช้งานจริง</li>
-                        <li>สร้าง <strong>"Digital Champions"</strong> หรือผู้เชี่ยวชาญประจำวิทยาเขต เพื่อเป็นพี่เลี้ยง (Mentor) ช่วยเหลือเพื่อนร่วมงานหน้างาน</li>
-                    </ul>
-                </li>
-                <li><strong>ระยะเปลี่ยนผ่าน (Transition Phase):</strong>
-                    <ul>
-                        <li>ช่วง 1-2 เดือนแรก ให้ใช้ระบบ <strong>Parallel Run</strong> (ใช้ระบบใหม่ควบคู่กับระบบเดิม) เพื่อสร้างความมั่นใจและตรวจสอบความถูกต้องของข้อมูล</li>
-                        <li>มีช่องทางรับฟังความคิดเห็น (Feedback Loop) เพื่อปรับปรุงระบบให้เข้ากับหน้างานจริง ลดแรงต้านจากผู้ใช้งาน</li>
-                    </ul>
-                </li>
-            </ol>
-            <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://www.prosci.com/adkar" target="_blank">Prosci ADKAR Model for Change Management</a></blockquote>
+        <h3>ข้อมูลที่ต้องคุ้มครองเข้มงวด</h3>
+        <ol>
+          <li>
+            <strong>ข้อมูลระบุตัวตนทั่วไป (General Personal Data):</strong>
+            ชื่อ-นามสกุล, เบอร์โทรศัพท์, ที่อยู่, เลขบัตรประชาชนของเจ้าของสัตว์
+          </li>
+          <li>
+            <strong>ข้อมูลอ่อนไหว (Sensitive Data):</strong>
+            ข้อมูลสุขภาพของเจ้าของ (ถ้ามีการเก็บ), เชื้อชาติ, ศาสนา
+            (มักไม่จำเป็นต้องเก็บในงานสัตวแพทย์)
+          </li>
+        </ol>
 
-            <h2>7. โครงสร้างการดูแลรักษาและสนับสนุน (Maintenance & Support Structure)</h2>
-            <p>เพื่อความยั่งยืนของระบบ ต้องมีการกำหนดโครงสร้างการดูแลหลังการขาย (Sustainment) ที่ชัดเจนตามกรอบ <strong>ITIL (Information Technology Infrastructure Library)</strong></p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ระดับ (Tier)</th>
-                        <th>ผู้รับผิดชอบ (Role)</th>
-                        <th>หน้าที่ความรับผิดชอบ (Responsibilities)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Tier 1 (Frontline)</strong></td>
-                        <td><strong>Admin ประจำคณะ/วิทยาเขต</strong></td>
-                        <td>- ช่วยเหลือผู้ใช้เบื้องต้น (เช่น ลืมรหัสผ่าน, หาเมนูไม่เจอ)<br>- จัดการสิทธิ์การเข้าถึง (User Management)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tier 2 (Technical)</strong></td>
-                        <td><strong>ทีม IT ส่วนกลาง / ผู้พัฒนา</strong></td>
-                        <td>- แก้ไขปัญหาข้อมูลผิดพลาด (Data Correction)<br>- ตรวจสอบ Log ความปลอดภัย<br>- ดูแลการเชื่อมต่อ AppSheet กับ Cloud SQL</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tier 3 (Infrastructure)</strong></td>
-                        <td><strong>Google Cloud Support / Vendor</strong></td>
-                        <td>- แก้ไขปัญหาระดับ Server หรือโครงสร้างพื้นฐาน<br>- กู้คืนระบบกรณีวิกฤต (Disaster Recovery)</td>
-                    </tr>
-                </tbody>
-            </table>
-            <blockquote><strong>อ้างอิง (Reference):</strong> <a href="https://www.axelos.com/certifications/itil-service-management" target="_blank">ITIL 4 Framework - Service Management</a></blockquote>
+        <h3>แนวทางปฏิบัติสำหรับโรงพยาบาลสัตว์ (Implementation)</h3>
+        <ol>
+          <li>
+            <strong>ฐานความจำเป็น (Legal Basis):</strong>
+            <ul>
+              <li>
+                <strong>Contract:</strong> เก็บข้อมูลชื่อที่อยู่เพื่อ
+                "ให้บริการรักษาและเรียกเก็บเงิน" (ไม่ต้องขอ Consent ใหม่
+                ถ้าเป็นลูกค้าเดิมและใช้เพื่อวัตถุประสงค์เดิม)
+              </li>
+              <li>
+                <strong>Consent:</strong> ต้องขอความยินยอมแยกต่างหาก
+                หากจะนำข้อมูลไปใช้ <strong>"การตลาด"</strong> (เช่น
+                ส่งโปรโมชั่นอาหารสุนัข) หรือ
+                <strong>"ส่งต่อข้อมูลให้ Partner"</strong> (เช่น
+                บริษัทประกันภัยสัตว์เลี้ยง)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong
+              >สิทธิของเจ้าของข้อมูล (Data Subject Rights)
+              และการบริหารจัดการ:</strong
+            >
+            <ul>
+              <li>
+                <strong
+                  >สิทธิ์ในการขอรับสำเนา (Right to Access - มาตรา 30):</strong
+                >
+                เจ้าของสัตว์มีสิทธิ์ขอเข้าถึงและขอรับสำเนาข้อมูลส่วนบุคคลที่เกี่ยวกับตน
+                อย่างไรก็ตาม เพื่อป้องกันภาระงานที่เกินสมควรแก่เจ้าหน้าที่
+                โรงพยาบาลสามารถดำเนินการได้ดังนี้:
+                <ul>
+                  <li>
+                    <strong>การเรียกเก็บค่าใช้จ่าย:</strong>
+                    กฎหมายอนุญาตให้ผู้ควบคุมข้อมูลส่วนบุคคลสามารถเรียกเก็บ
+                    "ค่าใช้จ่ายตามจริง" หรือค่าธรรมเนียมการดำเนินการ
+                    (Administration Fee) สำหรับการจัดทำสำเนาได้
+                    โดยโรงพยาบาลควรประกาศอัตราค่าธรรมเนียมให้ชัดเจน
+                  </li>
+                  <li>
+                    <strong>การปฏิเสธคำขอ:</strong>
+                    โรงพยาบาลมีสิทธิ์ปฏิเสธคำขอได้
+                    หากพิสูจน์ได้ว่าเป็นคำขอที่ฟุ่มเฟือย (Excessive)
+                    หรือเป็นการขอซ้ำซ้อนโดยไม่มีเหตุอันควร (Repetitive Requests)
+                    ทั้งนี้ต้องชี้แจงเหตุผลในการปฏิเสธเป็นหนังสือหรือผ่านระบบอิเล็กทรอนิกส์
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong
+                  >สิทธิ์ในการขอให้ลบข้อมูล (Right to be forgotten):</strong
+                >
+                โรงพยาบาลอาจปฏิเสธการลบข้อมูลเวชระเบียนได้
+                หากจำเป็นต้องเก็บไว้เพื่อเป็นหลักฐานทางกฎหมายหรือการก่อตั้งสิทธิเรียกร้องตามกฎหมาย
+                (ตามอายุความฟ้องร้องทางการแพทย์ 10 ปี)
+              </li>
+              <li>
+                <strong>แนวทางปฏิบัติแนะนำ:</strong> เพื่อลดภาระงานเอกสาร
+                ควรส่งเสริมให้เจ้าของสัตว์เข้าถึงข้อมูลประวัติการรักษาผ่าน
+                <strong>ช่องทางดิจิทัล (Customer Portal / Line OA)</strong>
+                ซึ่งถือเป็นการตอบสนองสิทธิ์ในการเข้าถึงข้อมูลแล้วโดยไม่ต้องจัดพิมพ์เอกสาร
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>การแจ้งเตือนเหตุละเมิด (Data Breach Notification):</strong>
+            <ul>
+              <li>
+                หากข้อมูลรั่วไหล (เช่น ไฟล์ Excel รายชื่อลูกค้าหลุด)
+                ต้องแจ้งสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) ภายใน
+                72 ชั่วโมง
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <blockquote>
+          <strong>อ้างอิง (Reference):</strong>
+          <a href="https://www.pdpc.or.th/" target="_blank"
+            >สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (PDPC Thailand) -
+            สิทธิของเจ้าของข้อมูลส่วนบุคคล</a
+          >
+        </blockquote>
 
-            <h2>8. สรุปมาตรการความปลอดภัยสำหรับโครงการ (Action Plan for KU Vet)</h2>
-            <p>เพื่อให้สอดคล้องกับมาตรฐานข้างต้น ระบบ Centralized Data Hub จะใช้มาตรการดังนี้:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>หัวข้อความปลอดภัย</th>
-                        <th>มาตรการทางเทคนิค (Technical Measure)</th>
-                        <th>มาตรฐานที่เกี่ยวข้อง</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>การยืนยันตัวตน</strong></td>
-                        <td>บังคับใช้ <strong>Google Workspace Login (@ku.ac.th)</strong> เท่านั้น (ห้ามใช้ Gmail ส่วนตัว)</td>
-                        <td>ISO 27001, PDPA</td>
-                    </tr>
-                    <tr>
-                        <td><strong>การควบคุมสิทธิ์</strong></td>
-                        <td>ใช้หลักการ <strong>Least Privilege</strong> (ให้สิทธิ์เท่าที่จำเป็น) เช่น นิสิตเห็นเฉพาะเคสที่ตนเองดูแล</td>
-                        <td>AAHA (Confidentiality)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>การเข้ารหัสข้อมูล</strong></td>
-                        <td>ข้อมูลถูกเข้ารหัสทั้งขณะส่ง (Encryption in Transit - TLS 1.2+) และขณะเก็บ (Encryption at Rest - AES-256) บน Google Cloud</td>
-                        <td>ISO 27001, NIST</td>
-                    </tr>
-                    <tr>
-                        <td><strong>การระบุตัวตน</strong></td>
-                        <td>ข้อมูลเพื่อการวิจัย/การศึกษา ต้องทำ <strong>Anonymization</strong> (ปิดชื่อเจ้าของสัตว์) ก่อนให้นิสิตหรือนักวิจัยเข้าถึง</td>
-                        <td>PDPA (Research Exemption)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>การสำรองข้อมูล</strong></td>
-                        <td>ตั้งค่า <strong>Point-in-time Recovery</strong> สามารถย้อนเวลาข้อมูลกลับไปวินาทีใดก็ได้ใน 7 วันที่ผ่านมา</td>
-                        <td>AAHA (Data Integrity)</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p><strong>ข้อแนะนำเพิ่มเติม:</strong> แม้ระบบเทคโนโลยีจะปลอดภัยเพียงใด "คน" (Human Error) มักเป็นจุดอ่อนที่สุด ควรจัดอบรมเจ้าหน้าที่เรื่อง PDPA และการตั้งรหัสผ่านที่ปลอดภัยอย่างน้อยปีละ 1 ครั้ง</p>
-        </section>
+        <h2>
+          3. มาตรฐานความปลอดภัยสารสนเทศ ISO (International Organization for
+          Standardization)
+        </h2>
+        <p>
+          เพื่อให้ระบบเป็นที่ยอมรับในระดับสากลและมีความน่าเชื่อถือสูงสุด
+          ควรเลือกใช้ผู้ให้บริการ Cloud ที่ได้รับมาตรฐานดังนี้:
+        </p>
 
-        <!-- Document 06 -->
-        <section id="doc6" class="content-section">
-            <h1>[06] แนวทางการดำเนินงานด้วย AWS (AWS Alternative Strategy)</h1>
-            <p>เอกสารฉบับนี้จัดทำขึ้นเพื่อนำเสนอโครงสร้างทางสถาปัตยกรรม (Architecture) และแผนการดำเนินงาน กรณีที่คณะสัตวแพทยศาสตร์เลือกใช้ <strong>Amazon Web Services (AWS)</strong> เป็นโครงสร้างพื้นฐานหลัก แทน Google Cloud Platform</p>
+        <h3>ISO/IEC 27001 (Information Security Management)</h3>
+        <ul>
+          <li>
+            <strong>คืออะไร:</strong>
+            มาตรฐานหลักด้านการบริหารจัดการความมั่นคงปลอดภัยสารสนเทศ
+          </li>
+          <li>
+            <strong>สาระสำคัญ:</strong> การประเมินความเสี่ยง (Risk Assessment),
+            การควบคุมการเข้าถึง (Access Control), และความปลอดภัยทางกายภาพของ
+            Server
+          </li>
+          <li>
+            <strong>สถานะปัจจุบัน:</strong> Google Cloud Platform (GCP)
+            ที่ทางโครงการเลือกใช้ <strong>ผ่านการรับรอง ISO 27001</strong> แล้ว
+          </li>
+        </ul>
 
-            <h2>1. แนวคิดการออกแบบบน AWS (The AWS Way)</h2>
-            <p>AWS มีจุดเด่นคือความยืดหยุ่นสูงและมีบริการ (Services) ที่หลากหลายที่สุดในตลาด การออกแบบจะเน้นความมั่นคง (Reliability) และความเป็นมาตรฐานอุตสาหกรรม (Industry Standard)</p>
+        <h3>ISO/IEC 27701 (Privacy Information Management)</h3>
+        <ul>
+          <li>
+            <strong>คืออะไร:</strong> ส่วนขยายของ ISO 27001 ที่เน้นเรื่อง
+            "การจัดการข้อมูลส่วนบุคคล" โดยเฉพาะ (สอดคล้องกับ GDPR และ PDPA)
+          </li>
+          <li>
+            <strong>สาระสำคัญ:</strong> การแยกบทบาทระหว่างผู้ควบคุมข้อมูล
+            (Controller) และผู้ประมวลผลข้อมูล (Processor) อย่างชัดเจน
+          </li>
+        </ul>
+        <blockquote>
+          <strong>อ้างอิง (Reference):</strong>
+          <a
+            href="https://cloud.google.com/security/compliance/offerings"
+            target="_blank"
+            >Google Cloud Compliance Offerings (ISO 27001, 27701)</a
+          >
+        </blockquote>
 
-            <h3>การเปรียบเทียบองค์ประกอบ (Service Mapping)</h3>
-            <p>หากเปลี่ยนจาก Google Cloud มาเป็น AWS เราจะเปลี่ยนเครื่องมือดังนี้:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ส่วนประกอบ (Component)</th>
-                        <th>Google Cloud Stack</th>
-                        <th><strong>AWS Alternative Stack</strong></th>
-                        <th>คำอธิบาย AWS Service</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>1. ส่วนประมวลผล</strong> (Compute)</td>
-                        <td>Cloud Run</td>
-                        <td><strong>AWS Fargate</strong> (บน Amazon ECS)</td>
-                        <td>เป็นการรัน Container แบบ Serverless เหมือนกัน ไม่ต้องดูแล Server แต่ AWS Fargate จะมีความยืดหยุ่นในการตั้งค่า Network และ Security Group ที่ละเอียดกว่า</td>
-                    </tr>
-                    <tr>
-                        <td><strong>2. ฐานข้อมูล</strong> (Database)</td>
-                        <td>Cloud SQL</td>
-                        <td><strong>Amazon RDS (for PostgreSQL)</strong></td>
-                        <td>บริการฐานข้อมูลที่มีความเสถียรสูงมาก รองรับ Multi-AZ (สำรองข้อมูลข้ามโซนอัตโนมัติ) เพื่อป้องกันระบบล่ม</td>
-                    </tr>
-                    <tr>
-                        <td><strong>3. คลังข้อมูล</strong> (Data Lake)</td>
-                        <td>BigQuery</td>
-                        <td><strong>Amazon Redshift Serverless</strong></td>
-                        <td>คลังข้อมูลสำหรับการวิเคราะห์ รองรับข้อมูลระดับ Petabyte โดยคิดเงินตามการใช้งานจริง</td>
-                    </tr>
-                    <tr>
-                        <td><strong>4. ที่เก็บไฟล์</strong> (Storage)</td>
-                        <td>Cloud Storage</td>
-                        <td><strong>Amazon S3</strong></td>
-                        <td>มาตรฐานโลกของการเก็บไฟล์ (Object Storage) เหมาะสำหรับเก็บไฟล์ภาพถ่ายทางคลินิก, วิดีโอการสอน, และเอกสารสแกน</td>
-                    </tr>
-                    <tr>
-                        <td><strong>5. การแสดงผล</strong> (Dashboard)</td>
-                        <td>Looker Studio</td>
-                        <td><strong>Amazon QuickSight</strong></td>
-                        <td>เครื่องมือสร้าง Dashboard ของ AWS ที่เชื่อมต่อกับ Redshift และ S3 ได้แนบเนียน</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h2>
+          4. นโยบายดิจิทัลสากลและแนวปฏิบัติ (International Digital Policies)
+        </h2>
+        <h3>GDPR (General Data Protection Regulation - EU)</h3>
+        <p>
+          แม้จะเป็นกฎหมายยุโรป แต่ถือเป็น "มาตรฐานทองคำ" ของโลก
+          หากโรงพยาบาลมีลูกค้าเป็นชาวต่างชาติ (Expat) หรือมีการส่ง Lab
+          ไปต่างประเทศ ควรปฏิบัติตามหลักการ GDPR ซึ่ง PDPA
+          ของไทยถอดแบบมาเกือบทั้งหมด
+        </p>
 
-            <h2>2. โครงสร้างสถาปัตยกรรมระบบ (AWS Architecture Diagram)</h2>
-            <p>เนื่องจาก AWS ไม่ได้เชื่อมกับ Google Workspace โดยตรงเหมือน Google Cloud เราจึงต้องเพิ่มตัวกลางในการจัดการ "ตัวตนผู้ใช้งาน" (Identity)</p>
+        <h3>NIST Cybersecurity Framework (USA)</h3>
+        <p>
+          กรอบการทำงานด้านความปลอดภัยไซเบอร์ที่นิยมใช้ทั่วโลก ประกอบด้วย 5
+          ขั้นตอนที่องค์กรควรมี:
+        </p>
+        <ol>
+          <li>
+            <strong>Identify:</strong> ระบุว่าข้อมูลสำคัญอยู่ที่ไหน (เช่น อยู่ใน
+            Cloud SQL)
+          </li>
+          <li>
+            <strong>Protect:</strong> ป้องกันการเข้าถึง (เช่น บังคับใช้ KU Login
+            และ AppSheet Security Filter)
+          </li>
+          <li>
+            <strong>Detect:</strong> ตรวจจับความผิดปกติ (เช่น มีการ Login
+            ผิดเกิน 5 ครั้ง)
+          </li>
+          <li>
+            <strong>Respond:</strong> ตอบสนองเมื่อเกิดเหตุ (เช่น
+            ตัดการเชื่อมต่อทันที)
+          </li>
+          <li>
+            <strong>Recover:</strong> กู้คืนข้อมูล (เช่น Restore จาก Backup)
+          </li>
+        </ol>
 
-            <pre><code>graph TD
+        <h2>
+          5. แผนรองรับการดำเนินธุรกิจต่อเนื่อง (Business Continuity Plan - BCP)
+        </h2>
+        <p>
+          เนื่องจากระบบงานหลักพึ่งพาเทคโนโลยี Cloud
+          การเตรียมพร้อมรับมือเหตุขัดข้องจึงเป็นส่วนหนึ่งของนโยบายความมั่นคงปลอดภัย
+          (Availability) ตามมาตรฐาน
+          <strong>ISO 22301 (Business Continuity Management)</strong>
+        </p>
+
+        <h3>
+          มาตรการรับมือกรณีสัญญาณอินเทอร์เน็ตขัดข้อง (Internet Outage Protocol)
+        </h3>
+        <ol>
+          <li>
+            <strong>ระดับปฏิบัติการ (AppSheet Offline Mode):</strong>
+            <ul>
+              <li>
+                กำหนดให้แอปพลิเคชัน AppSheet เปิดใช้งานฟีเจอร์
+                <strong>"Offline Use"</strong>
+              </li>
+              <li>
+                <strong>แนวทางปฏิบัติ:</strong> เจ้าหน้าที่สามารถบันทึกข้อมูล
+                (เช่น ตัดสต๊อก, บันทึกเคส) ลงในอุปกรณ์ได้ตามปกติแม้ไม่มีสัญญาณ
+                ข้อมูลจะถูกพักไว้ในเครื่อง (Local Cache) และทำการซิงโครไนซ์
+                (Sync) ขึ้น Cloud SQL อัตโนมัติเมื่อสัญญาณกลับมา
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>ระดับบริหารจัดการ (Manual Fallback):</strong>
+            <ul>
+              <li>
+                กรณีไฟดับหรืออุปกรณ์เสียหาย ให้เตรียม
+                <strong>"แบบฟอร์มกระดาษฉุกเฉิน (Emergency Paper Forms)"</strong>
+                ที่มีฟิลด์ข้อมูลตรงกับในแอปพลิเคชัน
+              </li>
+              <li>
+                เมื่อระบบกลับมาใช้งานได้
+                ให้เจ้าหน้าที่ธุรการทำการบันทึกข้อมูลย้อนหลัง (Data Entry)
+                โดยระบุหมายเหตุว่าเป็นข้อมูลจากช่วงระบบขัดข้อง
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <blockquote>
+          <strong>อ้างอิง (Reference):</strong>
+          <a href="https://www.iso.org/standard/75106.html" target="_blank"
+            >ISO 22301:2019 Security and resilience — Business continuity
+            management systems</a
+          >
+        </blockquote>
+
+        <h2>6. การบริหารจัดการการเปลี่ยนแปลง (Change Management)</h2>
+        <p>
+          ความเสี่ยงด้านความปลอดภัยส่วนใหญ่เกิดจากผู้ใช้งาน (Human Error)
+          การบริหารการเปลี่ยนแปลงที่ดีจึงช่วยลดความเสี่ยงนี้ได้ โดยอ้างอิงโมเดล
+          <strong>ADKAR</strong> หรือมาตรฐาน <strong>ISO/IEC 20000</strong>
+        </p>
+        <ol>
+          <li>
+            <strong>การฝึกอบรม (Training & Onboarding):</strong>
+            <ul>
+              <li>
+                จัดอบรมการใช้งานและนโยบายความปลอดภัย (PDPA)
+                ให้แก่เจ้าหน้าที่ทุกคนก่อนเริ่มใช้งานจริง
+              </li>
+              <li>
+                สร้าง
+                <strong>"Digital Champions"</strong>
+                หรือผู้เชี่ยวชาญประจำวิทยาเขต เพื่อเป็นพี่เลี้ยง (Mentor)
+                ช่วยเหลือเพื่อนร่วมงานหน้างาน
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>ระยะเปลี่ยนผ่าน (Transition Phase):</strong>
+            <ul>
+              <li>
+                ช่วง 1-2 เดือนแรก ให้ใช้ระบบ
+                <strong>Parallel Run</strong> (ใช้ระบบใหม่ควบคู่กับระบบเดิม)
+                เพื่อสร้างความมั่นใจและตรวจสอบความถูกต้องของข้อมูล
+              </li>
+              <li>
+                มีช่องทางรับฟังความคิดเห็น (Feedback Loop)
+                เพื่อปรับปรุงระบบให้เข้ากับหน้างานจริง ลดแรงต้านจากผู้ใช้งาน
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <blockquote>
+          <strong>อ้างอิง (Reference):</strong>
+          <a href="https://www.prosci.com/adkar" target="_blank"
+            >Prosci ADKAR Model for Change Management</a
+          >
+        </blockquote>
+
+        <h2>
+          7. โครงสร้างการดูแลรักษาและสนับสนุน (Maintenance & Support Structure)
+        </h2>
+        <p>
+          เพื่อความยั่งยืนของระบบ ต้องมีการกำหนดโครงสร้างการดูแลหลังการขาย
+          (Sustainment) ที่ชัดเจนตามกรอบ
+          <strong>ITIL (Information Technology Infrastructure Library)</strong>
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>ระดับ (Tier)</th>
+              <th>ผู้รับผิดชอบ (Role)</th>
+              <th>หน้าที่ความรับผิดชอบ (Responsibilities)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Tier 1 (Frontline)</strong></td>
+              <td><strong>Admin ประจำคณะ/วิทยาเขต</strong></td>
+              <td>
+                - ช่วยเหลือผู้ใช้เบื้องต้น (เช่น ลืมรหัสผ่าน, หาเมนูไม่เจอ)<br />-
+                จัดการสิทธิ์การเข้าถึง (User Management)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Tier 2 (Technical)</strong></td>
+              <td><strong>ทีม IT ส่วนกลาง / ผู้พัฒนา</strong></td>
+              <td>
+                - แก้ไขปัญหาข้อมูลผิดพลาด (Data Correction)<br />- ตรวจสอบ Log
+                ความปลอดภัย<br />- ดูแลการเชื่อมต่อ AppSheet กับ Cloud SQL
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Tier 3 (Infrastructure)</strong></td>
+              <td><strong>Google Cloud Support / Vendor</strong></td>
+              <td>
+                - แก้ไขปัญหาระดับ Server หรือโครงสร้างพื้นฐาน<br />-
+                กู้คืนระบบกรณีวิกฤต (Disaster Recovery)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <blockquote>
+          <strong>อ้างอิง (Reference):</strong>
+          <a
+            href="https://www.axelos.com/certifications/itil-service-management"
+            target="_blank"
+            >ITIL 4 Framework - Service Management</a
+          >
+        </blockquote>
+
+        <h2>8. สรุปมาตรการความปลอดภัยสำหรับโครงการ (Action Plan for KU Vet)</h2>
+        <p>
+          เพื่อให้สอดคล้องกับมาตรฐานข้างต้น ระบบ Centralized Data Hub
+          จะใช้มาตรการดังนี้:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>หัวข้อความปลอดภัย</th>
+              <th>มาตรการทางเทคนิค (Technical Measure)</th>
+              <th>มาตรฐานที่เกี่ยวข้อง</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>การยืนยันตัวตน</strong></td>
+              <td>
+                บังคับใช้
+                <strong>Google Workspace Login (@ku.ac.th)</strong> เท่านั้น
+                (ห้ามใช้ Gmail ส่วนตัว)
+              </td>
+              <td>ISO 27001, PDPA</td>
+            </tr>
+            <tr>
+              <td><strong>การควบคุมสิทธิ์</strong></td>
+              <td>
+                ใช้หลักการ
+                <strong>Least Privilege</strong> (ให้สิทธิ์เท่าที่จำเป็น) เช่น
+                นิสิตเห็นเฉพาะเคสที่ตนเองดูแล
+              </td>
+              <td>AAHA (Confidentiality)</td>
+            </tr>
+            <tr>
+              <td><strong>การเข้ารหัสข้อมูล</strong></td>
+              <td>
+                ข้อมูลถูกเข้ารหัสทั้งขณะส่ง (Encryption in Transit - TLS 1.2+)
+                และขณะเก็บ (Encryption at Rest - AES-256) บน Google Cloud
+              </td>
+              <td>ISO 27001, NIST</td>
+            </tr>
+            <tr>
+              <td><strong>การระบุตัวตน</strong></td>
+              <td>
+                ข้อมูลเพื่อการวิจัย/การศึกษา ต้องทำ
+                <strong>Anonymization</strong> (ปิดชื่อเจ้าของสัตว์)
+                ก่อนให้นิสิตหรือนักวิจัยเข้าถึง
+              </td>
+              <td>PDPA (Research Exemption)</td>
+            </tr>
+            <tr>
+              <td><strong>การสำรองข้อมูล</strong></td>
+              <td>
+                ตั้งค่า
+                <strong>Point-in-time Recovery</strong>
+                สามารถย้อนเวลาข้อมูลกลับไปวินาทีใดก็ได้ใน 7 วันที่ผ่านมา
+              </td>
+              <td>AAHA (Data Integrity)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <strong>ข้อแนะนำเพิ่มเติม:</strong> แม้ระบบเทคโนโลยีจะปลอดภัยเพียงใด
+          "คน" (Human Error) มักเป็นจุดอ่อนที่สุด ควรจัดอบรมเจ้าหน้าที่เรื่อง
+          PDPA และการตั้งรหัสผ่านที่ปลอดภัยอย่างน้อยปีละ 1 ครั้ง
+        </p>
+      </section>
+
+      <!-- Document 06 -->
+      <section id="doc6" class="content-section">
+        <h1>[06] แนวทางการดำเนินงานด้วย AWS (AWS Alternative Strategy)</h1>
+        <p>
+          เอกสารฉบับนี้จัดทำขึ้นเพื่อนำเสนอโครงสร้างทางสถาปัตยกรรม
+          (Architecture) และแผนการดำเนินงาน กรณีที่คณะสัตวแพทยศาสตร์เลือกใช้
+          <strong>Amazon Web Services (AWS)</strong> เป็นโครงสร้างพื้นฐานหลัก
+          แทน Google Cloud Platform
+        </p>
+
+        <h2>1. แนวคิดการออกแบบบน AWS (The AWS Way)</h2>
+        <p>
+          AWS มีจุดเด่นคือความยืดหยุ่นสูงและมีบริการ (Services)
+          ที่หลากหลายที่สุดในตลาด การออกแบบจะเน้นความมั่นคง (Reliability)
+          และความเป็นมาตรฐานอุตสาหกรรม (Industry Standard)
+        </p>
+
+        <h3>การเปรียบเทียบองค์ประกอบ (Service Mapping)</h3>
+        <p>
+          หากเปลี่ยนจาก Google Cloud มาเป็น AWS เราจะเปลี่ยนเครื่องมือดังนี้:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>ส่วนประกอบ (Component)</th>
+              <th>Google Cloud Stack</th>
+              <th><strong>AWS Alternative Stack</strong></th>
+              <th>คำอธิบาย AWS Service</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. ส่วนประมวลผล</strong> (Compute)</td>
+              <td>Cloud Run</td>
+              <td><strong>AWS Fargate</strong> (บน Amazon ECS)</td>
+              <td>
+                เป็นการรัน Container แบบ Serverless เหมือนกัน ไม่ต้องดูแล Server
+                แต่ AWS Fargate จะมีความยืดหยุ่นในการตั้งค่า Network และ
+                Security Group ที่ละเอียดกว่า
+              </td>
+            </tr>
+            <tr>
+              <td><strong>2. ฐานข้อมูล</strong> (Database)</td>
+              <td>Cloud SQL</td>
+              <td><strong>Amazon RDS (for PostgreSQL)</strong></td>
+              <td>
+                บริการฐานข้อมูลที่มีความเสถียรสูงมาก รองรับ Multi-AZ
+                (สำรองข้อมูลข้ามโซนอัตโนมัติ) เพื่อป้องกันระบบล่ม
+              </td>
+            </tr>
+            <tr>
+              <td><strong>3. คลังข้อมูล</strong> (Data Lake)</td>
+              <td>BigQuery</td>
+              <td><strong>Amazon Redshift Serverless</strong></td>
+              <td>
+                คลังข้อมูลสำหรับการวิเคราะห์ รองรับข้อมูลระดับ Petabyte
+                โดยคิดเงินตามการใช้งานจริง
+              </td>
+            </tr>
+            <tr>
+              <td><strong>4. ที่เก็บไฟล์</strong> (Storage)</td>
+              <td>Cloud Storage</td>
+              <td><strong>Amazon S3</strong></td>
+              <td>
+                มาตรฐานโลกของการเก็บไฟล์ (Object Storage)
+                เหมาะสำหรับเก็บไฟล์ภาพถ่ายทางคลินิก, วิดีโอการสอน, และเอกสารสแกน
+              </td>
+            </tr>
+            <tr>
+              <td><strong>5. การแสดงผล</strong> (Dashboard)</td>
+              <td>Looker Studio</td>
+              <td><strong>Amazon QuickSight</strong></td>
+              <td>
+                เครื่องมือสร้าง Dashboard ของ AWS ที่เชื่อมต่อกับ Redshift และ
+                S3 ได้แนบเนียน
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>2. โครงสร้างสถาปัตยกรรมระบบ (AWS Architecture Diagram)</h2>
+        <p>
+          เนื่องจาก AWS ไม่ได้เชื่อมกับ Google Workspace โดยตรงเหมือน Google
+          Cloud เราจึงต้องเพิ่มตัวกลางในการจัดการ "ตัวตนผู้ใช้งาน" (Identity)
+        </p>
+
+        <pre><code>graph TD
     User[บุคลากร/นิสิต (@ku.ac.th)] -->|1. Login via Google SSO| Cognito[Amazon Cognito]
     Cognito -->|2. Verify Identity| KU_IDP[KU Google Workspace]
     KU_IDP -->|3. Token| Cognito
@@ -1368,144 +2495,480 @@
     RDS -->|Sync Data| Redshift[Amazon Redshift (Data Lake)]
     Redshift -->|Analyze| QuickSight[Amazon QuickSight Dashboard]</code></pre>
 
-            <h3>คำอธิบายขั้นตอนที่สำคัญ</h3>
-            <ol>
-                <li><strong>Amazon Cognito (Identity Broker):</strong> เนื่องจากเราต้องการให้คนใช้ @ku.ac.th ล็อกอินเข้า AWS เราต้องใช้บริการ Cognito ทำหน้าที่เป็น "ล่าม" คุยกับ Google Workspace ของ มก. ผ่านมาตรฐาน <strong>SAML 2.0</strong></li>
-                <li><strong>AWS Fargate:</strong> รับหน้าที่รันโปรแกรม (Web App/API) โดยจะทำงานอยู่ใน <strong>VPC (Virtual Private Cloud)</strong> ซึ่งเป็นเหมือนรั้วบ้านส่วนตัวที่มีความปลอดภัยสูงมาก</li>
-                <li><strong>Amazon S3:</strong> ใช้เก็บไฟล์ขนาดใหญ่ (Unstructured Data) ซึ่งเราสามารถตั้งกฎ <strong>Lifecycle Policy</strong> ได้ เช่น <em>“วิดีโอบันทึกการผ่าตัดที่เก่าเกิน 2 ปี ให้ย้ายไปเก็บแบบ S3 Glacier (ราคาถูกมากแต่ดึงช้าหน่อย)”</em> เพื่อประหยัดงบประมาณในการจัดเก็บระยะยาว</li>
-            </ol>
+        <h3>คำอธิบายขั้นตอนที่สำคัญ</h3>
+        <ol>
+          <li>
+            <strong>Amazon Cognito (Identity Broker):</strong>
+            เนื่องจากเราต้องการให้คนใช้ @ku.ac.th ล็อกอินเข้า AWS
+            เราต้องใช้บริการ Cognito ทำหน้าที่เป็น "ล่าม" คุยกับ Google
+            Workspace ของ มก. ผ่านมาตรฐาน <strong>SAML 2.0</strong>
+          </li>
+          <li>
+            <strong>AWS Fargate:</strong> รับหน้าที่รันโปรแกรม (Web App/API)
+            โดยจะทำงานอยู่ใน
+            <strong>VPC (Virtual Private Cloud)</strong>
+            ซึ่งเป็นเหมือนรั้วบ้านส่วนตัวที่มีความปลอดภัยสูงมาก
+          </li>
+          <li>
+            <strong>Amazon S3:</strong> ใช้เก็บไฟล์ขนาดใหญ่ (Unstructured Data)
+            ซึ่งเราสามารถตั้งกฎ <strong>Lifecycle Policy</strong> ได้ เช่น
+            <em
+              >“วิดีโอบันทึกการผ่าตัดที่เก่าเกิน 2 ปี ให้ย้ายไปเก็บแบบ S3
+              Glacier (ราคาถูกมากแต่ดึงช้าหน่อย)”</em
+            >
+            เพื่อประหยัดงบประมาณในการจัดเก็บระยะยาว
+          </li>
+        </ol>
 
-            <h2>3. รายละเอียดการจัดการข้อมูล (Data Handling on AWS)</h2>
-            <h3>3.1 การเชื่อมต่อกับ AppSheet (ความท้าทายและการแก้ไข)</h3>
+        <h2>3. รายละเอียดการจัดการข้อมูล (Data Handling on AWS)</h2>
+        <h3>3.1 การเชื่อมต่อกับ AppSheet (ความท้าทายและการแก้ไข)</h3>
+        <ul>
+          <li>
+            <strong>ปัญหา:</strong> AppSheet เป็นของ Google การจะให้ AppSheet
+            มาคุยกับ Database ของ AWS (ที่อยู่ในรั้ว VPC) นั้นทำได้ยากกว่า
+          </li>
+          <li>
+            <strong>วิธีแก้:</strong>
+            <ol>
+              <li>
+                <strong>เปิด Public Access:</strong> ให้ Amazon RDS
+                เข้าถึงได้จากภายนอก (ต้องตั้งค่า Whitelist IP ของ AppSheet
+                ให้แม่นยำเพื่อความปลอดภัย)
+              </li>
+              <li>
+                <strong>สร้าง API Gateway:</strong> ให้ AppSheet ส่งข้อมูลผ่าน
+                API (AWS API Gateway + Lambda) แทนการต่อตรงเข้า Database
+                (วิธีนี้ปลอดภัยกว่าแต่เขียนโค้ดเยอะกว่า)
+              </li>
+            </ol>
+          </li>
+        </ul>
+
+        <h3>3.2 การจัดการ Unstructured Data (ไฟล์มัลติมีเดียและเอกสาร)</h3>
+        <ul>
+          <li>
+            <strong>ตัวอย่างการใช้งาน:</strong>
             <ul>
-                <li><strong>ปัญหา:</strong> AppSheet เป็นของ Google การจะให้ AppSheet มาคุยกับ Database ของ AWS (ที่อยู่ในรั้ว VPC) นั้นทำได้ยากกว่า</li>
-                <li><strong>วิธีแก้:</strong>
-                    <ol>
-                        <li><strong>เปิด Public Access:</strong> ให้ Amazon RDS เข้าถึงได้จากภายนอก (ต้องตั้งค่า Whitelist IP ของ AppSheet ให้แม่นยำเพื่อความปลอดภัย)</li>
-                        <li><strong>สร้าง API Gateway:</strong> ให้ AppSheet ส่งข้อมูลผ่าน API (AWS API Gateway + Lambda) แทนการต่อตรงเข้า Database (วิธีนี้ปลอดภัยกว่าแต่เขียนโค้ดเยอะกว่า)</li>
-                    </ol>
-                </li>
+              <li>
+                <strong>ภาพถ่ายทางคลินิก (Clinical Photos):</strong>
+                ภาพถ่ายรอยโรคผิวหนัง, แผลกดทับ
+                หรือสภาพสัตว์ป่วยก่อน/หลังการรักษา ซึ่งถ่ายจากมือถือหรือแท็บเล็ต
+                ณ จุดรักษา
+              </li>
+              <li>
+                <strong>วิดีโอการเรียนการสอน (Instructional Videos):</strong>
+                ไฟล์วิดีโอบันทึกการผ่าตัดสำหรับให้นิสิตดูย้อนหลัง
+              </li>
+              <li>
+                <strong>เอกสารสำคัญ (Scanned Documents):</strong> ไฟล์ PDF
+                ใบยินยอมการรักษา (Consent Form) ที่มีลายเซ็นเจ้าของสัตว์
+              </li>
             </ul>
-
-            <h3>3.2 การจัดการ Unstructured Data (ไฟล์มัลติมีเดียและเอกสาร)</h3>
-            <ul>
-                <li><strong>ตัวอย่างการใช้งาน:</strong>
-                    <ul>
-                        <li><strong>ภาพถ่ายทางคลินิก (Clinical Photos):</strong> ภาพถ่ายรอยโรคผิวหนัง, แผลกดทับ หรือสภาพสัตว์ป่วยก่อน/หลังการรักษา ซึ่งถ่ายจากมือถือหรือแท็บเล็ต ณ จุดรักษา</li>
-                        <li><strong>วิดีโอการเรียนการสอน (Instructional Videos):</strong> ไฟล์วิดีโอบันทึกการผ่าตัดสำหรับให้นิสิตดูย้อนหลัง</li>
-                        <li><strong>เอกสารสำคัญ (Scanned Documents):</strong> ไฟล์ PDF ใบยินยอมการรักษา (Consent Form) ที่มีลายเซ็นเจ้าของสัตว์</li>
-                    </ul>
-                </li>
-                <li><strong>กระบวนการทำงาน:</strong>
-                    <ol>
-                        <li><strong>การจัดเก็บ:</strong> อัปโหลดไฟล์ขึ้น <strong>Amazon S3</strong> โดยแยก Bucket ตามประเภทข้อมูลและวิทยาเขต</li>
-                        <li><strong>การวิเคราะห์ (AI):</strong> ใช้บริการ <strong>Amazon Textract</strong> ดึงข้อมูลตัวอักษรจากไฟล์ PDF ใบยินยอม หรือใช้ <strong>Amazon Rekognition</strong> ช่วยจัดหมวดหมู่ภาพถ่ายอัตโนมัติ (เช่น แยกภาพสุนัข/แมว) เพื่อให้ค้นหาได้ง่ายในภายหลัง</li>
-                    </ol>
-                </li>
-            </ul>
-
-            <h2>4. ข้อดีและข้อเสียของการเลือก AWS (Pros & Cons)</h2>
-            <h3>ข้อดี (Pros)</h3>
+          </li>
+          <li>
+            <strong>กระบวนการทำงาน:</strong>
             <ol>
-                <li><strong>ความครบเครื่อง (Maturity):</strong> AWS มีบริการย่อยๆ เยอะมาก เช่น ถ้าอนาคตอยากทำระบบ IoT ติดปลอกคอสัตว์ป่วยเพื่อวัดชีพจร AWS มีบริการ <strong>AWS IoT Core</strong> ที่เก่งมากรองรับอยู่แล้ว</li>
-                <li><strong>มาตรฐานตลาดแรงงาน:</strong> หาโปรแกรมเมอร์ หรือบริษัท Vendor ที่เชี่ยวชาญ AWS ได้ง่ายที่สุดในไทย</li>
-                <li><strong>Data Residency:</strong> AWS มี Region (ศูนย์ข้อมูล) ในประเทศไทยแล้ว (AWS Asia Pacific - Bangkok) ทำให้การรับส่งข้อมูลรวดเร็วมาก</li>
+              <li>
+                <strong>การจัดเก็บ:</strong> อัปโหลดไฟล์ขึ้น
+                <strong>Amazon S3</strong> โดยแยก Bucket
+                ตามประเภทข้อมูลและวิทยาเขต
+              </li>
+              <li>
+                <strong>การวิเคราะห์ (AI):</strong> ใช้บริการ
+                <strong>Amazon Textract</strong> ดึงข้อมูลตัวอักษรจากไฟล์ PDF
+                ใบยินยอม หรือใช้
+                <strong>Amazon Rekognition</strong>
+                ช่วยจัดหมวดหมู่ภาพถ่ายอัตโนมัติ (เช่น แยกภาพสุนัข/แมว)
+                เพื่อให้ค้นหาได้ง่ายในภายหลัง
+              </li>
             </ol>
+          </li>
+        </ul>
 
-            <h3>ข้อเสีย/ความท้าทาย (Cons)</h3>
-            <ol>
-                <li><strong>ความซับซ้อน (Complexity):</strong> การตั้งค่า AWS (เช่น VPC, Security Group, IAM Role) มีความซับซ้อนกว่า Google Cloud พอสมควร ต้องใช้ผู้เชี่ยวชาญในการ Setup เริ่มต้น</li>
-                <li><strong>การเชื่อมต่อ Google Auth:</strong> ต้องมีการตั้งค่า Federation (SAML) ซึ่งซับซ้อนกว่าการใช้ Google Cloud ที่กดเลือกปุ่มเดียวจบ</li>
-                <li><strong>ค่าใช้จ่ายแฝง (Data Transfer):</strong> AWS มักมีรายละเอียดการคิดค่า Data Transfer (ค่าส่งข้อมูลออก) ที่จุกจิกกว่า ต้องคำนวณดีๆ หากมีการดึงไฟล์วิดีโอหรือภาพความละเอียดสูงบ่อยๆ</li>
-            </ol>
+        <h2>4. ข้อดีและข้อเสียของการเลือก AWS (Pros & Cons)</h2>
+        <h3>ข้อดี (Pros)</h3>
+        <ol>
+          <li>
+            <strong>ความครบเครื่อง (Maturity):</strong> AWS มีบริการย่อยๆ
+            เยอะมาก เช่น ถ้าอนาคตอยากทำระบบ IoT ติดปลอกคอสัตว์ป่วยเพื่อวัดชีพจร
+            AWS มีบริการ <strong>AWS IoT Core</strong> ที่เก่งมากรองรับอยู่แล้ว
+          </li>
+          <li>
+            <strong>มาตรฐานตลาดแรงงาน:</strong> หาโปรแกรมเมอร์ หรือบริษัท Vendor
+            ที่เชี่ยวชาญ AWS ได้ง่ายที่สุดในไทย
+          </li>
+          <li>
+            <strong>Data Residency:</strong> AWS มี Region (ศูนย์ข้อมูล)
+            ในประเทศไทยแล้ว (AWS Asia Pacific - Bangkok)
+            ทำให้การรับส่งข้อมูลรวดเร็วมาก
+          </li>
+        </ol>
 
-            <h2>5. บทสรุปสำหรับผู้บริหาร (Executive Summary for AWS Option)</h2>
-            <p>การเลือก <strong>AWS</strong> เป็นทางเลือกที่ <strong>"มั่นคงและยั่งยืน"</strong> ในระดับ Enterprise เหมาะสมหากทางคณะฯ:</p>
-            <ol>
-                <li>มีแผนจะจ้าง Vendor หรือ Software House ภายนอกมาพัฒนา (เพราะ Vendor ส่วนใหญ่ถนัด AWS)</li>
-                <li>ต้องการฟีเจอร์เชิงลึกที่ Google Cloud อาจจะยังไม่มี หรือต้องการความละเอียดในการจูนระบบ Network</li>
-                <li>ยอมรับความยุ่งยากในช่วงเริ่มต้น (Setup Phase) เพื่อแลกกับระบบที่รองรับการขยายตัวได้ไม่จำกัดในอนาคต</li>
-            </ol>
-            <p><em>คำแนะนำ:</em> หากเลือก AWS แนะนำให้จ้างผู้เชี่ยวชาญ (Cloud Architect) มาวางโครงสร้าง VPC และ Security ในเดือนแรกให้จบ เพื่อป้องกันปัญหาความปลอดภัยระยะยาว</p>
-        </section>
+        <h3>ข้อเสีย/ความท้าทาย (Cons)</h3>
+        <ol>
+          <li>
+            <strong>ความซับซ้อน (Complexity):</strong> การตั้งค่า AWS (เช่น VPC,
+            Security Group, IAM Role) มีความซับซ้อนกว่า Google Cloud พอสมควร
+            ต้องใช้ผู้เชี่ยวชาญในการ Setup เริ่มต้น
+          </li>
+          <li>
+            <strong>การเชื่อมต่อ Google Auth:</strong> ต้องมีการตั้งค่า
+            Federation (SAML) ซึ่งซับซ้อนกว่าการใช้ Google Cloud
+            ที่กดเลือกปุ่มเดียวจบ
+          </li>
+          <li>
+            <strong>ค่าใช้จ่ายแฝง (Data Transfer):</strong> AWS
+            มักมีรายละเอียดการคิดค่า Data Transfer (ค่าส่งข้อมูลออก)
+            ที่จุกจิกกว่า ต้องคำนวณดีๆ
+            หากมีการดึงไฟล์วิดีโอหรือภาพความละเอียดสูงบ่อยๆ
+          </li>
+        </ol>
 
+        <h2>5. บทสรุปสำหรับผู้บริหาร (Executive Summary for AWS Option)</h2>
+        <p>
+          การเลือก <strong>AWS</strong> เป็นทางเลือกที่
+          <strong>"มั่นคงและยั่งยืน"</strong> ในระดับ Enterprise
+          เหมาะสมหากทางคณะฯ:
+        </p>
+        <ol>
+          <li>
+            มีแผนจะจ้าง Vendor หรือ Software House ภายนอกมาพัฒนา (เพราะ Vendor
+            ส่วนใหญ่ถนัด AWS)
+          </li>
+          <li>
+            ต้องการฟีเจอร์เชิงลึกที่ Google Cloud อาจจะยังไม่มี
+            หรือต้องการความละเอียดในการจูนระบบ Network
+          </li>
+          <li>
+            ยอมรับความยุ่งยากในช่วงเริ่มต้น (Setup Phase)
+            เพื่อแลกกับระบบที่รองรับการขยายตัวได้ไม่จำกัดในอนาคต
+          </li>
+        </ol>
+        <p>
+          <em>คำแนะนำ:</em> หากเลือก AWS แนะนำให้จ้างผู้เชี่ยวชาญ (Cloud
+          Architect) มาวางโครงสร้าง VPC และ Security ในเดือนแรกให้จบ
+          เพื่อป้องกันปัญหาความปลอดภัยระยะยาว
+        </p>
+      </section>
+
+      <!-- Document 07 -->
+      <section id="doc7" class="content-section">
+        <h1>
+          [07] การปฏิบัติตามข้อกำหนดและความมั่นคงปลอดภัยเชิงลึก (Security
+          Compliance & Deep Dive)
+        </h1>
+        <p>
+          เอกสารฉบับนี้เป็นส่วนเสริมเพื่อรายละเอียดทางเทคนิคและแนวปฏิบัติในการคุ้มครองข้อมูลส่วนบุคคล
+          (PDPA) และการป้องกันภัยคุกคามทางไซเบอร์
+          เพื่อยกระดับความเชื่อมั่นในการบริหารจัดการข้อมูลของสถาบัน
+        </p>
+
+        <h2>
+          1. บันทึกรายการประมวลผลข้อมูลส่วนบุคคล (Data Processing Inventory -
+          RoPA)
+        </h2>
+        <p>
+          การจัดทำ RoPA ตามมาตรฐานของสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล
+          (สคส.) มิใช่เพียงภาระทางเอกสาร แต่คือความเข้าใจในวงจรชีวิตของข้อมูล
+          (Data Lifecycle) ภายในคณะและโรงพยาบาลอย่างถ่องแท้
+        </p>
+
+        <h3>กลยุทธ์และวิธีการดำเนินงาน</h3>
+        <ul>
+          <li>
+            <strong>แผนผังการไหลของข้อมูล (Data Flow Mapping):</strong>
+            วิเคราะห์เส้นทางข้อมูลจากจุดเริ่มต้น เช่น
+            การลงเกทะเบียนนิสิตหรือเจ้าของสัตว์ ผ่านระบบประมวลผล
+            ไปจนถึงจุดจัดเก็บสุดท้าย เพื่อระบุผู้ควบคุม (Controller)
+            และผู้ประมวลผล (Processor) ในทุกขั้นตอน
+          </li>
+          <li>
+            <strong>การสำรวจข้อมูลที่ซ่อนเร้น (Data Discovery):</strong>
+            ค้นหาข้อมูลสำคัญที่อาจจัดเก็บอย่างกระจัดกระจาย (Dark Data)
+            โดยใช้เทคโนโลยีสแกนคำสำคัญ (Keywords) เช่น เลขประจำตัวประชาชน
+            หรือข้อมูลทางการแพทย์ เพื่อจัดทำบัญชีข้อมูลให้ครบถ้วน
+          </li>
+          <li>
+            <strong>หลักเกณฑ์การประมวลผลตามกฎหมาย (Lawful Basis):</strong>
+            ระบุฐานอำนาจทางกฎหมายใน RoPA ให้ชัดเจน เช่น ฐานสัญญา (Contract)
+            สำหรับการจัดบริการรักษา, ฐานภารกิจของรัฐ (Public Task)
+            สำหรับการจัดการศึกษา, หรือฐานความยินยอม (Consent)
+            สำหรับงานสื่อสารองค์กร
+          </li>
+        </ul>
+
+        <h3>เครื่องมือสนับสนุนระดับสากล</h3>
+        <ol>
+          <li>
+            <strong>OneTrust / TrustArc:</strong>
+            ระบบบริหารจัดการความเป็นส่วนตัวอัตโนมัติ
+            เหมาะสำหรับองค์กรขนาดใหญ่ที่มีความซับซ้อนในการจัดการสิทธิของเจ้าของข้อมูล
+            (DSAR)
+          </li>
+          <li>
+            <strong>CookieWow / PDPA Pro:</strong>
+            ซอฟต์แวร์ที่ออกแบบมาให้สอดคล้องกับระเบียบของ สคส. โดยเฉพาะ
+            มีรูปแบบการทำงานและภาษาที่ถูกต้องตามกฎหมายไทย
+          </li>
+          <li>
+            <strong>Microsoft Purview:</strong>
+            ระบบปกป้องข้อมูลที่บูรณาการเข้ากับโครงสร้างพื้นฐานเดิม
+            เพื่อการค้นหาและติดป้ายกำกับระดับความสำคัญของข้อมูลโดยอัตโนมัติ
+          </li>
+        </ol>
+
+        <h2>
+          2. การตรวจจับและตอบโต้ภัยคุกคาม ณ จุดเชื่อมต่อ (Endpoint Detection and
+          Response - EDR)
+        </h2>
+        <p>
+          สถาบันการศึกษามักเป็นเป้าหมายของการโจมตีด้วย Ransomware
+          เนื่องจากมีอุปกรณ์เชื่อมต่อจำนวนมาก ระบบ EDR
+          จึงมีความจำเป็นอย่างยิ่งในการตรวจจับภัยคุกคามขั้นสูงที่แอนตี้ไวรัสแบบดั้งเดิมไม่สามารถตรวจพบได้
+        </p>
+
+        <h3>เทคนิคการป้องกันเชิงรุก</h3>
+        <ul>
+          <li>
+            <strong>การเฝ้าระวังพฤติกรรม (Behavioral Monitoring):</strong>
+            วิเคราะห์พฤติกรรมการใช้งานที่ผิดปกติ (Anomalous Behavior) เช่น
+            การใช้สคริปต์ระบบในเวลาที่มิได้ปฏิบัติงาน
+            หรือการพยายามเข้าถึงฐานข้อมูลการเงินจากอุปกรณ์สาธารณะ
+          </li>
+          <li>
+            <strong>การกักกันสถานการณ์อัตโนมัติ (Automated Quarantine):</strong>
+            เมื่อพบร่องรอยการโจมตี
+            ระบบจะทำการแยกเครื่องที่ติดเชื้อออกจากเครือข่ายส่วนกลาง (Isolation)
+            ทันทีเพื่อยับยั้งการแพร่กระจายของมัลแวร์
+          </li>
+          <li>
+            <strong>การสืบค้นร่องรอยเชิงลึก (Threat Hunting):</strong>
+            วิเคราะห์ย้อนหลังเพื่อระบุช่องทางการบุกรุก (Root Cause Analysis)
+            และตรวจสอบความปลอดภัยของระบบว่าไม่มีการทิ้งช่องทางหลังบ้าน
+            (Backdoor) ไว้
+          </li>
+        </ul>
+
+        <h3>โซลูชันที่แนะนำ</h3>
+        <ol>
+          <li>
+            <strong>CrowdStrike Falcon:</strong> ระบบตรวจจับในรูปแบบ
+            Cloud-native
+            ที่มีประสิทธิภาพสูงสุดและไม่ส่งผลกระทบต่อสมรรถนะของอุปกรณ์ลูกข่าย
+          </li>
+          <li>
+            <strong>Microsoft Defender for Endpoint:</strong>
+            ทางเลือกที่คุ้มค่าสูงสุดสำหรับหน่วยงานที่ใช้ Microsoft 365 Education
+            เนื่องจากบริหารจัดการได้จากศูนย์กลางเดียว
+          </li>
+          <li>
+            <strong>SentinelOne:</strong> โดดเด่นด้านการใช้ปัญญาประดิษฐ์ (AI)
+            ในการวิเคราะห์ และความสามารถในการกู้คืนไฟล์ (Rollback)
+            ที่ถูกเข้ารหัสด้วย Ransomware
+          </li>
+        </ol>
+
+        <h2>3. มาตรฐานการเผชิญเหตุเมื่อข้อมูลรั่วไหล (Data Breach Protocol)</h2>
+        <p>
+          ภายใต้กฎหมาย PDPA
+          มหาวิทยาลัยมีหน้าที่กำหนดขั้นตอนปฏิบัติที่ชัดเจนเมื่อเกิดเหตุการณ์ข้อมูลรั่วไหล
+          เพื่อบรรเทาความเสียหายและปฏิบัติตามข้อกำหนดทางกฎหมาย
+        </p>
+
+        <h3>ลำดับขั้นตอนการตอบโต้ (Incident Response Steps)</h3>
+        <ol>
+          <li>
+            <strong>Identification:</strong>
+            ยืนยันสถานการณ์โดยคณะทำงานตอบโต้เหตุฉุกเฉิน (IR Team) ภายใน 24
+            ชั่วโมงแรกหลังได้รับแจ้งเบาะแส
+          </li>
+          <li>
+            <strong>Containment & Eradication:</strong> ดำเนินมาตรการระงับเหตุ
+            เช่น การปิดช่องโหว่ทางเทคนิค (SQL Injection)
+            หรือการระงับสิทธิ์การเข้าถึงของบัญชีที่ถูกละเมิด
+          </li>
+          <li>
+            <strong>Risk Assessment:</strong> ประเมินผลกระทบต่อเจ้าของข้อมูล
+            โดยพิจารณาจากระดับความสำคัญของข้อมูล เช่น
+            ข้อมูลทางการเงินหรือรหัสผ่านถือเป็นความเสี่ยงสูง
+          </li>
+          <li>
+            <strong>Notification Strategy:</strong>
+            แจ้งต่อสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) ภายใน 72
+            ชั่วโมง และหากมีความเสี่ยงสูง
+            ต้องแจ้งต่อเจ้าของข้อมูลโดยตรงพร้อมคำแนะนำในการป้องกันตนเอง
+          </li>
+          <li>
+            <strong>Post-Incident Review:</strong>
+            วิเคราะห์สรุปบทเรียนเพื่อปรับปรุงนโยบายการรักษาความลับและป้องกันการเกิดเหตุซ้ำ
+          </li>
+        </ol>
+
+        <h2>
+          4. นโยบายการนำอุปกรณ์ส่วนตัวมาใช้ในการปฏิบัติงาน (Bring Your Own
+          Device - BYOD)
+        </h2>
+        <p>
+          สำหรับการบริหารจัดการในระบบเปิด การจัดการความปลอดภัยของ BYOD
+          จะมุ่งเน้นที่ "ความปลอดภัยของข้อมูลองค์กร"
+          มากกว่าการเข้าควบคุมอุปกรณ์ส่วนตัวของบุคลากรและนิสิต
+        </p>
+
+        <h3>แนวทางการจัดการเชิงเทคนิค</h3>
+        <ul>
+          <li>
+            <strong>Mobile Application Management (MAM):</strong>
+            ควบคุมเฉพาะแอปพลิเคชันที่เกี่ยวข้องกับการปฏิบัติงาน (เช่น Outlook
+            หรือ OneDrive) โดยไม่ก้าวล่วงข้อมูลส่วนตัวบนอุปกรณ์
+          </li>
+          <li>
+            <strong>Containerization:</strong>
+            การแยกพื้นที่จัดเก็บข้อมูลของสถาบัน (Sandboxing) ออกจากข้อมูลส่วนตัว
+            เพื่อป้องกันการไหลรั่วของข้อมูลงองค์กรไปยังแอปพลิเคชันอื่น
+          </li>
+          <li>
+            <strong>Compliance Enforcement:</strong>
+            กำหนดเงื่อนไขความปลอดภัยพื้นฐานก่อนอนุญาตให้เข้าถึงระบบ เช่น
+            การตั้งรหัสผ่านล็อกหน้าจอ
+            และการไม่อนุญาตอุปกรณ์ที่มีการดัดแปลงระบบปฏิบัติการ (Jailbreak/Root)
+          </li>
+        </ul>
+
+        <h3>เทคโนโลยีที่เลือกใช้</h3>
+        <ul>
+          <li>
+            <strong>Microsoft Intune (Endpoint Manager):</strong> บริการภายใต้
+            Microsoft 365 Education
+            ที่มุ่งเน้นการสร้างนโยบายความปลอดภัยและบริหารจัดการอุปกรณ์ข้ามแพลตฟอร์มอย่างมีประสิทธิภาพ
+          </li>
+          <li>
+            <strong>Cisco ISE (Identity Services Engine):</strong>
+            ใช้สำหรับการควบคุมการเข้าถึงเครือข่ายไร้สาย (Wi-Fi)
+            โดยจำแนกประเภทอุปกรณ์และกำหนดสิทธิ์ตามบทบาทผู้ใช้
+          </li>
+        </ul>
+
+        <blockquote>
+          <strong>ข้อสรุปเชิงนโยบาย (Policy Synthesis):</strong>
+          เนื่องจากมหาวิทยาลัยเกษตรศาสตร์มีสิทธิ์การใช้งาน Microsoft 365
+          Education ระดับ A3 จึงควรบูรณาการเครื่องมือที่มีอยู่เป็นลำดับแรก
+          โดยเริ่มจากการกำหนด <strong>App Protection Policies</strong> ผ่าน
+          Microsoft Intune และการใช้ <strong>Conditional Access</strong> ใน
+          Microsoft Entra ID
+          เพื่อควบคุมการเข้าถึงข้อมูลสำคัญตามเงื่อนไขความปลอดภัยที่กำหนด
+          ซึ่งจะช่วยให้สถาบันมีความสมบูรณ์เชิงระบบโดยไม่ต้องจัดหาซอฟต์แวร์เพิ่มเติมในระยะเริ่มต้น
+        </blockquote>
+      </section>
     </main>
 
     <!-- Floating Action Buttons -->
     <div class="fab-container">
-        <button class="fab" id="themeToggle" onclick="toggleTheme()" title="เปลี่ยนธีม">
-            <!-- Sun/Moon Icon -->
-            <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-        <button class="fab" onclick="scrollToTop()" title="เลื่อนขึ้นบนสุด">
-            <!-- Up Arrow Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-        </button>
+      <button
+        class="fab"
+        id="themeToggle"
+        onclick="toggleTheme()"
+        title="เปลี่ยนธีม"
+      >
+        <!-- Sun/Moon Icon -->
+        <svg
+          id="themeIcon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <button class="fab" onclick="scrollToTop()" title="เลื่อนขึ้นบนสุด">
+        <!-- Up Arrow Icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+      </button>
     </div>
 
     <script>
-        function showSection(sectionId, element) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show selected section
-            const selectedSection = document.getElementById(sectionId);
-            selectedSection.classList.add('active');
-
-            // Update nav active state
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.classList.remove('active');
-            });
-            element.classList.add('active');
-            
-            // Scroll main content to top
-            document.getElementById('mainContent').scrollTop = 0;
-            
-            // Force external links to new tab (in case any were missed)
-            const links = selectedSection.getElementsByTagName('a');
-            for(let link of links) {
-                if(link.hostname !== window.location.hostname) {
-                    link.setAttribute('target', '_blank');
-                }
-            }
-        }
-        
-        function scrollToTop() {
-            document.getElementById('mainContent').scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            const themeIcon = document.getElementById('themeIcon');
-            
-            if (document.body.classList.contains('dark-theme')) {
-                // Change to Sun icon
-                themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
-            } else {
-                // Change back to Moon icon
-                themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
-            }
-        }
-        
-        // Initial setup for links in the first active section
-        document.addEventListener('DOMContentLoaded', () => {
-             const activeSection = document.querySelector('.content-section.active');
-             if(activeSection) {
-                 const links = activeSection.getElementsByTagName('a');
-                 for(let link of links) {
-                    if(link.hostname !== window.location.hostname) {
-                        link.setAttribute('target', '_blank');
-                    }
-                }
-             }
+      function showSection(sectionId, element) {
+        // Hide all sections
+        const sections = document.querySelectorAll(".content-section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
         });
+
+        // Show selected section
+        const selectedSection = document.getElementById(sectionId);
+        selectedSection.classList.add("active");
+
+        // Update nav active state
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach((item) => {
+          item.classList.remove("active");
+        });
+        element.classList.add("active");
+
+        // Scroll main content to top
+        document.getElementById("mainContent").scrollTop = 0;
+
+        // Force external links to new tab (in case any were missed)
+        const links = selectedSection.getElementsByTagName("a");
+        for (let link of links) {
+          if (link.hostname !== window.location.hostname) {
+            link.setAttribute("target", "_blank");
+          }
+        }
+      }
+
+      function scrollToTop() {
+        document.getElementById("mainContent").scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      function toggleTheme() {
+        document.body.classList.toggle("dark-theme");
+        const themeIcon = document.getElementById("themeIcon");
+
+        if (document.body.classList.contains("dark-theme")) {
+          // Change to Sun icon
+          themeIcon.innerHTML =
+            '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        } else {
+          // Change back to Moon icon
+          themeIcon.innerHTML =
+            '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
+      }
+
+      // Initial setup for links in the first active section
+      document.addEventListener("DOMContentLoaded", () => {
+        const activeSection = document.querySelector(".content-section.active");
+        if (activeSection) {
+          const links = activeSection.getElementsByTagName("a");
+          for (let link of links) {
+            if (link.hostname !== window.location.hostname) {
+              link.setAttribute("target", "_blank");
+            }
+          }
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
